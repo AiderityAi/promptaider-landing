@@ -464,7 +464,7 @@
 
           <div class="privacy-text">
             By signing up, you agree to receive emails from PromptAider. 
-            Unsubscribe anytime. <a href="#">Privacy Policy</a>
+            Unsubscribe anytime. <a href="https://aiderityai.github.io/promptaider-landing/">Privacy Policy</a>
           </div>
         </form>
 
@@ -500,25 +500,26 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
-      // Simulate form submission (replace with your actual API endpoint)
+      // ConvertKit Integration
       try {
-        // REPLACE THIS WITH YOUR ACTUAL EMAIL SERVICE
-        // Example integrations below:
-        
-        // Option 1: Mailchimp
-        // await fetch('YOUR_MAILCHIMP_API_ENDPOINT', { ... });
-        
-        // Option 2: ConvertKit
-        // await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', { ... });
-        
-        // Option 3: Your own backend
-        // await fetch('https://yourbackend.com/api/subscribe', { ... });
+        const response = await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+          body: JSON.stringify({
+            api_key: 'YOUR_API_KEY',
+            email: email,
+            first_name: name
+          })
+        });
 
-        // For now, simulate success after 1.5 seconds
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        if (!response.ok) {
+          throw new Error('Subscription failed');
+        }
 
         // Log to console (remove in production)
-        console.log('Signup:', { name, email });
+        console.log('Signup successful:', { name, email });
 
         // Show success message
         formSection.style.display = 'none';
