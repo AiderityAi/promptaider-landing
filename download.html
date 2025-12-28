@@ -65,7 +65,7 @@
       padding: 60px 50px;
       border-radius: 24px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      max-width: 600px;
+      max-width: 650px;
       width: 100%;
       text-align: center;
       position: relative;
@@ -147,32 +147,21 @@
       font-weight: 700;
     }
 
-    .download-status {
+    .instruction-text {
       background: rgba(61, 169, 252, 0.1);
       border: 1px solid rgba(61, 169, 252, 0.3);
       padding: 20px;
       border-radius: 12px;
       margin-bottom: 30px;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.9; transform: scale(1.02); }
-    }
-
-    .download-status p {
-      margin: 0;
-      color: #3da9fc;
-      font-weight: 600;
       font-size: 16px;
+      line-height: 1.6;
     }
 
     .download-btn { 
       display: inline-block;
-      padding: 18px 40px;
-      margin: 10px 5px;
-      font-size: 18px;
+      padding: 20px 45px;
+      margin: 15px 0;
+      font-size: 20px;
       font-weight: 700;
       border: none;
       border-radius: 12px;
@@ -183,6 +172,7 @@
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 15px rgba(240, 200, 116, 0.3);
     }
 
     .download-btn::before {
@@ -201,17 +191,17 @@
     }
 
     .download-btn:hover { 
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(240, 200, 116, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(240, 200, 116, 0.5);
     }
 
     .secondary-btn {
       display: inline-block;
-      padding: 18px 40px;
+      padding: 14px 30px;
       margin: 10px 5px;
-      font-size: 18px;
-      font-weight: 700;
-      border: 2px solid #3da9fc;
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid rgba(61, 169, 252, 0.5);
       border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
@@ -222,18 +212,31 @@
 
     .secondary-btn:hover {
       background: rgba(61, 169, 252, 0.1);
+      border-color: #3da9fc;
       transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(61, 169, 252, 0.3);
     }
 
     .divider {
-      margin: 40px 0;
-      padding-top: 40px;
+      margin: 50px 0;
+      padding-top: 50px;
       border-top: 1px solid rgba(61, 169, 252, 0.1);
     }
 
     .upgrade-section {
       text-align: center;
+    }
+
+    .upgrade-section h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #f0f0f0;
+      font-weight: 800;
+    }
+
+    .upgrade-section p {
+      margin-bottom: 25px;
+      font-size: 17px;
+      color: #b0b0b0;
     }
 
     .upgrade-btn { 
@@ -246,14 +249,33 @@
       cursor: pointer;
       text-decoration: none;
       color: #fff;
-      background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%);
       transition: all 0.3s;
-      margin-top: 20px;
+      margin: 10px 8px;
     }
 
     .upgrade-btn:hover { 
       transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(61, 169, 252, 0.5);
+      box-shadow: 0 10px 30px rgba(61, 169, 252, 0.4);
+    }
+
+    .btn-professional {
+      background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%);
+    }
+
+    .btn-elite {
+      background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
+      color: #1a1a21;
+    }
+
+    .popular-badge {
+      display: inline-block;
+      background: rgba(239, 71, 111, 0.2);
+      color: #ef476f;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 15px;
     }
 
     .features-grid {
@@ -285,6 +307,7 @@
       font-size: 14px;
       color: #666;
       margin-top: 30px;
+      line-height: 1.8;
     }
 
     @media (max-width: 768px) { 
@@ -294,7 +317,18 @@
       h1 { 
         font-size: 28px;
       }
-      .download-btn, .secondary-btn, .upgrade-btn {
+      .download-btn {
+        display: block;
+        width: 100%;
+        padding: 18px;
+        font-size: 18px;
+      }
+      .upgrade-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+      }
+      .secondary-btn {
         display: block;
         width: 100%;
         margin: 10px 0;
@@ -316,17 +350,25 @@
     <div class="success-icon">🎉</div>
     
     <h1><span class="gradient-text">You're All Set!</span></h1>
-    <p>Your <strong>PromptAider Starter Pack</strong> download should start automatically...</p>
-
-    <div class="download-status">
-      <p>📥 Downloading your Starter Pack...</p>
+    
+    <div class="instruction-text">
+      <p style="margin: 0; color: #3da9fc; font-weight: 600;">
+        Your download should begin automatically. If it doesn't, click the button below.
+      </p>
     </div>
 
-    <button id="downloadBtn" class="download-btn">
-      📥 Click Here if Download Doesn't Start
-    </button>
+    <!-- REQUIRED: Manual Download Button -->
+    <a 
+      href="https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf"
+      class="download-btn"
+      download="PromptAider-Starter-Pack.pdf"
+    >
+      ⬇️ Download Your Free Starter Pack
+    </a>
 
-    <a href="https://bit.ly/promptaider" class="secondary-btn">
+    <br>
+
+    <a href="https://aiderityai.github.io/promptaider-landing/" class="secondary-btn">
       ← Back to Homepage
     </a>
 
@@ -348,22 +390,20 @@
     <div class="divider"></div>
 
     <div class="upgrade-section">
-      <h2 style="font-size: 32px; margin-bottom: 15px; color: #f0f0f0;">Want the Full System?</h2>
-      <p style="margin-bottom: 25px; font-size: 17px;">
+      <h2>Want the Full System?</h2>
+      <p>
         Unlock the complete PromptAider collection with proven workflows built for professionals.
       </p>
       
-      <a href="YOUR_GUMROAD_PROFESSIONAL_LINK" target="_blank" class="upgrade-btn" style="background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%); margin: 10px 5px;">
+      <a href="YOUR_GUMROAD_PROFESSIONAL_LINK" target="_blank" class="upgrade-btn btn-professional">
         🔵 Professional Kit – 30 Prompts ($12)
       </a>
       
-      <a href="YOUR_GUMROAD_ELITE_LINK" target="_blank" class="upgrade-btn" style="background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%); color: #1a1a21; margin: 10px 5px;">
+      <a href="YOUR_GUMROAD_ELITE_LINK" target="_blank" class="upgrade-btn btn-elite">
         💎 Elite Kit – 150 Prompts ($57)
       </a>
       
-      <p style="font-size: 14px; color: #999; margin-top: 20px;">
-        ⭐ Most Popular: Elite Kit includes everything + advanced strategies
-      </p>
+      <div class="popular-badge">⭐ Most Popular: Elite Kit</div>
     </div>
 
     <p class="trust-text">
@@ -372,23 +412,16 @@
     </p>
   </div>
 
+  <!-- OPTIONAL BUT RECOMMENDED: Auto-download on page load -->
   <script>
-    const downloadUrl = "https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf";
-
-    // Auto-download on page load
-    window.onload = function() {
-      setTimeout(() => {
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = "PromptAider-Starter-Pack.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        
-        // Update status message
-        const statusDiv = document.querySelector('.download-status p');
-        statusDiv.textContent = '✓ Download Started! Check your downloads folder.';
-        statusDiv.style.color = '#f0c874';
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        const link = document.createElement('a');
+        link.href = "https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf";
+        link.download = "PromptAider-Starter-Pack.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
         
         // Optional: Google Analytics tracking
         if (window.gtag) {
@@ -397,36 +430,7 @@
             'event_label': 'starter_pack_auto'
           });
         }
-      }, 1000); // 1 second delay to ensure page loads first
-    };
-
-    // Manual download button
-    document.getElementById('downloadBtn').addEventListener('click', function() {
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = "PromptAider-Starter-Pack.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      
-      // Update button text
-      this.textContent = '✓ Download Started!';
-      this.style.background = 'linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%)';
-      this.style.color = '#fff';
-      
-      // Optional: Google Analytics tracking
-      if (window.gtag) {
-        gtag('event', 'download', {
-          'event_category': 'engagement',
-          'event_label': 'starter_pack_manual'
-        });
-      }
-      
-      setTimeout(() => {
-        this.textContent = '📥 Download Again';
-        this.style.background = 'linear-gradient(135deg, #f0c874 0%, #e5b65f 100%)';
-        this.style.color = '#1a1a21';
-      }, 3000);
+      }, 800); // 800ms delay to ensure page loads first
     });
   </script>
 </body>
