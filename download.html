@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Free PromptAider Starter Pack</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(61, 169, 252, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(61, 169, 252, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridScroll 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes gridScroll {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    .container { 
+      background: rgba(26, 26, 33, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(61, 169, 252, 0.2);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3da9fc, #f0c874, #ef476f);
+      border-radius: 24px 24px 0 0;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f0c874 0%, #3da9fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: #3da9fc;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    h1 { 
+      color: #f0f0f0;
+      font-size: clamp(24px, 5vw, 32px);
+      margin-bottom: 15px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #f0c874 0%, #3da9fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p { 
+      color: #b0b0b0;
+      font-size: 16px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    strong {
+      color: #3da9fc;
+      font-weight: 700;
+    }
+
+    input[type="email"] { 
+      width: 100%;
+      padding: 16px 20px;
+      margin-bottom: 15px;
+      border: 2px solid rgba(61, 169, 252, 0.2);
+      border-radius: 12px;
+      font-size: 16px;
+      background: rgba(15, 15, 20, 0.8);
+      color: #f0f0f0;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+
+    input[type="email"]:focus { 
+      outline: none;
+      border-color: #3da9fc;
+      box-shadow: 0 0 0 4px rgba(61, 169, 252, 0.1);
+      background: rgba(15, 15, 20, 0.95);
+    }
+
+    input[type="email"]::placeholder {
+      color: #666;
+    }
+
+    button { 
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(61, 169, 252, 0.5);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .download-btn, .paid-btn { 
+      display: inline-block;
+      padding: 16px 32px;
+      margin: 10px 5px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
+    }
+
+    .download-btn { 
+      background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
+      color: #1a1a21;
+    }
+
+    .download-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(240, 200, 116, 0.4);
+    }
+
+    .paid-btn { 
+      background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%);
+    }
+
+    .paid-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(61, 169, 252, 0.5);
+    }
+
+    .hidden { 
+      display: none;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: bounce 1s ease-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .features {
+      list-style: none;
+      text-align: left;
+      margin: 25px 0;
+      padding: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: #e0e0e0;
+      font-size: 15px;
+    }
+
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #3da9fc, #2d8fd9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .trust-text {
+      font-size: 13px;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 480px) { 
+      .container {
+        padding: 40px 30px;
+      }
+      h1 { 
+        font-size: 24px;
+      }
+      p { 
+        font-size: 15px;
+      }
+      .download-btn, .paid-btn {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="formSection">
+      <div class="logo">PromptAider</div>
+      <div class="tagline">Stay Ahead. Level Up Daily.</div>
+      
+      <h1>Get Your <span class="gradient-text">Free Starter Pack!</span></h1>
+      <p>Enter your email to receive <strong>10 Starter Prompts + 2 Bonus Prompts</strong> instantly.</p>
+      
+      <ul class="features">
+        <li class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>10 high-performance prompt flows</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>2 exclusive bonus prompts</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>Instant download access</span>
+        </li>
+      </ul>
+      
+      <form id="starterForm" action="https://app.kit.com/forms/8910830/subscriptions" class="seva-form formkit-form" method="post">
+        <input type="email" name="email_address" placeholder="your@email.com" required>
+        <button type="submit" id="submitBtn">Get My Free Starter Pack →</button>
+      </form>
+      
+      <p class="trust-text">✓ No credit card required • ✓ Instant delivery • ✓ Unsubscribe anytime</p>
+    </div>
+
+    <div id="successMessage" class="hidden">
+      <div class="success-icon">🎉</div>
+      <h1>You're In!</h1>
+      <p>Your <strong>PromptAider Starter Pack</strong> is ready to download:</p>
+      <a class="download-btn" href="https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf" download="PromptAider-Starter-Pack.pdf">📥 Download Free Starter Pack</a>
+      
+      <p style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(61, 169, 252, 0.1);">
+        <strong>Want the complete collection?</strong><br>
+        Get unlimited access to all premium prompts:
+      </p>
+      <a class="paid-btn" href="https://bit.ly/promptaider" target="_blank">🚀 Upgrade to Premium</a>
+      
+      <p class="trust-text">Check your email for instant access + bonus content!</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('starterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const submitBtn = document.getElementById('submitBtn');
+      const data = new FormData(form);
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      
+      const xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action, true);
+      xhr.setRequestHeader("Accept", "application/json");
+      
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            document.getElementById('formSection').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+            
+            setTimeout(() => {
+              const link = document.createElement('a');
+              link.href = 'https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf';
+              link.download = 'PromptAider-Starter-Pack.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }, 1000);
+            
+            if (window.gtag) {
+              gtag('event', 'download', {
+                'event_category': 'engagement',
+                'event_label': 'starter_pack'
+              });
+            }
+            
+          } else {
+            alert("Oops! Something went wrong. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Get My Free Starter Pack →';
+          }
+        }
+      };
+      
+      xhr.send(data);
+    });
+
+    const emailInput = document.querySelector('input[type="email"]');
+    emailInput.addEventListener('blur', function() {
+      if (this.value && !this.checkValidity()) {
+        this.style.borderColor = '#ef476f';
+      } else if (this.value) {
+        this.style.borderColor = '#3da9fc';
+      }
+    });
+  </script>
+</body>
+</html>
