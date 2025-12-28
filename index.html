@@ -14,7 +14,6 @@
       overflow-x: hidden;
     }
 
-    /* Animated Background */
     .bg-gradient {
       position: fixed;
       top: 0;
@@ -63,26 +62,6 @@
       66% { transform: translate(-30px, 30px) scale(0.9); }
     }
 
-    /* Particle Effect */
-    .particle {
-      position: fixed;
-      width: 3px;
-      height: 3px;
-      background: rgba(61, 169, 252, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: particleFloat 15s linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes particleFloat {
-      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-    }
-
-    /* Navigation */
     nav {
       display: flex;
       justify-content: space-between;
@@ -167,7 +146,6 @@
       box-shadow: 0 10px 30px rgba(61, 169, 252, 0.4);
     }
 
-    /* Hero Section */
     .hero {
       padding: 180px 5% 120px;
       text-align: center;
@@ -299,7 +277,6 @@
       box-shadow: 0 15px 40px rgba(240, 200, 116, 0.3);
     }
 
-    /* Stats Section */
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -345,7 +322,6 @@
       font-size: 16px;
     }
 
-    /* Section Styles */
     .section {
       padding: 80px 5%;
       max-width: 1200px;
@@ -382,7 +358,6 @@
       margin: 0 auto;
     }
 
-    /* Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -467,7 +442,6 @@
       z-index: 1;
     }
 
-    /* Prompts List */
     .prompts-list {
       display: grid;
       gap: 20px;
@@ -534,7 +508,6 @@
       font-size: 15px;
     }
 
-    /* Bonus Box */
     .bonus-box {
       background: linear-gradient(135deg, rgba(61, 169, 252, 0.1), rgba(240, 200, 116, 0.1));
       border: 2px dashed rgba(61, 169, 252, 0.4);
@@ -598,7 +571,6 @@
       transform: scale(1.05);
     }
 
-    /* Slogan Section */
     .slogan-section {
       text-align: center;
       padding: 60px 5%;
@@ -636,7 +608,6 @@
       to { width: 100%; }
     }
 
-    /* CTA Section */
     .cta-section {
       text-align: center;
       padding: 100px 5%;
@@ -693,7 +664,6 @@
       font-size: 18px;
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       padding: 60px 5% 40px;
@@ -756,7 +726,6 @@
       font-size: 14px;
     }
 
-    /* Scroll to Top Button */
     .scroll-top {
       position: fixed;
       bottom: 30px;
@@ -786,7 +755,6 @@
       box-shadow: 0 10px 30px rgba(61, 169, 252, 0.6);
     }
 
-    /* Mobile Responsiveness */
     @media (max-width: 768px) {
       .hero { padding: 140px 5% 80px; }
       .cards-grid { grid-template-columns: 1fr; }
@@ -795,12 +763,6 @@
       .cta-btn { width: 100%; max-width: 300px; }
       .nav-tagline { display: none; }
       .trust-indicators { flex-direction: column; gap: 15px; }
-    }
-
-    /* Loading Animation */
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
     }
   </style>
 </head>
@@ -827,7 +789,7 @@
     </h1>
     <div class="hero-tagline">Stay ahead. Level up daily.</div>
     <p>
-      High-performance prompt flows designed to help you create faster, sell faster, and think clearer — without guesswork.
+      High-performance prompt flows designed to help you create faster, sell faster, and think clearer - without the guesswork.
     </p>
     <div class="cta-container">
       <button class="cta-btn" onclick="window.location.href='setup.html'">Get the Free Starter Pack</button>
@@ -904,254 +866,4 @@
         <p>Turn ideas into sellable micro-offers in minutes. Perfect for digital products.</p>
       </div>
       <div class="prompt-item">
-        <h3>4. Landing Hero Generator</h3>
-        <p>High-conversion headlines, subheads, bullets, and CTA lines for any offer.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>5. Research Brief Engine</h3>
-        <p>Clarity without overload — clean, sourced, actionable research summaries.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>6. Email Sequence Architect</h3>
-        <p>Build complete email funnels that nurture and convert on autopilot.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>7. Content Repurposer</h3>
-        <p>Transform one piece of content into 10+ formats across all platforms.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>8. Objection Crusher</h3>
-        <p>Identify and overcome customer objections before they even ask.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>9. Story Framework Builder</h3>
-        <p>Craft compelling narratives that connect emotionally and drive action.</p>
-      </div>
-      <div class="prompt-item">
-        <h3>10. Strategic Brainstorm Partner</h3>
-        <p>Your AI thinking partner for breakthrough ideas and problem-solving.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="bonus-box">
-      <h3>🔥 Exclusive Bonus: 2 Hidden Prompts</h3>
-      <p><strong>Unlock even more value when you join:</strong></p>
-      <div style="margin: 30px 0;">
-        <span class="bonus-tag">💰 $1K-in-7-Days Launch Playbook</span>
-        <span class="bonus-tag">🔧 Replace-a-Freelancer Agency Template</span>
-      </div>
-      <p style="font-size: 16px; color: #b0b0b0;">
-        Available after joining the email list and following @PromptAider on Instagram
-      </p>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <span class="section-badge">WHY PROMPTAIDER</span>
-      <h2>Built Different. <span class="gradient-text">Built Better.</span></h2>
-    </div>
-    <div class="cards-grid">
-      <div class="card">
-        <h3>No Jargon. No Complexity.</h3>
-        <p>Just clean, strong, conversion-ready outputs built for real work. Every prompt is tested and proven.</p>
-      </div>
-      <div class="card">
-        <h3>Instant Implementation</h3>
-        <p>Copy, paste, get results. No courses. No tutorials. No wasted time. Just immediate value.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-section" id="cta">
-    <h2>Ready to Work Smarter?</h2>
-    <p>Join thousands of creators and founders using PromptAider to unlock AI that actually delivers results.</p>
-    <div class="cta-container">
-      <button class="cta-btn" onclick="window.location.href='setup.html'">Get Your Free Starter Pack</button>
-    </div>
-    <div class="trust-indicators">
-      <div class="trust-item">Instant access</div>
-      <div class="trust-item">No credit card required</div>
-      <div class="trust-item">100% free</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-logo">PromptAider</div>
-    <div class="footer-tagline">Stay ahead. Level up daily.</div>
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#blog">Blog</a>
-      <a href="https://instagram.com/promptaider" target="_blank">Instagram</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#terms">Terms</a>
-    </div>
-    <p>© 2024 PromptAider. All rights reserved.</p>
-  </div>
-
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    ↑
-  </button>
-
-  <script>
-    // Create floating particles
-    function createParticles() {
-      const particleCount = 20;
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        document.body.appendChild(particle);
-      }
-    }
-
-    createParticles();
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    const scrollTop = document.getElementById('scrollTop');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-        scrollTop.classList.add('visible');
-      } else {
-        navbar.classList.remove('scrolled');
-        scrollTop.classList.remove('visible');
-      }
-    });
-
-    // Smooth scroll to CTA
-    // Smooth scroll to CTA - now redirects to signup
-    function scrollToCTA() {
-      window.location.href = 'setup.html';
-    }
-
-    // CTA Click handler - redirects to signup
-    function handleCTAClick() {
-      window.location.href = 'setup.html';
-    }
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe all cards and prompt items
-    document.querySelectorAll('.card, .prompt-item, .stat-card').forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.6s ease-out';
-      observer.observe(el);
-    });
-
-    // Add click ripple effect to all buttons
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.style.position = 'absolute';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.animation = 'ripple 0.6s ease-out';
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Add ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        0% { transform: scale(0); opacity: 1; }
-        100% { transform: scale(2); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Interactive card tilt effect (subtle 3D)
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    // Counter animation for stats
-    function animateCounter(element, target, duration = 2000) {
-      const start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target + (element.textContent.includes('+') ? '+' : '');
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
-        }
-      }, 16);
-    }
-
-    // Trigger counter animation when stats come into view
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.animated) {
-          const number = entry.target.querySelector('.stat-number');
-          const originalText = number.textContent;
-          const targetValue = parseInt(originalText);
-          
-          if (!isNaN(targetValue)) {
-            number.textContent = '0';
-            animateCounter(number, targetValue);
-          }
-          
-          entry.target.dataset.animated = 'true';
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-card').forEach(card => {
-      statsObserver.observe(card);
-    });
-  </script>
-</body>
-</html>
+        <h
