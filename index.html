@@ -897,6 +897,20 @@
   </div>
 
   <div class="section">
+    <div class="bonus-box">
+      <h3>🔥 Exclusive Bonus: 2 Hidden Prompts</h3>
+      <p><strong>Unlock even more value when you join:</strong></p>
+      <div style="margin: 30px 0;">
+        <span class="bonus-tag">💰 $1K-in-7-Days Launch Playbook</span>
+        <span class="bonus-tag">🔧 Replace-a-Freelancer Agency Template</span>
+      </div>
+      <p style="font-size: 16px; color: #b0b0b0;">
+        Available after joining the email list and following @PromptAider on Instagram
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
     <div class="section-header">
       <span class="section-badge">WHY PROMPTAIDER</span>
       <h2>Built Different. <span class="gradient-text">Built Better.</span></h2>
@@ -917,7 +931,7 @@
     <h2>Ready to Work Smarter?</h2>
     <p>Join thousands of creators and founders using PromptAider to unlock AI that actually delivers results.</p>
     <div class="cta-container">
-      <button class="cta-btn" onclick="handleCTAClick()">Get Your Free Starter Pack</button>
+      <button class="cta-btn" onclick="window.location.href='setup.html'">Get Your Free Starter Pack</button>
     </div>
     <div class="trust-indicators">
       <div class="trust-item">Instant access</div>
@@ -974,21 +988,14 @@
     });
 
     // Smooth scroll to CTA
+    // Smooth scroll to CTA - now redirects to signup
     function scrollToCTA() {
-      document.getElementById('cta').scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
-      });
+      window.location.href = 'setup.html';
     }
 
-    // CTA Click handler with animation
+    // CTA Click handler - redirects to signup
     function handleCTAClick() {
-      const btn = event.target;
-      btn.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        btn.style.transform = '';
-        alert('🎉 Welcome to PromptAider! Your free starter pack is ready.\n\nIn a real implementation, this would open a signup form or redirect to your email capture page.');
-      }, 150);
+      window.location.href = 'setup.html';
     }
 
     // Intersection Observer for scroll animations
@@ -1107,7 +1114,6 @@
     document.querySelectorAll('.stat-card').forEach(card => {
       statsObserver.observe(card);
     });
-
   </script>
 </body>
 </html>
