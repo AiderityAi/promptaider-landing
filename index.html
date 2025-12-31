@@ -663,7 +663,7 @@
       font-weight: 700;
       font-size: 18px;
     }
-
+    
     .footer {
       text-align: center;
       padding: 60px 5% 40px;
@@ -866,4 +866,248 @@
         <p>Turn ideas into sellable micro-offers in minutes. Perfect for digital products.</p>
       </div>
       <div class="prompt-item">
-        <h
+        <h3>4. Landing Hero Generator</h3>
+        <p>High-conversion headlines, subheads, bullets, and CTA lines for any offer.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>5. Research Brief Engine</h3>
+        <p>Clarity without overload — clean, sourced, actionable research summaries.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>6. Email Sequence Architect</h3>
+        <p>Build complete email funnels that nurture and convert on autopilot.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>7. Content Repurposer</h3>
+        <p>Transform one piece of content into 10+ formats across all platforms.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>8. Objection Crusher</h3>
+        <p>Identify and overcome customer objections before they even ask.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>9. Story Framework Builder</h3>
+        <p>Craft compelling narratives that connect emotionally and drive action.</p>
+      </div>
+      <div class="prompt-item">
+        <h3>10. Strategic Brainstorm Partner</h3>
+        <p>Your AI thinking partner for breakthrough ideas and problem-solving.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">WHY PROMPTAIDER</span>
+      <h2>Built Different. <span class="gradient-text">Built Better.</span></h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>No Jargon. No Complexity.</h3>
+        <p>Just clean, strong, conversion-ready outputs built for real work. Every prompt is tested and proven.</p>
+      </div>
+      <div class="card">
+        <h3>Instant Implementation</h3>
+        <p>Copy, paste, get results. No courses. No tutorials. No wasted time. Just immediate value.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section" id="cta">
+    <h2>Ready to Work Smarter?</h2>
+    <p>Join thousands of creators and founders using PromptAider to unlock AI that actually delivers results.</p>
+    <div class="cta-container">
+      <button class="cta-btn" onclick="handleCTAClick()">Get Your Free Starter Pack</button>
+    </div>
+    <div class="trust-indicators">
+      <div class="trust-item">Instant access</div>
+      <div class="trust-item">No credit card required</div>
+      <div class="trust-item">100% free</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">PromptAider</div>
+    <div class="footer-tagline">Stay ahead. Level up daily.</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
+      <a href="https://instagram.com/promptaider" target="_blank">Instagram</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms</a>
+    </div>
+    <p>© 2024 PromptAider. All rights reserved.</p>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+  </button>
+
+  <script>
+    // Create floating particles
+    function createParticles() {
+      const particleCount = 20;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        document.body.appendChild(particle);
+      }
+    }
+
+    createParticles();
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const scrollTop = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+        scrollTop.classList.add('visible');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollTop.classList.remove('visible');
+      }
+    });
+
+    // Smooth scroll to CTA
+    function scrollToCTA() {
+      document.getElementById('cta').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+
+    // CTA Click handler with animation
+    function handleCTAClick() {
+      const btn = event.target;
+      btn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        btn.style.transform = '';
+        alert('🎉 Welcome to PromptAider! Your free starter pack is ready.\n\nIn a real implementation, this would open a signup form or redirect to your email capture page.');
+      }, 150);
+    }
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and prompt items
+    document.querySelectorAll('.card, .prompt-item, .stat-card').forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease-out';
+      observer.observe(el);
+    });
+
+    // Add click ripple effect to all buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.animation = 'ripple 0.6s ease-out';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        0% { transform: scale(0); opacity: 1; }
+        100% { transform: scale(2); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Interactive card tilt effect (subtle 3D)
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Counter animation for stats
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
+        }
+      }, 16);
+    }
+
+    // Trigger counter animation when stats come into view
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          const number = entry.target.querySelector('.stat-number');
+          const originalText = number.textContent;
+          const targetValue = parseInt(originalText);
+          
+          if (!isNaN(targetValue)) {
+            number.textContent = '0';
+            animateCounter(number, targetValue);
+          }
+          
+          entry.target.dataset.animated = 'true';
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      statsObserver.observe(card);
+    });
+
+  </script>
+</body>
+</html>
