@@ -6,17 +6,91 @@
     <title>PromptAider - Interactive Starter Kit</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @media print {
-            .no-print { display: none !important; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body { margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        @media print {
+            .no-print { 
+                display: none !important; 
+            }
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: linear-gradient(to right, #0f172a, #1e3a8a);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header {
+                position: relative;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .prompt-card {
+            transition: all 0.3s ease;
+        }
+
+        .prompt-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3da9fc;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
     </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
     <div id="app"></div>
     
     <script>
-        // Simple Interactive Starter Kit App
+        // All 10 Core Prompts
         const prompts = [
             {
                 id: 1,
@@ -38,7 +112,7 @@ DEBUG: If any line feels generic, shift into "behavioral copywriter + conversion
             {
                 id: 2,
                 category: 'Content / Growth',
-                title: '2. Short-Form Hook Generator (TikTok / Reels)',
+                title: '2. Short-Form Hook Generator',
                 when: 'When you need hooks that grab instantly.',
                 prompt: `You are a short-form growth editor. Create 5 video scripts for [TOPIC] with:
 
@@ -70,7 +144,7 @@ DEBUG: Adjust pricing if audience willingness doesn't match.`,
                 id: 4,
                 category: 'Sales / Pages',
                 title: '4. Landing Hero Generator',
-                when: 'When building a high-conversion landing page or sales page hero section.',
+                when: 'When building a landing page or sales page hero section.',
                 prompt: `You are a direct-response copywriter.
 
 Create a landing hero for [PRODUCT]:
@@ -102,8 +176,7 @@ DEBUG: If unsure, mark "cannot confirm" and list data needed.`,
                 output: 'A clear brief that\'s actionable, skimmable, and grounded.',
                 tip: 'Use this before making any decision, pitch, or strategy doc.'
             },
-            
-            {
+         {
     id: 6,
     category: 'Email Marketing / Automation',
     title: '6. Email Sequence Architect',
@@ -208,8 +281,10 @@ DEBUG: If ideas feel obvious, push one level deeper.`,
     output: 'Strategic clarity and fresh perspectives when you\'re stuck.',
     tip: 'Turn each tier into a bundle to increase average order value.'
 }
+        
         ];
 
+        // 2 Bonus Prompts
         const bonusPrompts = [
             {
                 id: 'bonus-1',
@@ -239,178 +314,218 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
             }
         ];
 
-        let expandedId = null;
-        let copiedId = null;
-        let showBonus = false;
-        let searchTerm = '';
+        // State management
+        let state = {
+            expandedId: null,
+            copiedId: null,
+            showBonus: false,
+            searchTerm: ''
+        };
 
         function copyToClipboard(text, id) {
-            navigator.clipboard.writeText(text);
-            copiedId = id;
-            render();
-            setTimeout(() => {
-                copiedId = null;
+            navigator.clipboard.writeText(text).then(() => {
+                state.copiedId = id;
                 render();
-            }, 2000);
+                setTimeout(() => {
+                    state.copiedId = null;
+                    render();
+                }, 2000);
+            });
+        }
+
+        function toggleExpand(id) {
+            state.expandedId = state.expandedId === id ? null : id;
+            render();
+        }
+
+        function toggleBonus() {
+            state.showBonus = !state.showBonus;
+            render();
+        }
+
+        function updateSearch(value) {
+            state.searchTerm = value;
+            render();
         }
 
         function render() {
-            const allPrompts = showBonus ? [...prompts, ...bonusPrompts] : prompts;
+            const allPrompts = state.showBonus ? [...prompts, ...bonusPrompts] : prompts;
             const filtered = allPrompts.filter(p => 
-                p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                p.category.toLowerCase().includes(searchTerm.toLowerCase())
+                p.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+                p.category.toLowerCase().includes(state.searchTerm.toLowerCase())
             );
 
-            document.getElementById('app').innerHTML = `
-                <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-                    <!-- Header -->
-                    <div class="bg-gradient-to-r from-slate-900 to-blue-900 border-b border-cyan-500/20 sticky top-0 z-50">
-                        <div class="max-w-6xl mx-auto px-4 py-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h1 class="text-3xl font-bold">
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <!-- Header -->
+                <div class="sticky-header">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                            <div>
+                                <h1 class="text-2xl sm:text-3xl font-bold">
                                     <span style="color: #f59e0b;">Prompt</span>
                                     <span style="color: #06b6d4;">Aider</span>
                                 </h1>
-                                <button onclick="window.print()" class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm">
-                                    🖨️ Print
-                                </button>
+                                <p class="text-cyan-300 text-xs sm:text-sm mt-1">Elite Level-Up Starter Kit</p>
                             </div>
-                            <p class="text-cyan-300 text-sm mb-4">Elite Level-Up Starter Kit</p>
-                            <input 
-                                type="text" 
-                                placeholder="Search prompts..." 
-                                value="${searchTerm}"
-                                onInput="searchTerm = this.value; render();"
-                                class="w-full px-4 py-2 bg-slate-800 border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400"
-                            />
+                            <button 
+                                onclick="window.print()" 
+                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-colors"
+                            >
+                                🖨️ Print
+                            </button>
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="Search prompts..." 
+                            value="${state.searchTerm}"
+                            oninput="updateSearch(this.value)"
+                            class="w-full px-4 py-2 sm:py-3 bg-slate-800 border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base"
+                        />
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-white">10</div>
+                            <div class="text-amber-300 text-xs sm:text-sm">Core Prompts</div>
+                        </div>
+                        <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-white">2</div>
+                            <div class="text-purple-300 text-xs sm:text-sm">Bonus Gems</div>
+                        </div>
+                        <div class="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
+                            <div class="text-cyan-300 text-xs sm:text-sm">Copy-Paste</div>
                         </div>
                     </div>
 
-                    <!-- Content -->
-                    <div class="max-w-6xl mx-auto px-4 py-8">
-                        <h2 class="text-2xl font-bold text-white mb-6">📋 Core Elite Prompts (10)</h2>
-                        
-                        ${filtered.filter(p => !p.id.toString().includes('bonus')).map(p => `
-                            <div class="mb-6 bg-slate-800/50 border border-cyan-500/20 rounded-xl p-6 hover:border-cyan-400/40 transition-all">
-                                <div class="flex justify-between items-start mb-4">
-                                    <div class="flex-1">
-                                        <span class="px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded">${p.category}</span>
-                                        <h3 class="text-xl font-bold text-white mt-2 mb-1">${p.title}</h3>
-                                        <p class="text-cyan-300 text-sm">⚡ ${p.when}</p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">📋 Core Elite Prompts</h2>
+                    
+                    <!-- Core Prompts -->
+                    ${filtered.filter(p => !p.id.toString().includes('bonus')).map(p => `
+                        <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                            <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
+                                <div class="flex-1 min-w-0">
+                                    <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded mb-2">${p.category}</span>
+                                    <h3 class="text-base sm:text-xl font-bold text-white mb-1 break-words">${p.title}</h3>
+                                    <p class="text-cyan-300 text-xs sm:text-sm">⚡ ${p.when}</p>
+                                </div>
+                                <button 
+                                    onclick="toggleExpand(${p.id})"
+                                    class="no-print flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-colors text-cyan-400 text-lg"
+                                >
+                                    ${state.expandedId === p.id ? '▼' : '▶'}
+                                </button>
+                            </div>
+
+                            ${state.expandedId === p.id ? `
+                                <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                                    <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-3 sm:p-4">
+                                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                            <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
+                                            <button 
+                                                onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, ${p.id})'
+                                                class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-colors"
+                                            >
+                                                ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                            </button>
+                                        </div>
+                                        <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                                    </div>
+                                    <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
+                                    </div>
+                                    <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-purple-400 font-semibold text-xs sm:text-sm mb-2">💡 PRO TIP:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.tip}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+
+                    <!-- Bonus Section -->
+                    <div class="mt-8 sm:mt-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-8">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4 sm:mb-6">
+                            <h2 class="text-xl sm:text-2xl font-bold text-white">🔒 Bonus Hidden Gems</h2>
+                            <button 
+                                onclick="toggleBonus()"
+                                class="no-print w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all text-sm sm:text-base"
+                            >
+                                ${state.showBonus ? '🔒 Hide Bonus' : '🔓 Unlock Bonus'}
+                            </button>
+                        </div>
+
+                        ${!state.showBonus ? `
+                            <div class="text-center py-8 sm:py-12">
+                                <div class="text-4xl sm:text-6xl mb-3 sm:mb-4">🔒</div>
+                                <p class="text-lg sm:text-xl text-purple-300 mb-2">2 Exclusive Bonus Prompts</p>
+                                <p class="text-sm sm:text-base text-slate-400">Worth $1K+ in Value</p>
+                            </div>
+                        ` : bonusPrompts.map(p => `
+                            <div class="mb-4 sm:mb-6 bg-purple-500/10 border border-purple-400/30 rounded-xl p-4 sm:p-6">
+                                <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
+                                    <div class="flex-1 min-w-0">
+                                        <span class="inline-block px-2 py-1 bg-purple-500/20 text-purple-300 text-xs font-semibold rounded mb-2">BONUS: ${p.category}</span>
+                                        <h3 class="text-base sm:text-xl font-bold text-white mb-1 break-words">${p.title}</h3>
+                                        <p class="text-purple-300 text-xs sm:text-sm">⚡ ${p.when}</p>
                                     </div>
                                     <button 
-                                        onclick="expandedId = expandedId === ${p.id} ? null : ${p.id}; render();"
-                                        class="no-print ml-4 p-2 hover:bg-cyan-500/10 rounded-lg transition-colors text-cyan-400"
+                                        onclick="toggleExpand('${p.id}')"
+                                        class="no-print flex-shrink-0 p-2 hover:bg-purple-500/10 rounded-lg text-purple-400 text-lg"
                                     >
-                                        ${expandedId === p.id ? '▼' : '▶'}
+                                        ${state.expandedId === p.id ? '▼' : '▶'}
                                     </button>
                                 </div>
 
-                                ${expandedId === p.id ? `
-                                    <div class="space-y-4 animate-fade-in">
-                                        <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-4">
-                                            <div class="flex justify-between items-center mb-2">
-                                                <span class="text-amber-400 font-semibold text-sm">📋 COPY-PASTE THIS:</span>
+                                ${state.expandedId === p.id ? `
+                                    <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                                        <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                                <span class="text-purple-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
                                                 <button 
-                                                    onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`')}\`, ${p.id})'
-                                                    class="no-print px-3 py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-sm"
+                                                    onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, "${p.id}")'
+                                                    class="no-print px-3 py-1.5 sm:py-1 bg-purple-500/20 text-purple-300 rounded-lg hover:bg-purple-500/30 text-xs sm:text-sm font-semibold"
                                                 >
-                                                    ${copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                                    ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
                                                 </button>
                                             </div>
-                                            <pre class="text-white text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                                            <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-purple-400/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
                                         </div>
-                                        <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-4">
-                                            <p class="text-cyan-400 font-semibold text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
-                                            <p class="text-slate-200 text-sm">${p.output}</p>
+                                        <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                            <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                            <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
                                         </div>
-                                        <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-4">
-                                            <p class="text-purple-400 font-semibold text-sm mb-2">💡 PRO TIP:</p>
-                                            <p class="text-slate-200 text-sm">${p.tip}</p>
+                                        <div class="bg-amber-500/5 border border-amber-400/30 rounded-lg p-3 sm:p-4">
+                                            <p class="text-amber-400 font-semibold text-xs sm:text-sm mb-2">💡 PRO TIP:</p>
+                                            <p class="text-slate-200 text-xs sm:text-sm">${p.tip}</p>
                                         </div>
                                     </div>
                                 ` : ''}
                             </div>
                         `).join('')}
+                    </div>
 
-                        <!-- Bonus Section -->
-                        <div class="mt-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-2 border-purple-500/30 rounded-2xl p-8">
-                            <div class="flex justify-between items-center mb-6">
-                                <h2 class="text-2xl font-bold text-white">🔒 Bonus Hidden Gems (2)</h2>
-                                <button 
-                                    onclick="showBonus = !showBonus; render();"
-                                    class="no-print px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg"
-                                >
-                                    ${showBonus ? '🔒 Hide Bonus' : '🔓 Unlock Bonus'}
-                                </button>
-                            </div>
+                    <!-- Upgrade CTA -->
+                    <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Want the Full System?</h2>
+                        <p class="text-cyan-300 mb-4 sm:mb-6 text-sm sm:text-base">150 elite procurement prompts + advanced workflows</p>
+                        <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
+                           target="_blank"
+                           class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-base sm:text-lg transition-all">
+                            💎 Get the Full Premium Elite Kit ($59)
+                        </a>
+                    </div>
 
-                            ${!showBonus ? `
-                                <div class="text-center py-12">
-                                    <div class="text-6xl mb-4">🔒</div>
-                                    <p class="text-xl text-purple-300 mb-2">2 Exclusive Bonus Prompts Worth $1K+</p>
-                                    <p class="text-slate-400">Click "Unlock Bonus" to reveal</p>
-                                </div>
-                            ` : bonusPrompts.map(p => `
-                                <div class="mb-6 bg-purple-500/10 border border-purple-400/30 rounded-xl p-6">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <div class="flex-1">
-                                            <span class="px-2 py-1 bg-purple-500/20 text-purple-300 text-xs font-semibold rounded">BONUS: ${p.category}</span>
-                                            <h3 class="text-xl font-bold text-white mt-2 mb-1">${p.title}</h3>
-                                            <p class="text-purple-300 text-sm">⚡ ${p.when}</p>
-                                        </div>
-                                        <button 
-                                            onclick="expandedId = expandedId === '${p.id}' ? null : '${p.id}'; render();"
-                                            class="no-print ml-4 p-2 hover:bg-purple-500/10 rounded-lg text-purple-400"
-                                        >
-                                            ${expandedId === p.id ? '▼' : '▶'}
-                                        </button>
-                                    </div>
-
-                                    ${expandedId === p.id ? `
-                                        <div class="space-y-4">
-                                            <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-4">
-                                                <div class="flex justify-between items-center mb-2">
-                                                    <span class="text-purple-400 font-semibold text-sm">📋 COPY-PASTE THIS:</span>
-                                                    <button 
-                                                        onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`')}\`, "${p.id}")'
-                                                        class="no-print px-3 py-1 bg-purple-500/20 text-purple-300 rounded-lg hover:bg-purple-500/30 text-sm"
-                                                    >
-                                                        ${copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
-                                                    </button>
-                                                </div>
-                                                <pre class="text-white text-sm bg-slate-900/50 p-3 rounded border border-purple-400/20 whitespace-pre-wrap font-mono">${p.prompt}</pre>
-                                            </div>
-                                            <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-4">
-                                                <p class="text-cyan-400 font-semibold text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
-                                                <p class="text-slate-200 text-sm">${p.output}</p>
-                                            </div>
-                                            <div class="bg-amber-500/5 border border-amber-400/30 rounded-lg p-4">
-                                                <p class="text-amber-400 font-semibold text-sm mb-2">💡 PRO TIP:</p>
-                                                <p class="text-slate-200 text-sm">${p.tip}</p>
-                                            </div>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-
-                        <!-- Upgrade CTA -->
-                        <div class="mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-8 text-center">
-                            <h2 class="text-2xl font-bold text-white mb-4">Want the Full System?</h2>
-                            <p class="text-cyan-300 mb-6">150 elite procurement prompts + advanced workflows</p>
-                            <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
-                               target="_blank"
-                               class="inline-block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-lg">
-                                💎 Get the Premium Elite Kit ($59)
-                            </a>
-                        </div>
-
-                        <!-- Footer -->
-                        <div class="mt-8 text-center text-slate-400 text-sm">
-                            <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
-                            <p class="mt-2">10 Core + 2 Bonus • Copy-Paste Ready</p>
-                        </div>
+                    <!-- Footer -->
+                    <div class="mt-6 sm:mt-8 text-center text-slate-400 text-xs sm:text-sm">
+                        <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                        <p class="mt-2">10 Core + 2 Bonus • Copy-Paste Ready</p>
                     </div>
                 </div>
             `;
@@ -418,6 +533,9 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
 
         // Initial render
         render();
+
+        // Scroll to top on load
+        window.scrollTo(0, 0);
     </script>
 </body>
 </html>
