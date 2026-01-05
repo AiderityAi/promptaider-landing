@@ -21,7 +21,7 @@
             {
                 id: 1,
                 category: 'Messaging / Copywriting',
-                title: '1. Brand Voice Lock',
+                title: 'Brand Voice Lock',
                 when: 'When your outputs sound robotic or "not you."',
                 prompt: `Rules: (1) sentences ≤18 words, (2) zero jargon, (3) one micro-story or example, (4) finish with a one-line CTA.
 
@@ -38,7 +38,7 @@ DEBUG: If any line feels generic, shift into "behavioral copywriter + conversion
             {
                 id: 2,
                 category: 'Content / Growth',
-                title: '2. Short-Form Hook Generator (TikTok / Reels)',
+                title: 'Short-Form Hook Generator (TikTok / Reels)',
                 when: 'When you need hooks that grab instantly.',
                 prompt: `You are a short-form growth editor. Create 5 video scripts for [TOPIC] with:
 
@@ -53,7 +53,7 @@ DEBUG: If hooks feel weak, return 3 alternatives using "curiosity gap" or "contr
             {
                 id: 3,
                 category: 'Monetization',
-                title: '3. Rapid Offer Builder',
+                title: 'Rapid Offer Builder',
                 when: 'When you want to turn an idea into a sellable offer fast.',
                 prompt: `You are a product-launch strategist.
 
@@ -69,8 +69,8 @@ DEBUG: Adjust pricing if audience willingness doesn't match.`,
             {
                 id: 4,
                 category: 'Sales / Pages',
-                title: '4. Landing Hero Generator',
-                when: 'When building a high-conversion landing page or sales page hero section.',
+                title: 'High-Conversion Landing Hero',
+                when: 'When building a landing page or sales page hero section.',
                 prompt: `You are a direct-response copywriter.
 
 Create a landing hero for [PRODUCT]:
@@ -86,7 +86,7 @@ DEBUG: Provide an A/B version using "avoid pain" instead of "gain."`,
             {
                 id: 5,
                 category: 'Research / Strategy',
-                title: '5. Research Brief Engine',
+                title: 'Executive Research Brief',
                 when: 'When you need fast clarity without information overload.',
                 prompt: `You are an executive research analyst.
 
@@ -102,112 +102,100 @@ DEBUG: If unsure, mark "cannot confirm" and list data needed.`,
                 output: 'A clear brief that\'s actionable, skimmable, and grounded.',
                 tip: 'Use this before making any decision, pitch, or strategy doc.'
             },
-            
             {
-    id: 6,
-    category: 'Email Marketing / Automation',
-    title: '6. Email Sequence Architect',
-    when: 'When you want emails that nurture, educate, and convert without manual effort.',
-    prompt: `You are PromptAider's Email Sequence Architect.
+                id: 6,
+                category: 'Workflow / Consistency',
+                title: 'Persona Stack (Strategy → Copy → Metrics)',
+                when: 'When you want consistent, high-quality outputs across tasks.',
+                prompt: `Adopt this Persona Stack:
 
-Build a complete email funnel for [OFFER] targeting [AUDIENCE].
+(1) Brand Strategist
+(2) Behavioral Copywriter
+(3) Data Analyst
 
-Deliver:
-• Email 1: Welcome + clarity
-• Email 2: Value + quick win
-• Email 3: Authority + insight
-• Email 4: Objection handling
-• Email 5: Soft conversion CTA
+For [TASK], follow this sequence: STRATEGY → COPY → METRICS.
 
-Each email must include: subject line, preview text, body copy, and CTA.
+Keep each part clear and labeled.
 
-Tone: direct, friendly, concise.
+DEBUG: If any section conflicts, reconcile with a final summary + chosen path.`,
+                output: 'Cohesive, aligned outputs that feel like a full team did the work.',
+                tip: 'This is your go-to format for predictable quality.'
+            },
+            {
+                id: 7,
+                category: 'Optimization',
+                title: 'Prompt Doctor (Fix Broken Prompts Fast)',
+                when: 'When a prompt gives mid, messy, or irrelevant outputs.',
+                prompt: `You are a Prompt Doctor expert.
 
-DEBUG: If conversion feels weak, strengthen Email 4 objections and CTA urgency.`,
-    output: 'A complete 5-email sequence that nurtures leads to conversion.',
-    tip: 'This is your go-to format for predictable quality.'
-},
-{
-    id: 7,
-    category: 'Content / Distribution',
-    title: '7. Content Repurposer',
-    when: 'When you want maximum reach from a single piece of content.',
-    prompt: `You are PromptAider's Content Repurposer.
+Paste prompt + output.
 
-Take this core content [PASTE CONTENT] and transform it into:
-• 2 Twitter/X posts
-• 2 LinkedIn posts
-• 2 Instagram captions
-• 2 short-form video scripts
-• 1 email
-• 1 carousel outline
+Diagnose 3 reasons it failed (1 line each).
 
-Optimize each format for its platform.
+Give 3 surgical edits to repair it.
 
-DEBUG: If output feels repetitive, vary hooks and angles.`,
-    output: 'Multi-platform content suite from one core piece.',
-    tip: 'Use this before every major project to cut iteration time.'
-},
-{
-    id: 8,
-    category: 'Sales / Conversion',
-    title: '8. Objection Crusher',
-    when: 'When prospects hesitate, delay, or say "I\'ll think about it."',
-    prompt: `You are PromptAider's Objection Crusher.
+Return a corrected, ready-to-use version.
 
-For offer [OFFER] and audience [AUDIENCE], list:
-• Top 5 buying objections
+DEBUG: Rate effectiveness: Likely / Unsure / Unlikely.`,
+                output: 'Cleaner, sharper prompts that produce consistent results.',
+                tip: 'Use this before every major project to cut iteration time.'
+            },
+            {
+                id: 8,
+                category: 'Content / Search',
+                title: 'SEO Content Brief',
+                when: 'When creating long-form content that needs to rank + convert.',
+                prompt: `You are an SEO content strategist.
 
-For each objection provide:
-1) Empathy line
-2) Clear rebuttal
-3) Proof hook or example
-4) Soft CTA
+For keyword "[KW]" and audience [AUD], generate:
 
-DEBUG: If skepticism is high, add a micro-case study.`,
-    output: 'Battle-tested rebuttals that turn "maybe" into "yes."',
-    tip: 'Use the semantic keywords as subhead starters.'
-},
-{
-    id: 9,
-    category: 'Storytelling / Brand',
-    title: '9. Story Framework Builder',
-    when: 'When you need emotional connection that leads to action.',
-    prompt: `You are PromptAider's Story Framework Builder.
+(A) Title + 4 variations
+(B) 8-section outline
+(C) 5 internal link ideas
+(D) 10 semantic keywords
+(E) Bio line
 
-Create a story for [TOPIC/OFFER] using this flow:
-• Relatable problem
-• Internal struggle
-• Turning point insight
-• Clear solution
-• Call to action
+Add 3 CTA placements.
 
-Keep it human, concise, and grounded.
+DEBUG: If keyword is competitive, give 3 angles to differentiate.`,
+                output: 'Ranking-ready content you can draft in one sitting.',
+                tip: 'Use the semantic keywords as subhead starters.'
+            },
+            {
+                id: 9,
+                category: 'Sales / Messaging',
+                title: 'Objection Crusher',
+                when: 'When buyers hesitate or hold back.',
+                prompt: `You are a conversion psychologist.
 
-DEBUG: If emotion is weak, deepen the struggle moment.`,
-    output: 'Compelling stories that connect emotionally and drive action.',
-    tip: 'Drop these lines into your landing page, emails, or DMs.'
-},
-{
-    id: 10,
-    category: 'Strategy / Thinking',
-    title: '10. Strategic Brainstorm Partner',
-    when: 'When you feel stuck, unclear, or need better ideas.',
-    prompt: `You are PromptAider's Strategic Brainstorm Partner.
+For [OFFER] and objection [OBJECTION], write:
 
-Help me think through this challenge: [PROBLEM].
+(1) 1-line empathy opener
+(2) 3 short rebuttals with proof hooks
+(3) 1 risk-reversal line
 
-Deliver:
-• 5 fresh angles
-• 3 unconventional ideas
-• 1 recommended path with reasoning
+DEBUG: If skepticism is high, add a micro-case example.`,
+                output: 'Clean copy that removes friction and opens wallets.',
+                tip: 'Drop these lines into your landing page, emails, or DMs.'
+            },
+            {
+                id: 10,
+                category: 'Systems / Monetization',
+                title: 'Productized Service SOP',
+                when: 'When turning a task into a sellable service.',
+                prompt: `You are an operations lead.
 
-Ask 2 smart follow-up questions to refine direction.
+Turn [TASK] into a productized service with:
 
-DEBUG: If ideas feel obvious, push one level deeper.`,
-    output: 'Strategic clarity and fresh perspectives when you\'re stuck.',
-    tip: 'Turn each tier into a bundle to increase average order value.'
-}
+(1) Deliverable list
+(2) Step-by-step SOP
+(3) 3 tiered price options
+(4) Client onboarding questions
+
+DEBUG: Flag any dependencies + estimate setup hours.`,
+                output: 'A sellable service you can offer instantly.',
+                tip: 'Turn each tier into a bundle to increase average order value.'
+            }
         ];
 
         const bonusPrompts = [
@@ -402,7 +390,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                             <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
                                target="_blank"
                                class="inline-block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-lg">
-                                💎 Get the Premium Elite Kit ($59)
+                                💎 Get Full Elite Kit ($57)
                             </a>
                         </div>
 
