@@ -22,6 +22,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
         }
 
         @media print {
@@ -30,18 +31,181 @@
             }
         }
 
+        /* Animated Logo */
+        @keyframes logoPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .logo-pulse {
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        /* Glassmorphic Header */
         .sticky-header {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: linear-gradient(to right, #0f172a, #1e3a8a);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
         }
 
         @media (max-width: 768px) {
             .sticky-header {
                 position: relative;
             }
+        }
+
+        /* Interactive Stat Cards */
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: statPulse 0.6s ease-in-out;
+        }
+
+        /* Play Button Magic - Enhanced */
+        @keyframes playJump {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(-12px); 
+            }
+        }
+
+        @keyframes playShine {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) 
+                        drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) 
+                        drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+            33% { 
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            66% { 
+                border-color: rgba(168, 85, 247, 0.9);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            }
+            100% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+        }
+            @keyframes rotateGlow {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+         }
+            .play-btn:hover::before {
+      opacity: 0.7;
+    }
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes rainbowSpin {
+            0% {
+                background: conic-gradient(
+                    from 0deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+            100% {
+                background: conic-gradient(
+                    from 360deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+        }
+
+        .play-button {
+            animation: playJump 2.5s ease-in-out infinite, 
+                       playShine 3s ease-in-out infinite,
+                       pulseGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .play-button:hover::before {
+            opacity: 1;
+            animation: rainbowSpin 2s linear infinite;
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 
+                        0 0 60px rgba(245, 158, 11, 0.4);
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rotateGlow 3s linear infinite;
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+        }
+
+        /* Elevated Prompt Cards */
+        .prompt-card {
+            transition: all 0.4s ease;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
         }
 
         @keyframes fadeIn {
@@ -59,38 +223,29 @@
             animation: fadeIn 0.3s ease-out;
         }
 
-        .prompt-card {
-            transition: all 0.3s ease;
-        }
-
-        .prompt-card:hover {
-            border-color: rgba(6, 182, 212, 0.4);
-        }
-
-        /* Custom scrollbar */
+        /* Beautiful Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #1a1a2e;
+            background: #0a0e27;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #3da9fc;
-            border-radius: 5px;
+            background: linear-gradient(180deg, #f59e0b, #06b6d4);
+            border-radius: 6px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #06b6d4;
+            background: linear-gradient(180deg, #06b6d4, #a855f7);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+<body>
     <div id="app"></div>
     
     <script>
-        // All 10 Core Prompts
         const prompts = [
             {
                 id: 1,
@@ -176,12 +331,12 @@ DEBUG: If unsure, mark "cannot confirm" and list data needed.`,
                 output: 'A clear brief that\'s actionable, skimmable, and grounded.',
                 tip: 'Use this before making any decision, pitch, or strategy doc.'
             },
-         {
-    id: 6,
-    category: 'Email Marketing / Automation',
-    title: '6. Email Sequence Architect',
-    when: 'When you want emails that nurture, educate, and convert without manual effort.',
-    prompt: `You are PromptAider's Email Sequence Architect.
+            {
+                id: 6,
+                category: 'Email Marketing / Automation',
+                title: '6. Email Sequence Architect',
+                when: 'When you want emails that nurture, educate, and convert without manual effort.',
+                prompt: `You are PromptAider's Email Sequence Architect.
 
 Build a complete email funnel for [OFFER] targeting [AUDIENCE].
 
@@ -197,15 +352,15 @@ Each email must include: subject line, preview text, body copy, and CTA.
 Tone: direct, friendly, concise.
 
 DEBUG: If conversion feels weak, strengthen Email 4 objections and CTA urgency.`,
-    output: 'A complete 5-email sequence that nurtures leads to conversion.',
-    tip: 'This is your go-to format for predictable quality.'
-},
-{
-    id: 7,
-    category: 'Content / Distribution',
-    title: '7. Content Repurposer',
-    when: 'When you want maximum reach from a single piece of content.',
-    prompt: `You are PromptAider's Content Repurposer.
+                output: 'A complete 5-email sequence that nurtures leads to conversion.',
+                tip: 'This is your go-to format for predictable quality.'
+            },
+            {
+                id: 7,
+                category: 'Content / Distribution',
+                title: '7. Content Repurposer',
+                when: 'When you want maximum reach from a single piece of content.',
+                prompt: `You are PromptAider's Content Repurposer.
 
 Take this core content [PASTE CONTENT] and transform it into:
 • 2 Twitter/X posts
@@ -218,15 +373,15 @@ Take this core content [PASTE CONTENT] and transform it into:
 Optimize each format for its platform.
 
 DEBUG: If output feels repetitive, vary hooks and angles.`,
-    output: 'Multi-platform content suite from one core piece.',
-    tip: 'Use this before every major project to cut iteration time.'
-},
-{
-    id: 8,
-    category: 'Sales / Conversion',
-    title: '8. Objection Crusher',
-    when: 'When prospects hesitate, delay, or say "I\'ll think about it."',
-    prompt: `You are PromptAider's Objection Crusher.
+                output: 'Multi-platform content suite from one core piece.',
+                tip: 'Use this before every major project to cut iteration time.'
+            },
+            {
+                id: 8,
+                category: 'Sales / Conversion',
+                title: '8. Objection Crusher',
+                when: 'When prospects hesitate, delay, or say "I\'ll think about it."',
+                prompt: `You are PromptAider's Objection Crusher.
 
 For offer [OFFER] and audience [AUDIENCE], list:
 • Top 5 buying objections
@@ -238,15 +393,15 @@ For each objection provide:
 4) Soft CTA
 
 DEBUG: If skepticism is high, add a micro-case study.`,
-    output: 'Battle-tested rebuttals that turn "maybe" into "yes."',
-    tip: 'Use the semantic keywords as subhead starters.'
-},
-{
-    id: 9,
-    category: 'Storytelling / Brand',
-    title: '9. Story Framework Builder',
-    when: 'When you need emotional connection that leads to action.',
-    prompt: `You are PromptAider's Story Framework Builder.
+                output: 'Battle-tested rebuttals that turn "maybe" into "yes."',
+                tip: 'Use the semantic keywords as subhead starters.'
+            },
+            {
+                id: 9,
+                category: 'Storytelling / Brand',
+                title: '9. Story Framework Builder',
+                when: 'When you need emotional connection that leads to action.',
+                prompt: `You are PromptAider's Story Framework Builder.
 
 Create a story for [TOPIC/OFFER] using this flow:
 • Relatable problem
@@ -258,15 +413,15 @@ Create a story for [TOPIC/OFFER] using this flow:
 Keep it human, concise, and grounded.
 
 DEBUG: If emotion is weak, deepen the struggle moment.`,
-    output: 'Compelling stories that connect emotionally and drive action.',
-    tip: 'Drop these lines into your landing page, emails, or DMs.'
-},
-{
-    id: 10,
-    category: 'Strategy / Thinking',
-    title: '10. Strategic Brainstorm Partner',
-    when: 'When you feel stuck, unclear, or need better ideas.',
-    prompt: `You are PromptAider's Strategic Brainstorm Partner.
+                output: 'Compelling stories that connect emotionally and drive action.',
+                tip: 'Drop these lines into your landing page, emails, or DMs.'
+            },
+            {
+                id: 10,
+                category: 'Strategy / Thinking',
+                title: '10. Strategic Brainstorm Partner',
+                when: 'When you feel stuck, unclear, or need better ideas.',
+                prompt: `You are PromptAider's Strategic Brainstorm Partner.
 
 Help me think through this challenge: [PROBLEM].
 
@@ -278,13 +433,11 @@ Deliver:
 Ask 2 smart follow-up questions to refine direction.
 
 DEBUG: If ideas feel obvious, push one level deeper.`,
-    output: 'Strategic clarity and fresh perspectives when you\'re stuck.',
-    tip: 'Turn each tier into a bundle to increase average order value.'
-}
-        
+                output: 'Strategic clarity and fresh perspectives when you\'re stuck.',
+                tip: 'Turn each tier into a bundle to increase average order value.'
+            }
         ];
 
-        // 2 Bonus Prompts
         const bonusPrompts = [
             {
                 id: 'bonus-1',
@@ -314,7 +467,6 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
             }
         ];
 
-        // State management
         let state = {
             expandedId: null,
             copiedId: null,
@@ -357,20 +509,19 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
 
             const app = document.getElementById('app');
             app.innerHTML = `
-                <!-- Header -->
                 <div class="sticky-header">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                             <div>
-                                <h1 class="text-2xl sm:text-3xl font-bold">
-                                    <span style="color: #f59e0b;">Prompt</span>
-                                    <span style="color: #06b6d4;">Aider</span>
-                                </h1>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                    <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                                
+                            </h1>
                                 <p class="text-cyan-300 text-xs sm:text-sm mt-1">Elite Level-Up Starter Kit</p>
                             </div>
                             <button 
                                 onclick="window.print()" 
-                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-colors"
+                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-all hover:shadow-lg"
                             >
                                 🖨️ Print
                             </button>
@@ -380,24 +531,22 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                             placeholder="Search prompts..." 
                             value="${state.searchTerm}"
                             oninput="updateSearch(this.value)"
-                            class="w-full px-4 py-2 sm:py-3 bg-slate-800 border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base"
+                            class="w-full px-4 py-2 sm:py-3 bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base transition-all"
                         />
                     </div>
                 </div>
 
-                <!-- Main Content -->
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-                    <!-- Stats -->
                     <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center">
+                        <div class="stat-card bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
                             <div class="text-xl sm:text-2xl font-bold text-white">10</div>
                             <div class="text-amber-300 text-xs sm:text-sm">Core Prompts</div>
                         </div>
-                        <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center">
+                        <div class="stat-card bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
                             <div class="text-xl sm:text-2xl font-bold text-white">2</div>
                             <div class="text-purple-300 text-xs sm:text-sm">Bonus Gems</div>
                         </div>
-                        <div class="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center">
+                        <div class="stat-card bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
                             <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
                             <div class="text-cyan-300 text-xs sm:text-sm">Copy-Paste</div>
                         </div>
@@ -405,9 +554,8 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
 
                     <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">📋 Core Elite Prompts</h2>
                     
-                    <!-- Core Prompts -->
                     ${filtered.filter(p => !p.id.toString().includes('bonus')).map(p => `
-                        <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                        <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-4 sm:p-6">
                             <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
                                 <div class="flex-1 min-w-0">
                                     <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded mb-2">${p.category}</span>
@@ -416,7 +564,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                                 </div>
                                 <button 
                                     onclick="toggleExpand(${p.id})"
-                                    class="no-print flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-colors text-cyan-400 text-lg"
+                                    class="no-print play-button flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-all text-cyan-400 text-lg"
                                 >
                                     ${state.expandedId === p.id ? '▼' : '▶'}
                                 </button>
@@ -429,7 +577,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                                             <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
                                             <button 
                                                 onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, ${p.id})'
-                                                class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-colors"
+                                                class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg"
                                             >
                                                 ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
                                             </button>
@@ -449,15 +597,14 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                         </div>
                     `).join('')}
 
-                    <!-- Bonus Section -->
                     <div class="mt-8 sm:mt-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-8">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4 sm:mb-6">
                             <h2 class="text-xl sm:text-2xl font-bold text-white">🔒 Bonus Hidden Gems</h2>
                             <button 
                                 onclick="toggleBonus()"
-                                class="no-print w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all text-sm sm:text-base"
+                                class="no-print w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all text-sm sm:text-base hover:scale-105"
                             >
-                                ${state.showBonus ? '🔒 Hide Bonus' : '🔓 Unlock Bonus'}
+                                ${state.showBonus ? '🔓 Hide Bonus' : '🔓 Unlock Bonus'}
                             </button>
                         </div>
 
@@ -468,7 +615,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                                 <p class="text-sm sm:text-base text-slate-400">Worth $1K+ in Value</p>
                             </div>
                         ` : bonusPrompts.map(p => `
-                            <div class="mb-4 sm:mb-6 bg-purple-500/10 border border-purple-400/30 rounded-xl p-4 sm:p-6">
+                            <div class="mb-4 sm:mb-6 bg-purple-500/10 backdrop-blur-sm border border-purple-400/30 rounded-xl p-4 sm:p-6">
                                 <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
                                     <div class="flex-1 min-w-0">
                                         <span class="inline-block px-2 py-1 bg-purple-500/20 text-purple-300 text-xs font-semibold rounded mb-2">BONUS: ${p.category}</span>
@@ -477,7 +624,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                                     </div>
                                     <button 
                                         onclick="toggleExpand('${p.id}')"
-                                        class="no-print flex-shrink-0 p-2 hover:bg-purple-500/10 rounded-lg text-purple-400 text-lg"
+                                        class="no-print play-button flex-shrink-0 p-2 hover:bg-purple-500/10 rounded-lg text-purple-400 text-lg"
                                     >
                                         ${state.expandedId === p.id ? '▼' : '▶'}
                                     </button>
@@ -490,7 +637,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                                                 <span class="text-purple-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
                                                 <button 
                                                     onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, "${p.id}")'
-                                                    class="no-print px-3 py-1.5 sm:py-1 bg-purple-500/20 text-purple-300 rounded-lg hover:bg-purple-500/30 text-xs sm:text-sm font-semibold"
+                                                    class="no-print px-3 py-1.5 sm:py-1 bg-purple-500/20 text-purple-300 rounded-lg hover:bg-purple-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg"
                                                 >
                                                     ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
                                                 </button>
@@ -511,18 +658,16 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                         `).join('')}
                     </div>
 
-                    <!-- Upgrade CTA -->
-                    <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center">
+                    <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center backdrop-blur-sm">
                         <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Want the Full System?</h2>
                         <p class="text-cyan-300 mb-4 sm:mb-6 text-sm sm:text-base">150 elite procurement prompts + advanced workflows</p>
                         <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
                            target="_blank"
-                           class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-base sm:text-lg transition-all">
+                           class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-base sm:text-lg transition-all hover:scale-105">
                             💎 Get the Full Premium Elite Kit ($59)
                         </a>
                     </div>
 
-                    <!-- Footer -->
                     <div class="mt-6 sm:mt-8 text-center text-slate-400 text-xs sm:text-sm">
                         <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
                         <p class="mt-2">10 Core + 2 Bonus • Copy-Paste Ready</p>
@@ -531,10 +676,7 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
             `;
         }
 
-        // Initial render
         render();
-
-        // Scroll to top on load
         window.scrollTo(0, 0);
     </script>
 </body>
