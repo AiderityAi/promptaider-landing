@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Your PromptAider Starter Pack</title>
+    <title>Your AI Prompt Starter Kit is Ready</title>
+    <meta name="description" content="Access your free AI Prompt Starter Kit for Creators & Entrepreneurs. Stop staring at a blank page—create faster today.">
     <style>
         * {
             margin: 0;
@@ -12,22 +13,18 @@
         }
 
         body {
-             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
             color: #f0f0f0;
-
             min-height: 100vh;
-
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* KEY CHANGE */
-
+            align-items: flex-start;
             padding: 20px;
-             position: relative;
-
+            position: relative;
             overflow-x: hidden;
-            overflow-y: auto; /* KEY CHANGE */
-}
+            overflow-y: auto;
+        }
 
         body::before {
             content: '';
@@ -87,7 +84,7 @@
             padding: 60px 50px;
             border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            max-width: 750px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -150,6 +147,22 @@
             line-height: 1.2;
         }
 
+        h2 {
+            color: #f0f0f0;
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 15px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h3 {
+            color: #f0f0f0;
+            font-size: clamp(20px, 3.5vw, 28px);
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
         .gradient-text {
             background: linear-gradient(135deg, #f0c874 0%, #3da9fc 100%);
             -webkit-background-clip: text;
@@ -157,14 +170,30 @@
             background-clip: text;
         }
 
-        .instruction-text {
+        /* SECTION 1 - CONFIRMATION */
+        .confirmation-box {
             background: rgba(61, 169, 252, 0.1);
-            border: 1px solid rgba(61, 169, 252, 0.3);
-            padding: 20px;
+            border: 2px solid rgba(61, 169, 252, 0.3);
+            padding: 25px;
             border-radius: 12px;
-            margin-bottom: 30px;
-            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .confirmation-box p {
+            font-size: 18px;
             line-height: 1.6;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        .confirmation-box p:last-child {
+            margin-bottom: 0;
+            font-size: 16px;
+            color: #b0b0b0;
+        }
+
+        .confirmation-box strong {
+            color: #3da9fc;
         }
 
         /* Download Options Container */
@@ -255,48 +284,19 @@
             line-height: 1.5;
         }
 
-        .card-button {
-            display: inline-block;
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: 700;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .btn-interactive {
-            background: linear-gradient(135deg, #3da9fc 0%, #2d8fd9 100%);
-            color: white;
-        }
-
-        .btn-interactive:hover {
-            transform: scale(1.05);
-        }
-
-        .btn-pdf {
-            background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
-            color: #1a1a21;
-        }
-
-        .btn-pdf:hover {
-            transform: scale(1.05);
-        }
-
         .features-list {
+            list-style: none;
             text-align: left;
-            margin: 15px 0;
-            font-size: 13px;
-            color: #b0b0b0;
+            margin-bottom: 20px;
+            padding-left: 0;
         }
 
         .features-list li {
-            margin: 8px 0;
-            padding-left: 20px;
+            padding: 8px 0;
+            color: #d0d0d0;
+            font-size: 13px;
             position: relative;
+            padding-left: 25px;
         }
 
         .features-list li::before {
@@ -307,10 +307,37 @@
             font-weight: bold;
         }
 
-        .divider {
-            margin: 50px 0;
-            padding-top: 50px;
-            border-top: 1px solid rgba(61, 169, 252, 0.1);
+        .card-button {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-interactive {
+            background: linear-gradient(135deg, #3da9fc 0%, #2b8fd9 100%);
+        }
+
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(61, 169, 252, 0.4);
+        }
+
+        .btn-pdf {
+            background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
+            color: #1a1a21;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 200, 116, 0.4);
         }
 
         .features-grid {
@@ -338,15 +365,243 @@
             margin: 0;
         }
 
-        .upgrade-section {
+        .divider {
+            margin: 60px 0;
+            padding-top: 60px;
+            border-top: 1px solid rgba(61, 169, 252, 0.1);
+        }
+
+        /* INTENT SECTION */
+        .intent-section {
+            margin: 50px 0;
+        }
+
+        .intent-headline {
+            font-size: clamp(26px, 4.5vw, 38px);
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        .intent-subtext {
+            font-size: 17px;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .intent-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .intent-card {
+            background: rgba(15, 15, 20, 0.8);
+            border: 3px solid;
+            border-radius: 20px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
             text-align: center;
         }
 
-        .upgrade-section h2 {
-            font-size: 32px;
+        .intent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.6s;
+        }
+
+        .intent-card:hover::before {
+            left: 100%;
+        }
+
+        .intent-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .creator-card {
+            border-color: #f0c874;
+        }
+
+        .creator-card:hover {
+            background: rgba(240, 200, 116, 0.08);
+            box-shadow: 0 15px 45px rgba(240, 200, 116, 0.4);
+        }
+
+        .professional-card {
+            border-color: #3da9fc;
+        }
+
+        .professional-card:hover {
+            background: rgba(61, 169, 252, 0.08);
+            box-shadow: 0 15px 45px rgba(61, 169, 252, 0.4);
+        }
+
+        .intent-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .intent-title {
+            font-size: 26px;
+            font-weight: 800;
             margin-bottom: 15px;
             color: #f0f0f0;
+        }
+
+        .intent-oneliner {
+            font-size: 16px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .intent-button {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-creator {
+            background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
+            color: #1a1a21;
+        }
+
+        .btn-creator:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(240, 200, 116, 0.5);
+        }
+
+        .btn-professional {
+            background: linear-gradient(135deg, #3da9fc 0%, #2b8fd9 100%);
+        }
+
+        .btn-professional:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(61, 169, 252, 0.5);
+        }
+
+        /* PATH SECTIONS */
+        .path-section {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .path-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .path-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .path-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef476f 0%, #d63a5f 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .upgrade-block {
+            background: rgba(15, 15, 20, 0.6);
+            border: 2px solid rgba(61, 169, 252, 0.2);
+            border-radius: 16px;
+            padding: 40px 35px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .upgrade-block:hover {
+            border-color: rgba(61, 169, 252, 0.4);
+            background: rgba(15, 15, 20, 0.8);
+        }
+
+        .upgrade-label {
+            display: inline-block;
+            background: rgba(61, 169, 252, 0.2);
+            color: #3da9fc;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .upgrade-title {
+            font-size: 28px;
             font-weight: 800;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        .upgrade-tagline {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .upgrade-benefits {
+            list-style: none;
+            margin: 25px 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        .upgrade-benefits li {
+            padding: 10px 0;
+            color: #d0d0d0;
+            font-size: 15px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        .upgrade-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3da9fc;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .price-tag {
+            font-size: 36px;
+            font-weight: 800;
+            color: #f0c874;
+            margin: 20px 0 10px 0;
         }
 
         .upgrade-btn {
@@ -360,54 +615,212 @@
             text-decoration: none;
             color: #fff;
             transition: all 0.3s;
-            margin: 10px 8px;
+            background: linear-gradient(135deg, #3da9fc 0%, #2b8fd9 100%);
+            margin-top: 10px;
         }
 
         .upgrade-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(61, 169, 252, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(61, 169, 252, 0.5);
         }
 
-        .btn-elite {
+        .upgrade-btn.btn-secondary {
             background: linear-gradient(135deg, #f0c874 0%, #e5b65f 100%);
             color: #1a1a21;
         }
 
-        .popular-badge {
+        .upgrade-btn.btn-secondary:hover {
+            box-shadow: 0 12px 35px rgba(240, 200, 116, 0.5);
+        }
+
+        /* BUNDLE SECTION */
+        .bundle-block {
+            background: linear-gradient(135deg, rgba(61, 169, 252, 0.1) 0%, rgba(240, 200, 116, 0.1) 100%);
+            border: 3px solid rgba(61, 169, 252, 0.3);
+            border-radius: 20px;
+            padding: 45px 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .bundle-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ef476f 0%, #d63a5f 100%);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bundle-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 20px 0 15px 0;
+            color: #f0f0f0;
+        }
+
+        .bundle-includes {
+            background: rgba(15, 15, 20, 0.6);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .bundle-includes h4 {
+            font-size: 16px;
+            color: #3da9fc;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .bundle-includes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bundle-includes li {
+            padding: 8px 0;
+            color: #d0d0d0;
+            font-size: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .bundle-includes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #f0c874;
+            font-weight: bold;
+        }
+
+        .bundle-pricing {
+            margin: 25px 0;
+        }
+
+        .original-price {
+            font-size: 20px;
+            color: #888;
+            text-decoration: line-through;
+            margin-right: 15px;
+        }
+
+        .bundle-price {
+            font-size: 42px;
+            font-weight: 800;
+            color: #f0c874;
+        }
+
+        .savings {
             display: inline-block;
             background: rgba(239, 71, 111, 0.2);
             color: #ef476f;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
+            margin-left: 15px;
+        }
+
+        /* MONETIZATION CROSSOVER SECTION */
+        .crossover-section {
+            background: linear-gradient(135deg, rgba(239, 71, 111, 0.1) 0%, rgba(61, 169, 252, 0.1) 100%);
+            border: 3px solid rgba(239, 71, 111, 0.3);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .crossover-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef476f 0%, #d63a5f 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .crossover-title {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        .crossover-tagline {
+            font-size: 20px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .crossover-btn {
+            display: inline-block;
+            padding: 22px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ef476f 0%, #d63a5f 100%);
+            transition: all 0.3s;
             margin-top: 15px;
+        }
+
+        .crossover-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(239, 71, 111, 0.5);
         }
 
         .trust-text {
             font-size: 14px;
             color: #666;
-            margin-top: 30px;
+            margin-top: 40px;
             line-height: 1.8;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 30px;
+                padding: 40px 25px;
             }
 
-            .download-options {
+            .download-options,
+            .intent-cards {
                 grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 28px;
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
+            h3 { font-size: 20px; }
+
+            .intent-card,
+            .upgrade-block {
+                padding: 30px 20px;
             }
 
-            .upgrade-btn {
+            .bundle-block,
+            .crossover-section {
+                padding: 35px 25px;
+            }
+
+            .upgrade-btn,
+            .crossover-btn {
                 display: block;
                 width: 100%;
-                margin: 10px 0;
             }
 
             .features-grid {
@@ -422,17 +835,16 @@
 
     <div class="container">
         <div class="logo">PromptAider</div>
-        <div class="tagline">Elite Level-Up Starter Kit</div>
+        <div class="tagline">AI Prompt Starter Kit for Creators & Entrepreneurs</div>
 
         <div class="success-icon">🎉</div>
 
-        <h1><span class="gradient-text">You're All Set!</span></h1>
+        <!-- SECTION 1: CONFIRMATION -->
+        <h1><span class="gradient-text">Your Starter Kit is Ready!</span></h1>
 
-        <div class="instruction-text">
-            <p style="margin: 0; color: #3da9fc; font-weight: 600;">
-                Choose how you want to access your starter kit:
-            </p>
-        </div>
+        <div class="confirmation-box">
+            <p><strong>✅ Choose how you want to access your AI prompt shortcuts instantly:</strong></p>
+                   </div>
 
         <!-- Download Options -->
         <div class="download-options">
@@ -451,7 +863,6 @@
                     <li>Works on all devices</li>
                 </ul>
                 <a href="/promptaider-landing/starter-kit-interactive.html" class="card-button btn-interactive">
-
                     Access Interactive Toolkit →
                 </a>
             </div>
@@ -501,20 +912,240 @@
 
         <div class="divider"></div>
 
-        <!-- Upgrade Section -->
-        <div class="upgrade-section">
-            <h2>Want the Full System?</h2>
-            <p style="color: #b0b0b0; margin-bottom: 25px; font-size: 17px;">
-                Unlock 150 elite procurement prompts + advanced workflows
+        <!-- SECTION 2: INTENT SPLIT -->
+        <div class="intent-section">
+            <h2 class="intent-headline">What do you want to use AI prompts for right now?</h2>
+            <p class="intent-subtext">
+                Choose the path that fits how you work. You can switch anytime.
             </p>
 
-            <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
-               target="_blank" 
-               class="upgrade-btn btn-elite">
-                💎 Get the Full Premium 150-Prompt Elite Kit
-            </a>
+            <div class="intent-cards">
+                <!-- OPTION A: CREATOR PATH -->
+                <div class="intent-card creator-card" onclick="selectPath('creator')">
+                    <div class="intent-icon">🎨</div>
+                    <h3 class="intent-title">Creator Shortcut Prompts</h3>
+                    <p class="intent-oneliner">
+                        Create faster, stay consistent, never hit creative block again.
+                    </p>
+                    <a href="#creator-path" class="intent-button btn-creator" onclick="event.preventDefault(); selectPath('creator');">
+                        I'm a Creator →
+                    </a>
+                </div>
 
-            <div class="popular-badge">⭐ Most Popular Choice</div>
+                <!-- OPTION B: PROFESSIONAL PATH -->
+                <div class="intent-card professional-card" onclick="selectPath('professional')">
+                    <div class="intent-icon">🧠</div>
+                    <h3 class="intent-title">Professional Shortcut Prompts</h3>
+                    <p class="intent-oneliner">
+                        Make better decisions, work faster, and reduce cognitive load.
+                    </p>
+                    <a href="#professional-path" class="intent-button btn-professional" onclick="event.preventDefault(); selectPath('professional');">
+                        I'm a Professional →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CREATOR PATH SECTION -->
+        <div id="creator-path" class="path-section">
+            <div class="divider"></div>
+            
+            <div class="path-header">
+                <div class="path-badge">🎨 Creator Path</div>
+                <h2>Your Creator Shortcut Stack</h2>
+            </div>
+
+            <!-- OFFER 1: Creator Core Prompts (25) -->
+            <div class="upgrade-block">
+                <div class="upgrade-label">Low Friction Entry</div>
+                <h3 class="upgrade-title">Creator Core Prompts (25)</h3>
+                <p class="upgrade-tagline">Never stare at a blank page again.</p>
+                
+                <ul class="upgrade-benefits">
+                    <li>25 battle-tested prompts for daily content creation</li>
+                    <li>Cover ideation, writing, editing, and repurposing</li>
+                    <li>Ready-to-use, no systems needed—just create</li>
+                    <li>Works with ChatGPT, Claude, Gemini, and any AI tool</li>
+                </ul>
+
+                <div class="price-tag">$14</div>
+                <p style="color: #888; font-size: 14px; margin-bottom: 20px;">One-time payment • Instant access</p>
+
+                <a href="https://promptaider.gumroad.com/l/creator-core-prompts" 
+                   target="_blank" 
+                   class="upgrade-btn"
+                   onclick="trackPurchase('creator-core-25', 'creator_path')">
+                    Unlock Creator Core Prompts →
+                </a>
+            </div>
+
+            <!-- OFFER 2: Creator System Prompts (60) -->
+            <div class="upgrade-block">
+                <div class="upgrade-label">System Upgrade</div>
+                <h3 class="upgrade-title">Creator System Prompts (60)</h3>
+                <p class="upgrade-tagline">For creators who want systems — not stress.</p>
+                
+                <ul class="upgrade-benefits">
+                    <li>60 system-level prompts for repeatable workflows</li>
+                    <li>Build content calendars, batch creation systems, and more</li>
+                    <li>Reduce mental load and eliminate creative fatigue</li>
+                    <li>Create consistently without burning out</li>
+                </ul>
+
+                <div class="price-tag">$39</div>
+                <p style="color: #888; font-size: 14px; margin-bottom: 20px;">One-time payment • Complete system frameworks</p>
+
+                <a href="https://promptaider.gumroad.com/l/creator-systems-60" 
+                   target="_blank" 
+                   class="upgrade-btn"
+                   onclick="trackPurchase('creator-systems-60', 'creator_path')">
+                    Upgrade to Creator Systems →
+                </a>
+            </div>
+
+            <!-- BUNDLE: Creator Shortcut Bundle -->
+            <div class="bundle-block">
+                <div class="bundle-badge">⭐ Best Value</div>
+                <h3 class="bundle-title">Creator Shortcut Bundle</h3>
+                
+                <div class="bundle-includes">
+                    <h4>Includes:</h4>
+                    <ul>
+                        <li>Creator Core Prompts (25) — Daily creation prompts</li>
+                        <li>Creator System Prompts (60) — Scalable workflow systems</li>
+                    </ul>
+                </div>
+
+                <p class="upgrade-tagline">Everything a creator needs to produce consistently.</p>
+
+                <div class="bundle-pricing">
+                    <span class="original-price">$53</span>
+                    <span class="bundle-price">$44</span>
+                    <span class="savings">Save 17%</span>
+                </div>
+
+                <a href="https://promptaider.gumroad.com/l/creator-bundle" 
+                   target="_blank" 
+                   class="upgrade-btn btn-secondary"
+                   onclick="trackPurchase('creator-bundle', 'creator_path')">
+                    Get the Creator Shortcut Bundle →
+                </a>
+            </div>
+        </div>
+
+        <!-- PROFESSIONAL PATH SECTION -->
+        <div id="professional-path" class="path-section">
+            <div class="divider"></div>
+            
+            <div class="path-header">
+                <div class="path-badge">🧠 Professional Path</div>
+                <h2>Your Professional Shortcut Stack</h2>
+            </div>
+
+            <!-- OFFER 1: 30 Essential Professional Prompts -->
+            <div class="upgrade-block">
+                <div class="upgrade-label">Entry Product</div>
+                <h3 class="upgrade-title">30 Essential Professional Prompts</h3>
+                <p class="upgrade-tagline">Maximum impact in minimum time.</p>
+                
+                <ul class="upgrade-benefits">
+                    <li>30 high-impact prompts for workplace efficiency</li>
+                    <li>Decision-making, problem-solving, and strategic thinking</li>
+                    <li>Reduce cognitive load and work faster</li>
+                    <li>Proven frameworks, not experimentation</li>
+                </ul>
+
+                <div class="price-tag">$24</div>
+                <p style="color: #888; font-size: 14px; margin-bottom: 20px;">One-time payment • Instant access</p>
+
+                <a href="https://promptaider.gumroad.com/l/professional-essential-30" 
+                   target="_blank" 
+                   class="upgrade-btn"
+                   onclick="trackPurchase('professional-30', 'professional_path')">
+                    Get the 30 Essential Prompts →
+                </a>
+            </div>
+
+            <!-- OFFER 2: 150 Elite Essential Prompts -->
+            <div class="upgrade-block">
+                <div class="upgrade-label">Elite Upgrade</div>
+                <h3 class="upgrade-title">150 Elite Essential Prompts</h3>
+                <p class="upgrade-tagline">Replace hours of thinking with proven prompt frameworks.</p>
+                
+                <ul class="upgrade-benefits">
+                    <li>150 elite-level prompts organized by outcome</li>
+                    <li>Complete operating system for professional AI work</li>
+                    <li>Used by top performers across industries</li>
+                    <li>The only professional toolkit you'll ever need</li>
+                </ul>
+
+                <div class="price-tag">$99</div>
+                <p style="color: #888; font-size: 14px; margin-bottom: 20px;">One-time payment • Professional-grade system</p>
+
+                <a href="https://promptaider.gumroad.com/l/professional-elite-150" 
+                   target="_blank" 
+                   class="upgrade-btn"
+                   onclick="trackPurchase('professional-elite-150', 'professional_path')">
+                    Upgrade to the Elite 150 Playbook →
+                </a>
+            </div>
+
+            <!-- BUNDLE: Professional Shortcut Bundle -->
+            <div class="bundle-block">
+                <div class="bundle-badge">⭐ Best Value</div>
+                <h3 class="bundle-title">Professional Shortcut Bundle</h3>
+                
+                <div class="bundle-includes">
+                    <h4>Includes:</h4>
+                    <ul>
+                        <li>30 Essential Professional Prompts — Quick wins</li>
+                        <li>150 Elite Essential Prompts — Complete system</li>
+                    </ul>
+                </div>
+
+                <p class="upgrade-tagline">The complete professional AI toolkit.</p>
+
+                <div class="bundle-pricing">
+                    <span class="original-price">$123</span>
+                    <span class="bundle-price">$99</span>
+                    <span class="savings">Save 20%</span>
+                </div>
+
+                <a href="https://promptaider.gumroad.com/l/professional-bundle" 
+                   target="_blank" 
+                   class="upgrade-btn btn-secondary"
+                   onclick="trackPurchase('professional-bundle', 'professional_path')">
+                    Get the Professional Shortcut Bundle →
+                </a>
+            </div>
+        </div>
+
+        <!-- UNIVERSAL CROSSOVER: Monetization Prompt Playbook -->
+        <div id="monetization-crossover" class="crossover-section" style="display: none;">
+            <div class="divider" style="border-top: none; margin-top: 0; padding-top: 0;"></div>
+            
+            <div class="crossover-label">🚀 Next Level</div>
+            <h2 class="crossover-title">Monetization Prompt Playbook (100)</h2>
+            <p class="crossover-tagline">
+                Already using AI? Now turn outputs into income.
+            </p>
+
+            <ul class="upgrade-benefits" style="max-width: 650px; margin: 30px auto;">
+                <li>100 prompts that turn ideas into products, funnels, and revenue</li>
+                <li>Build pricing strategies, sales copy, and offers people want to buy</li>
+                <li>Not about inspiration—about implementation and income</li>
+                <li>For entrepreneurs, digital product builders, and service providers</li>
+            </ul>
+
+            <div class="price-tag" style="color: #ef476f;">$149</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">One-time payment • Build revenue systems</p>
+
+            <a href="https://promptaider.gumroad.com/l/monetization-playbook-100" 
+               target="_blank" 
+               class="crossover-btn"
+               onclick="trackPurchase('monetization-100', 'crossover')">
+                Build Revenue Systems with AI →
+            </a>
         </div>
 
         <p class="trust-text">
@@ -544,22 +1175,85 @@
         }
 
         // Track interactive toolkit clicks
-        document.querySelector('.card-interactive').addEventListener('click', function() {
+        const interactiveCard = document.querySelector('.card-interactive');
+        if (interactiveCard) {
+            interactiveCard.addEventListener('click', function() {
+                if (window.gtag) {
+                    gtag('event', 'click', {
+                        'event_category': 'engagement',
+                        'event_label': 'interactive_toolkit'
+                    });
+                }
+            });
+        }
+
+        // Path selection function
+        function selectPath(path) {
+            // Hide all path sections first
+            document.querySelectorAll('.path-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected path section
+            const selectedPath = document.getElementById(path + '-path');
+            selectedPath.classList.add('active');
+
+            // Show monetization crossover after path selection
+            document.getElementById('monetization-crossover').style.display = 'block';
+
+            // Smooth scroll to the selected path
+            selectedPath.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Tag user intent (for Kit/ConvertKit)
+            const intentTag = path === 'creator' ? 'intent_creator' : 'intent_professional';
+            
+            // Track analytics
             if (window.gtag) {
-                gtag('event', 'click', {
+                gtag('event', 'path_selection', {
                     'event_category': 'engagement',
-                    'event_label': 'interactive_toolkit'
+                    'event_label': intentTag
                 });
             }
-        });
 
-        // Optional: Auto-highlight recommended option
+            // Send tag to email system (Kit/ConvertKit integration)
+            console.log('User selected path:', intentTag);
+            
+            // Example: Send to Kit via fetch
+            // fetch('YOUR_KIT_ENDPOINT', {
+            //     method: 'POST',
+            //     body: JSON.stringify({ tag: intentTag })
+            // });
+        }
+
+        // Track purchase clicks
+        function trackPurchase(productId, source) {
+            if (window.gtag) {
+                gtag('event', 'purchase_click', {
+                    'event_category': 'conversion',
+                    'event_label': productId,
+                    'value': source
+                });
+            }
+            console.log('Purchase clicked:', productId, 'from', source);
+        }
+
+        // Auto-highlight recommended download option
         setTimeout(function() {
-            document.querySelector('.card-interactive').style.transform = 'scale(1.02)';
-            setTimeout(function() {
-                document.querySelector('.card-interactive').style.transform = 'scale(1)';
-            }, 300);
+            const interactiveCard = document.querySelector('.card-interactive');
+            if (interactiveCard) {
+                interactiveCard.style.transform = 'scale(1.02)';
+                setTimeout(function() {
+                    interactiveCard.style.transform = 'scale(1)';
+                }, 300);
+            }
         }, 500);
+
+        // Email tracking parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailSource = urlParams.get('source');
+        if (emailSource) {
+            console.log('User source:', emailSource);
+        }
     </script>
 </body>
 </html>
