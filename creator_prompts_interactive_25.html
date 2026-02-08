@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Core Prompts - 25 Essential Prompts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+
+        @media print {
+            .no-print { 
+                display: none !important; 
+            }
+        }
+
+        /* Animated Logo */
+        @keyframes logoPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .logo-pulse {
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        /* Glassmorphic Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header {
+                position: relative;
+            }
+        }
+
+        /* Interactive Stat Cards */
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: statPulse 0.6s ease-in-out;
+        }
+
+        /* Play Button Magic */
+        @keyframes playJump {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(-12px); 
+            }
+        }
+
+        @keyframes playShine {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) 
+                        drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) 
+                        drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+            33% { 
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            66% { 
+                border-color: rgba(168, 85, 247, 0.9);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            }
+            100% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes rainbowSpin {
+            0% {
+                background: conic-gradient(
+                    from 0deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+            100% {
+                background: conic-gradient(
+                    from 360deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+        }
+
+        .play-button {
+            animation: playJump 2.5s ease-in-out infinite, 
+                       playShine 3s ease-in-out infinite,
+                       pulseGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .play-button:hover::before {
+            opacity: 1;
+            animation: rainbowSpin 2s linear infinite;
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 
+                        0 0 60px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Filter Button Styles */
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active {
+            background: linear-gradient(90deg, #f59e0b, #06b6d4);
+            transform: scale(1.05);
+        }
+
+        /* Elevated Prompt Cards */
+        .prompt-card {
+            transition: all 0.4s ease;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Beautiful Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f59e0b, #06b6d4);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #06b6d4, #a855f7);
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        const prompts = [
+            {
+                id: 1,
+                category: 'Content Ideas',
+                title: '1. Idea Expansion',
+                when: 'When you know your topic but don\'t know what to post',
+                prompt: `Act as a human-led content strategist.
+I create content about [topic].
+Generate 20 clear, practical content ideas my audience would actually care about.
+Avoid generic advice. Focus on real problems, mistakes, and shortcuts.`,
+                output: 'A list of usable content ideas you can post immediately',
+                tip: 'Save the output and reuse it monthly as your baseline idea bank.'
+            },
+            {
+                id: 2,
+                category: 'Content Ideas',
+                title: '2. Hook Generator',
+                when: 'When your ideas feel flat or forgettable',
+                prompt: `Write 15 scroll-stopping hooks for content about [topic].
+Use direct, conversational language.
+Avoid hype. Focus on clarity and relevance.`,
+                output: 'Hooks that pull people in without sounding salesy',
+                tip: 'Test hooks first before writing full content.'
+            },
+            {
+                id: 3,
+                category: 'Content Ideas',
+                title: '3. Audience Pain Mining',
+                when: 'When you\'re unsure what your audience actually struggles with',
+                prompt: `List the top 10 problems someone in [my niche] complains about daily.
+Frame them in plain language they would use themselves.`,
+                output: 'Realistic pain points that drive engagement',
+                tip: 'Turn each pain point into a post, Reel, or email.'
+            },
+            {
+                id: 4,
+                category: 'Content Ideas',
+                title: '4. Format Multiplication',
+                when: 'When you have one idea but need more output',
+                prompt: `Take this idea: [paste idea].
+Turn it into:
+-- 1 Reel script
+-- 1 carousel outline
+-- 1 short email
+-- 1 tweet thread`,
+                output: 'Multiple assets from one idea',
+                tip: 'This reduces content creation time by 50%+.'
+            },
+            {
+                id: 5,
+                category: 'Content Ideas',
+                title: '5. Authority Framing',
+                when: 'When you want to sound credible without flexing',
+                prompt: `Rewrite this idea to position me as experienced and practical, not theoretical:
+[paste idea]`,
+                output: 'Authority-driven content that feels grounded',
+                tip: 'Use this before posting on LinkedIn or newsletters.'
+            },
+            {
+                id: 6,
+                category: 'Offer Creation',
+                title: '6. Problem to Offer',
+                when: 'When you know the problem but not the product',
+                prompt: `Turn this problem into a simple digital offer idea:
+[describe problem]
+Include who it's for, what it helps them do, and the outcome.`,
+                output: 'A clear offer concept you can validate quickly',
+                tip: 'If it sounds confusing, simplify the problem further.'
+            },
+            {
+                id: 7,
+                category: 'Offer Creation',
+                title: '7. Value Stack',
+                when: 'When your offer feels "thin"',
+                prompt: `Create a value stack for this offer: [offer idea].
+Include core benefit, supporting features, and end result.`,
+                output: 'A structured offer that feels worth paying for',
+                tip: 'Value comes from clarity, not quantity.'
+            },
+            {
+                id: 8,
+                category: 'Offer Creation',
+                title: '8. Objection Handling',
+                when: 'When people hesitate to buy',
+                prompt: `List 5 objections someone might have about buying [offer].
+Write calm, logical responses to each.`,
+                output: 'Built-in sales resistance handling',
+                tip: 'Use this in FAQs or email copy.'
+            },
+            {
+                id: 9,
+                category: 'Offer Creation',
+                title: '9. Offer Naming',
+                when: 'When your offer name feels generic',
+                prompt: `Generate 10 clear, benefit-driven names for an offer that helps with [problem].`,
+                output: 'Names that signal outcome, not fluff',
+                tip: 'The best name explains itself in one glance.'
+            },
+            {
+                id: 10,
+                category: 'Offer Creation',
+                title: '10. Who It\'s For / Not For',
+                when: 'When you want better-fit buyers',
+                prompt: `Write a "This is for you if / This is not for you if" section for this offer: [offer].`,
+                output: 'Clear audience filtering that improves conversions',
+                tip: 'Clarity repels the wrong buyers and attracts the right ones.'
+            },
+            {
+                id: 11,
+                category: 'Sales Pages',
+                title: '11. Opening Hook',
+                when: 'When writing the top of a sales page',
+                prompt: `Write a short sales page opening that speaks directly to someone struggling with [problem].
+Keep it conversational and honest.`,
+                output: 'A strong opening that keeps readers scrolling',
+                tip: 'Avoid benefits first---start with recognition.'
+            },
+            {
+                id: 12,
+                category: 'Sales Pages',
+                title: '12. Benefit Bullets',
+                when: 'When your benefits feel vague',
+                prompt: `Write 7 clear benefit bullets for [offer].
+Focus on outcomes, not features.`,
+                output: 'Benefits that feel tangible and specific',
+                tip: 'If a bullet sounds generic, rewrite it.'
+            },
+            {
+                id: 13,
+                category: 'Sales Pages',
+                title: '13. CTA Writing',
+                when: 'When your CTA feels weak',
+                prompt: `Write 10 CTAs for [offer] that feel helpful, not pushy.`,
+                output: 'CTAs that lower buying resistance',
+                tip: 'Soft CTAs often outperform aggressive ones.'
+            },
+            {
+                id: 14,
+                category: 'Sales Pages',
+                title: '14. Social Proof Framing',
+                when: 'When you don\'t have testimonials yet',
+                prompt: `Write a credibility section for [offer] without testimonials.
+Focus on logic, experience, and clarity.`,
+                output: 'Trust-building copy without fake proof',
+                tip: 'Honesty converts better than exaggeration.'
+            },
+            {
+                id: 15,
+                category: 'Sales Pages',
+                title: '15. FAQ Generator',
+                when: 'When buyers ask repeated questions',
+                prompt: `Generate 8 FAQs for [offer] with concise, reassuring answers.`,
+                output: 'Reduced buyer hesitation',
+                tip: 'FAQs often close the sale.'
+            },
+            {
+                id: 16,
+                category: 'Lead Magnets',
+                title: '16. Idea Generator',
+                when: 'When you need a freebie idea',
+                prompt: `Suggest 10 lead magnet ideas that solve one quick problem for [audience].`,
+                output: 'Freebie ideas that attract the right people',
+                tip: 'A good lead magnet solves *one* problem well.'
+            },
+            {
+                id: 17,
+                category: 'Lead Magnets',
+                title: '17. Outline Builder',
+                when: 'When building the content itself',
+                prompt: `Create a simple outline for a lead magnet titled "[title]."`,
+                output: 'A ready-to-build structure',
+                tip: 'Short lead magnets convert better than long ones.'
+            },
+            {
+                id: 18,
+                category: 'Lead Magnets',
+                title: '18. Conversion Copy',
+                when: 'When writing the signup page',
+                prompt: `Write landing page copy for a free lead magnet that helps with [problem].`,
+                output: 'Signup-focused copy that explains value quickly',
+                tip: 'Emphasize the outcome, not the format.'
+            },
+            {
+                id: 19,
+                category: 'Email Writing',
+                title: '19. Welcome Email',
+                when: 'After someone joins your list',
+                prompt: `Write a friendly welcome email that sets expectations and builds trust.`,
+                output: 'A strong first impression email',
+                tip: 'Welcome emails get the highest open rates.'
+            },
+            {
+                id: 20,
+                category: 'Email Writing',
+                title: '20. Value Email',
+                when: 'When nurturing your list',
+                prompt: `Write a short value-driven email teaching one useful insight about [topic].`,
+                output: 'Engaging emails without over-teaching',
+                tip: 'One insight beats five ideas.'
+            },
+            {
+                id: 21,
+                category: 'Email Writing',
+                title: '21. Soft Promotion',
+                when: 'When mentioning your offer',
+                prompt: `Write an email that naturally introduces [offer] without sounding salesy.`,
+                output: 'Promotion that feels respectful',
+                tip: 'Context sells better than pressure.'
+            },
+            {
+                id: 22,
+                category: 'Productivity',
+                title: '22. Weekly Planning',
+                when: 'When content feels chaotic',
+                prompt: `Create a simple weekly content plan based on my goals and time limits.`,
+                output: 'A manageable posting plan',
+                tip: 'Consistency beats volume.'
+            },
+            {
+                id: 23,
+                category: 'Systems',
+                title: '23. Content Baseline',
+                when: 'When results vary too much',
+                prompt: `Create a repeatable content framework I can reuse weekly.`,
+                output: 'Predictable output structure',
+                tip: 'Baselines reduce decision fatigue.'
+            },
+            {
+                id: 24,
+                category: 'Strategy',
+                title: '24. Simplifier',
+                when: 'When you feel overwhelmed',
+                prompt: `Strip my content strategy down to the 3 most important actions.`,
+                output: 'Focus and clarity',
+                tip: 'Remove before you add.'
+            },
+            {
+                id: 25,
+                category: 'Emergency Prompt',
+                title: '25. Blank Page Breaker',
+                when: 'When you\'re completely stuck',
+                prompt: `Ask me 5 simple questions that will help me create my next piece of content.`,
+                output: 'Momentum when you feel blocked',
+                tip: 'Answer quickly. Don\'t overthink.'
+            }
+        ];
+
+        let state = {
+            expandedId: null,
+            copiedId: null,
+            searchTerm: '',
+            activeFilter: 'all'
+        };
+
+        const categories = [
+            'All Prompts',
+            'Content Ideas',
+            'Offer Creation',
+            'Sales Pages',
+            'Lead Magnets',
+            'Email Writing',
+            'Productivity & Strategy'
+        ];
+
+        function copyToClipboard(text, id) {
+            navigator.clipboard.writeText(text).then(() => {
+                state.copiedId = id;
+                render();
+                setTimeout(() => {
+                    state.copiedId = null;
+                    render();
+                }, 2000);
+            });
+        }
+
+        function toggleExpand(id) {
+            state.expandedId = state.expandedId === id ? null : id;
+            render();
+        }
+
+        function updateSearch(value) {
+            state.searchTerm = value;
+            render();
+        }
+
+        function setFilter(filter) {
+            state.activeFilter = filter;
+            render();
+        }
+
+        function render() {
+            let filtered = prompts;
+
+            // Apply category filter
+            if (state.activeFilter !== 'all') {
+                if (state.activeFilter === 'Productivity & Strategy') {
+                    filtered = filtered.filter(p => 
+                        ['Productivity', 'Systems', 'Strategy', 'Emergency Prompt'].includes(p.category)
+                    );
+                } else {
+                    filtered = filtered.filter(p => p.category === state.activeFilter);
+                }
+            }
+
+            // Apply search filter
+            if (state.searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+                    p.category.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+                    p.when.toLowerCase().includes(state.searchTerm.toLowerCase())
+                );
+            }
+
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="sticky-header">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                           <div>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                    <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                                </h1>
+                                  <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">  
+                                    <span style="color: #FFFFFF;">Creator</span> <span style="color: #FFFFFF;">Core Prompts</span>
+                                     <p class="text-cyan-300 text-xs sm:text-sm mt-1">25 Creator Prompts Toolkit. Never stare at a blank page again.</p>
+                            </div>
+                            <button 
+                                onclick="window.print()" 
+                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-all hover:shadow-lg"
+                            >
+                                🖨️ Print
+                            </button>
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="Search prompts..." 
+                            value="${state.searchTerm}"
+                            oninput="updateSearch(this.value)"
+                            class="w-full px-4 py-2 sm:py-3 bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base transition-all"
+                        />
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <div class="stat-card bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">25</div>
+                            <div class="text-amber-300 text-xs sm:text-sm">Prompts</div>
+                        </div>
+                        <div class="stat-card bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">7</div>
+                            <div class="text-purple-300 text-xs sm:text-sm">Categories</div>
+                        </div>
+                        <div class="stat-card bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
+                            <div class="text-cyan-300 text-xs sm:text-sm">Copy-Paste</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 sm:mb-8 flex flex-wrap gap-2">
+                        ${categories.map(cat => {
+                            const filterValue = cat === 'All Prompts' ? 'all' : cat;
+                            const isActive = state.activeFilter === filterValue;
+                            return `
+                                <button 
+                                    onclick="setFilter('${filterValue}')"
+                                    class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+                                        isActive 
+                                            ? 'active text-white' 
+                                            : 'bg-slate-800/50 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20'
+                                    }"
+                                >
+                                    ${cat}
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+                        📋 ${state.activeFilter === 'all' ? 'All Prompts' : state.activeFilter}
+                        ${state.searchTerm ? ` - Search: "${state.searchTerm}"` : ''}
+                    </h2>
+                    
+                    ${filtered.length === 0 ? `
+                        <div class="text-center py-12">
+                            <div class="text-6xl mb-4">🔍</div>
+                            <p class="text-xl text-slate-400">No prompts found</p>
+                            <p class="text-sm text-slate-500 mt-2">Try a different search or filter</p>
+                        </div>
+                    ` : filtered.map(p => `
+                        <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                            <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
+                                <div class="flex-1 min-w-0">
+                                    <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded mb-2">${p.category}</span>
+                                    <h3 class="text-base sm:text-xl font-bold text-white mb-1 break-words">${p.title}</h3>
+                                    <p class="text-cyan-300 text-xs sm:text-sm">⚡ ${p.when}</p>
+                                </div>
+                                <button 
+                                    onclick="toggleExpand(${p.id})"
+                                    class="no-print play-button flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-all text-cyan-400 text-lg"
+                                >
+                                    ${state.expandedId === p.id ? '▼' : '▶'}
+                                </button>
+                            </div>
+
+                            ${state.expandedId === p.id ? `
+                                <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                                    <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-3 sm:p-4">
+                                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                            <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
+                                            <button 
+                                                onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, ${p.id})'
+                                                class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg"
+                                            >
+                                                ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                            </button>
+                                        </div>
+                                        <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                                    </div>
+                                    <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
+                                    </div>
+                                    <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-purple-400 font-semibold text-xs sm:text-sm mb-2">💡 PRO TIP:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.tip}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+
+                    <div class="mt-8 sm:mt-12 text-center text-slate-400 text-xs sm:text-sm">
+                        <p>Creator Core Prompts</p>
+                        <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                        <p class="mt-2">25 Essential Prompts • 10 Categories • Copy-Paste Ready</p>
+                         <p class="mt-4 text-xs text-slate-500">© 2024 PromptAider. All rights reserved.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        render();
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
