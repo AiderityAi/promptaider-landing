@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Systems - Interactive Prompt Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+        @media print { .no-print { display: none !important; } }
+        @keyframes logoPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3); }
+        }
+        .logo-pulse { animation: logoPulse 3s ease-in-out infinite; }
+        .sticky-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(10, 14, 39, 0.8); backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
+        }
+        @media (max-width: 768px) { .sticky-header { position: relative; } }
+        @keyframes statPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .stat-card:hover { animation: statPulse 0.6s ease-in-out; }
+        @keyframes playJump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes playShine {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) drop-shadow(0 0 30px rgba(245, 158, 11, 0.6)); }
+        }
+        @keyframes rainbowBorder {
+            0% { border-color: rgba(245, 158, 11, 0.9); box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
+            33% { border-color: rgba(6, 182, 212, 0.9); box-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+            66% { border-color: rgba(168, 85, 247, 0.9); box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+            100% { border-color: rgba(245, 158, 11, 0.9); box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6); }
+        }
+        .play-button {
+            animation: playJump 2.5s ease-in-out infinite, playShine 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, playShine 1.2s ease-in-out infinite, rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid; background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+        }
+        .prompt-card { transition: all 0.4s ease; }
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #0a0e27; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f59e0b, #06b6d4); border-radius: 6px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #06b6d4, #a855f7); }
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active {
+            background: linear-gradient(90deg, #f59e0b, #06b6d4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+const prompts = [{id:1,category:"Content Systems",title:"1. Content Operating System",when:"When your content feels random or reactive",prompt:"Act as my content operations manager. Based on my niche, goals, and audience, design a simple weekly content system with clear inputs, outputs, and reuse rules.",output:"A repeatable content workflow",tip:"Ask for a 3-post minimum system to avoid overload"},{id:2,category:"Content Systems",title:"2. Idea Intake System",when:"When ideas are scattered across notes and apps",prompt:"Turn my raw ideas into a structured intake system with categories, priority rules, and next actions.",output:"Organized idea pipeline",tip:"Feed it 10 messy ideas for best results"},{id:3,category:"Content Systems",title:"3. Weekly Content Planner",when:"When planning feels heavy",prompt:"Create a weekly content plan optimized for energy, time, and reuse across platforms.",output:"A realistic weekly plan",tip:"Specify available hours per week"},{id:4,category:"Content Systems",title:"4. Content Pillar Engine",when:"When content lacks focus",prompt:"Define 3–5 content pillars tied directly to audience problems and buying intent.",output:"Clear strategic pillars",tip:"Ask for \"what to stop posting\""},{id:5,category:"Content Systems",title:"5. Quality Control Filter",when:"When content feels off-brand",prompt:"Create a quality checklist to evaluate clarity, relevance, authority, and usefulness before publishing.",output:"Pre-publish QC system",tip:"Use it as a final pass only"},{id:6,category:"Content Systems",title:"6. Multi-Format Repurposing System",when:"When creating from scratch every time",prompt:"Turn one core idea into posts, emails, short-form video, and long-form content.",output:"Repurposing framework",tip:"Start with long-form as the source"},{id:7,category:"Content Systems",title:"7. Evergreen Content Identifier",when:"When content expires too fast",prompt:"Identify which of my ideas can become evergreen and how to frame them.",output:"Long-life content map",tip:"Evergreen beats viral over time"},{id:8,category:"Content Systems",title:"8. Content Recycling Engine",when:"When old content is ignored",prompt:"Audit my past content and suggest high-impact rewrites or reposts.",output:"Reuse opportunities",tip:"Old content often converts better"},{id:9,category:"Content Systems",title:"9. Authority Signal Builder",when:"When you don't feel credible",prompt:"Extract authority signals from my experience and turn them into content angles.",output:"Credibility-based ideas",tip:"Specific beats impressive"},{id:10,category:"Content Systems",title:"10. Trend Adaptation System",when:"When trends feel overwhelming",prompt:"Adapt trends to my niche without copying or diluting my voice.",output:"Safe trend usage",tip:"Filter trends through problems"},{id:11,category:"Content Systems",title:"11. Content Speed Optimizer",when:"When content takes too long",prompt:"Redesign my content creation process to reduce time without losing quality.",output:"Faster workflow",tip:"Time-box each stage"},{id:12,category:"Content Systems",title:"12. Batch Creation Framework",when:"When daily posting burns you out",prompt:"Build a batching system aligned with energy and focus.",output:"Batch workflow",tip:"Batch thinking, not formatting"},{id:13,category:"Content Systems",title:"13. Content Consistency Guardrail",when:"When output fluctuates",prompt:"Create minimum consistency rules that keep me visible without pressure.",output:"Sustainable cadence",tip:"Consistency ≠ frequency"},{id:14,category:"Content Systems",title:"14. Platform-Specific Adaptation",when:"When content flops across platforms",prompt:"Adapt one message for LinkedIn, Instagram, X, and email without rewriting from scratch.",output:"Platform-ready variants",tip:"Keep the core identical"},{id:15,category:"Content Systems",title:"15. Content Failure Analyzer",when:"When posts underperform",prompt:"Diagnose why this content failed and how to fix it.",output:"Actionable feedback",tip:"Analyze patterns, not single posts"},{id:16,category:"Workflow Systems",title:"16. Creator Time Audit",when:"When you feel busy but stuck",prompt:"Analyze where my time is leaking and propose fixes.",output:"Time clarity",tip:"Brutal honesty helps"},{id:17,category:"Workflow Systems",title:"17. Weekly Execution Plan",when:"When weeks blur together",prompt:"Turn goals into a realistic weekly execution plan.",output:"Focused action list",tip:"Limit to 3 outcomes"},{id:18,category:"Workflow Systems",title:"18. Energy-Based Scheduling",when:"When burnout creeps in",prompt:"Align my tasks with high- and low-energy windows.",output:"Sustainable schedule",tip:"Creativity needs freshness"},{id:19,category:"Workflow Systems",title:"19. Decision Fatigue Reducer",when:"When small decisions drain you",prompt:"Identify recurring decisions and automate or pre-decide them.",output:"Mental bandwidth",tip:"Fewer choices = more output"},{id:20,category:"Workflow Systems",title:"20. Focus Protection System",when:"When distracted constantly",prompt:"Design focus rules that protect deep work time.",output:"Focus framework",tip:"Guard mornings fiercely"},{id:21,category:"Workflow Systems",title:"21. Creator Burnout Early Warning",when:"When motivation dips",prompt:"Identify early burnout signals and countermeasures.",output:"Burnout prevention",tip:"Fix early, not later"},{id:22,category:"Workflow Systems",title:"22. Task Elimination System",when:"When workload grows",prompt:"Identify tasks to eliminate, automate, or simplify.",output:"Lean workflow",tip:"Less beats better"},{id:23,category:"Workflow Systems",title:"23. Output Prioritization Engine",when:"When everything feels important",prompt:"Rank my tasks by leverage and outcome impact.",output:"Clear priorities",tip:"Revenue-aligned first"},{id:24,category:"Workflow Systems",title:"24. Weekly Review System",when:"When progress stalls",prompt:"Build a simple weekly review to improve output.",output:"Feedback loop",tip:"15 minutes max"},{id:25,category:"Workflow Systems",title:"25. Chaos-to-Order Reset",when:"When overwhelmed",prompt:"Reset my workflow from chaos to clarity in steps.",output:"Reset plan",tip:"Do this monthly"},{id:26,category:"Workflow Systems",title:"26. Automation Opportunity Finder",when:"When repeating tasks",prompt:"Identify what can be automated with simple tools or AI.",output:"Automation ideas",tip:"Start small"},{id:27,category:"Workflow Systems",title:"27. Creator SOP Builder",when:"When scaling output",prompt:"Turn this task into a simple SOP anyone could follow.",output:"Repeatable process",tip:"Write for your tired self"},{id:28,category:"Workflow Systems",title:"28. Deadline Discipline System",when:"When projects drag",prompt:"Create realistic deadlines with accountability triggers.",output:"Momentum",tip:"Short deadlines win"},{id:29,category:"Workflow Systems",title:"29. Execution Bottleneck Finder",when:"When stuck mid-process",prompt:"Identify where my workflow breaks and how to fix it.",output:"Bottleneck fixes",tip:"One fix at a time"},{id:30,category:"Workflow Systems",title:"30. Sustainable Creator Routine",when:"When routines don't stick",prompt:"Design a routine I can sustain long-term.",output:"Stable routine",tip:"Flexibility beats rigidity"},{id:31,category:"Audience Systems",title:"31. Audience Clarity Engine",when:"When engagement is low",prompt:"Clarify my audience's real problems, language, and triggers.",output:"Deeper insight",tip:"Use their words"},{id:32,category:"Audience Systems",title:"32. Buyer Intent Signal Finder",when:"When selling feels awkward",prompt:"Identify signals that indicate buying readiness.",output:"Smarter selling",tip:"Listen more than pitch"},{id:33,category:"Audience Systems",title:"33. Content-to-Offer Alignment",when:"When content doesn't convert",prompt:"Align my content with my offers naturally.",output:"Better conversions",tip:"Teach toward the offer"},{id:34,category:"Audience Systems",title:"34. Feedback Loop System",when:"When guessing what works",prompt:"Build a lightweight feedback system from my audience.",output:"Real input",tip:"Ask simple questions"},{id:35,category:"Audience Systems",title:"35. Objection Pattern Mapper",when:"When buyers hesitate",prompt:"Identify recurring objections and address them proactively.",output:"Objection clarity",tip:"Objections = content fuel"},{id:36,category:"Audience Systems",title:"36. Trust Acceleration System",when:"When authority feels slow",prompt:"Design trust-building content sequences.",output:"Faster credibility",tip:"Consistency compounds"},{id:37,category:"Audience Systems",title:"37. Engagement Signal Analyzer",when:"When metrics confuse you",prompt:"Identify which engagement signals matter most.",output:"Metric clarity",tip:"Ignore vanity metrics"},{id:38,category:"Audience Systems",title:"38. Audience Segmentation Prompt",when:"When audience feels broad",prompt:"Segment my audience by problem, awareness, and intent.",output:"Clear segments",tip:"One segment per message"},{id:39,category:"Audience Systems",title:"39. Long-Term Growth Map",when:"When growth feels random",prompt:"Map sustainable growth over 6–12 months.",output:"Growth roadmap",tip:"Slow growth lasts"},{id:40,category:"Monetization Systems",title:"40. Offer Refinement Engine",when:"When your offer sells inconsistently",prompt:"Analyze my current offer and identify where clarity, differentiation, or outcome specificity can be improved to increase conversions without changing the core product.",output:"Clear offer improvements",tip:"Small refinements beat full rewrites"},{id:41,category:"Monetization Systems",title:"41. Offer Stack Builder",when:"When you want higher average order value",prompt:"Design an offer stack that increases value without adding complexity or support burden.",output:"Logical upsell structure",tip:"Stack outcomes, not features"},{id:42,category:"Monetization Systems",title:"42. Pricing Alignment Check",when:"When pricing feels off",prompt:"Evaluate whether my pricing matches perceived value, audience sophistication, and delivery method.",output:"Pricing clarity",tip:"Price communicates positioning"},{id:43,category:"Conversion Systems",title:"43. Conversion Bottleneck Analyzer",when:"When traffic doesn't convert",prompt:"Identify the biggest conversion bottleneck in my funnel and suggest targeted fixes.",output:"Conversion diagnosis",tip:"Fix one bottleneck at a time"},{id:44,category:"Conversion Systems",title:"44. Sales Page Simplifier",when:"When sales pages feel bloated",prompt:"Simplify my sales page while preserving persuasive power.",output:"Clearer sales flow",tip:"Remove, don't add"},{id:45,category:"Conversion Systems",title:"45. Objection Preemption System",when:"When buyers hesitate",prompt:"Identify and preempt top buyer objections directly in my content and sales pages.",output:"Objection-handling copy",tip:"Address objections early"},{id:46,category:"Conversion Systems",title:"46. Trust Signal Optimizer",when:"When credibility feels weak",prompt:"Strengthen trust signals across my funnel without adding testimonials I don't have.",output:"Trust-building ideas",tip:"Specificity builds trust"},{id:47,category:"Revenue Systems",title:"47. Revenue Workflow Mapper",when:"When income feels unpredictable",prompt:"Map my revenue workflow from attention to payment and identify stabilization points.",output:"Revenue visibility",tip:"Predictability beats spikes"},{id:48,category:"Revenue Systems",title:"48. Income Stream Rationalizer",when:"When juggling too many ideas",prompt:"Evaluate which income streams to double down on and which to cut.",output:"Focused monetization",tip:"Fewer streams scale faster"},{id:49,category:"Revenue Systems",title:"49. Funnel Simplification Engine",when:"When funnels feel fragile",prompt:"Simplify my funnel to reduce breakage and increase reliability.",output:"Lean funnel",tip:"Simple funnels convert better"},{id:50,category:"Revenue Systems",title:"50. Cash Flow Stabilizer",when:"When revenue fluctuates",prompt:"Design mechanisms to smooth revenue and reduce dependency on launches.",output:"Revenue stability plan",tip:"Recurring beats viral"},{id:51,category:"Scaling Systems",title:"51. Delegation Readiness Check",when:"When considering help",prompt:"Assess which tasks are ready to delegate and which are not.",output:"Delegation clarity",tip:"Delegate process, not chaos"},{id:52,category:"Scaling Systems",title:"52. Delegation SOP Generator",when:"Before hiring or outsourcing",prompt:"Turn this task into a clear SOP someone else can execute.",output:"Transferable process",tip:"Clarity saves money"},{id:53,category:"Scaling Systems",title:"53. Hiring Scope Definer",when:"When unsure who to hire",prompt:"Define the exact scope, outcomes, and success metrics for this role.",output:"Hiring clarity",tip:"Outcomes over hours"},{id:54,category:"Scaling Systems",title:"54. Creator Role Evolution Map",when:"When growth feels heavy",prompt:"Map how my role should evolve as my business scales.",output:"Role clarity",tip:"Let go early"},{id:55,category:"Partnership Systems",title:"55. Partnership Readiness Analyzer",when:"Before collaborations",prompt:"Evaluate whether I'm ready for partnerships and what type fits best.",output:"Partnership direction",tip:"Systems attract partners"},{id:56,category:"Partnership Systems",title:"56. Partnership Value Proposition Builder",when:"Pitching collaborations",prompt:"Craft a clear value proposition for potential partners.",output:"Partnership pitch",tip:"Lead with audience value"},{id:57,category:"Partnership Systems",title:"57. Revenue Share Model Designer",when:"Structuring collaborations",prompt:"Design a fair revenue-share model aligned with contribution and risk.",output:"Partnership structure",tip:"Simplicity prevents conflict"},{id:58,category:"Scaling Systems",title:"58. Scale Risk Assessment",when:"Before scaling fast",prompt:"Identify risks that could break my systems at scale and how to mitigate them.",output:"Risk awareness",tip:"Stability first"},{id:59,category:"Scaling Systems",title:"59. System Stress Test",when:"When output increases",prompt:"Stress-test my systems for higher volume and complexity.",output:"Weak point detection",tip:"Test before it breaks"},{id:60,category:"Scaling Systems",title:"60. Long-Term Scale Blueprint",when:"Planning the next 12 months",prompt:"Design a scalable business blueprint that prioritizes leverage, stability, and simplicity.",output:"Scale roadmap",tip:"Scale systems, not effort"}];
+
+let state = {expandedId: null, copiedId: null, searchTerm: '', activeFilter: 'all'};
+
+function copyToClipboard(text, id) {
+    navigator.clipboard.writeText(text).then(() => {
+        state.copiedId = id; render();
+        setTimeout(() => { state.copiedId = null; render(); }, 2000);
+    });
+}
+function toggleExpand(id) { state.expandedId = state.expandedId === id ? null : id; render(); }
+function updateSearch(value) { state.searchTerm = value; render(); }
+function setFilter(filter) { state.activeFilter = filter; render(); }
+
+function render() {
+    const filtered = prompts.filter(p => {
+        const matchesSearch = p.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+            p.category.toLowerCase().includes(state.searchTerm.toLowerCase());
+        const matchesFilter = state.activeFilter === 'all' || p.category === state.activeFilter;
+        return matchesSearch && matchesFilter;
+    });
+
+    const categories = ['all', 'Content Systems', 'Workflow Systems', 'Audience Systems', 
+                      'Monetization Systems', 'Conversion Systems', 'Revenue Systems', 
+                      'Scaling Systems', 'Partnership Systems'];
+
+    document.getElementById('app').innerHTML = `
+        <div class="sticky-header">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                            <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                                                                    
+                        </h1>
+                        <h1 class="text-2xl sm:text-3xl font-bold logo-pulse"> 
+                        <span style="color: #FFFFFF;">Creator</span> <span style="color: #FFFFFF;">System Prompts</span>
+                        <p class="text-cyan-300 text-xs sm:text-sm mt-1">60 Prompts for Creators who want Systems- not stress</p>
+                    </div>
+                    <button onclick="window.print()" class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-all hover:shadow-lg">🖨️ Print</button>
+                </div>
+                <input type="text" placeholder="Search prompts..." value="${state.searchTerm}" oninput="updateSearch(this.value)"
+                    class="w-full px-4 py-2 sm:py-3 bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base transition-all"/>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div class="stat-card bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                    <div class="text-xl sm:text-2xl font-bold text-white">60</div>
+                    <div class="text-amber-300 text-xs sm:text-sm">Total Prompts</div>
+                </div>
+                <div class="stat-card bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                    <div class="text-xl sm:text-2xl font-bold text-white">8</div>
+                    <div class="text-purple-300 text-xs sm:text-sm">Categories</div>
+                </div>
+                <div class="stat-card bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                    <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
+                    <div class="text-cyan-300 text-xs sm:text-sm">Copy-Paste</div>
+                </div>
+            </div>
+
+            <div class="flex gap-2 flex-wrap mb-6">
+                ${categories.map(cat => `
+                    <button onclick="setFilter('${cat}')" 
+                        class="filter-btn px-3 py-1.5 text-xs sm:text-sm rounded-lg border transition-all ${state.activeFilter === cat ? 'active text-white' : 'bg-slate-800/50 border-cyan-500/30 text-cyan-300 hover:border-cyan-400'}">
+                        ${cat === 'all' ? 'All Prompts' : cat}
+                    </button>
+                `).join('')}
+            </div>
+
+            ${filtered.map(p => `
+                <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                    <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
+                        <div class="flex-1 min-w-0">
+                            <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded mb-2">${p.category}</span>
+                            <h3 class="text-base sm:text-xl font-bold text-white mb-1 break-words">${p.title}</h3>
+                            <p class="text-cyan-300 text-xs sm:text-sm">⚡ ${p.when}</p>
+                        </div>
+                        <button onclick="toggleExpand(${p.id})" class="no-print play-button flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-all text-cyan-400 text-lg">
+                            ${state.expandedId === p.id ? '▼' : '▶'}
+                        </button>
+                    </div>
+                    ${state.expandedId === p.id ? `
+                        <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                            <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-3 sm:p-4">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                    <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
+                                    <button onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, ${p.id})'
+                                        class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg">
+                                        ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                    </button>
+                                </div>
+                                <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                            </div>
+                            <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
+                            </div>
+                            <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                <p class="text-purple-400 font-semibold text-xs sm:text-sm mb-2">💡 PRO TIP:</p>
+                                <p class="text-slate-200 text-xs sm:text-sm">${p.tip}</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('')}
+
+            <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center backdrop-blur-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Creator Systems Philosophy</h2>
+                <p class="text-cyan-300 mb-2 text-sm sm:text-base italic">"Create once, then let systems do the rest."</p>
+                <p class="text-slate-400 text-xs sm:text-sm">This isn't about growth hacks. It's about building workflows that hold up when attention and revenue increase.</p>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-center text-slate-400 text-xs sm:text-sm">
+                <p>Creator System Prompts</p>
+                <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                <p class="mt-2">60 Prompts • 8 Categories • Copy-Paste Ready</p>
+            </div>
+        </div>
+    `;
+}
+
+render();
+window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
