@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetization Prompt Playbook - 100 Prompts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+
+        @media print {
+            .no-print { 
+                display: none !important; 
+            }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .logo-pulse {
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header {
+                position: relative;
+            }
+        }
+
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: statPulse 0.6s ease-in-out;
+        }
+
+        @keyframes playJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes playShine {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) 
+                        drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) 
+                        drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+            33% { 
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            66% { 
+                border-color: rgba(168, 85, 247, 0.9);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            }
+            100% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes rainbowSpin {
+            0% {
+                background: conic-gradient(
+                    from 0deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+            100% {
+                background: conic-gradient(
+                    from 360deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+        }
+
+        .play-button {
+            animation: playJump 2.5s ease-in-out infinite, 
+                       playShine 3s ease-in-out infinite,
+                       pulseGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .play-button:hover::before {
+            opacity: 1;
+            animation: rainbowSpin 2s linear infinite;
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 
+                        0 0 60px rgba(245, 158, 11, 0.4);
+        }
+
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active {
+            background: linear-gradient(90deg, #f59e0b, #06b6d4);
+            transform: scale(1.05);
+        }
+
+        .prompt-card {
+            transition: all 0.4s ease;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f59e0b, #06b6d4);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #06b6d4, #a855f7);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">Loading...</div>
+    
+    <script>
+        const allPrompts = [
+            // IDEA → PRODUCT (1-20)
+            {id: 1, category: 'Idea → Product', title: '1. Idea-to-Offer Converter', when: 'When you have ideas but nothing packaged', prompt: 'Turn this idea into a clear, sellable product with a defined outcome and buyer.', output: 'Product concept', tip: 'Products solve one problem'},
+            {id: 2, category: 'Idea → Product', title: '2. Problem-to-Product Mapper', when: 'When audience pain is unclear', prompt: 'Map my audience\'s problems into potential digital products.', output: 'Product opportunities', tip: 'Pain > passion'},
+            {id: 3, category: 'Idea → Product', title: '3. One-Hour Product Builder', when: 'When stuck overbuilding', prompt: 'Design a product I can create in under one hour.', output: 'Low-friction offer', tip: 'Speed creates momentum'},
+            {id: 4, category: 'Idea → Product', title: '4. Product Validation Prompt', when: 'Before building', prompt: 'Validate this product idea using demand signals.', output: 'Go / no-go clarity', tip: 'Validation beats perfection'},
+            {id: 5, category: 'Idea → Product', title: '5. Micro-Offer Generator', when: 'Monetizing small audiences', prompt: 'Create a $9-$29 micro-offer aligned with my content.', output: 'Entry product', tip: 'Micro-offers fund growth'},
+            {id: 6, category: 'Idea → Product', title: '6. Flagship Product Blueprint', when: 'Building core offer', prompt: 'Turn my expertise into a scalable flagship product.', output: 'Core offer', tip: 'One flagship beats five ideas'},
+            {id: 7, category: 'Idea → Product', title: '7. Product Ladder Builder', when: 'Planning monetization', prompt: 'Build a logical product ladder from free to premium.', output: 'Monetization map', tip: 'Ladders increase LTV'},
+            {id: 8, category: 'Idea → Product', title: '8. Product Differentiation Engine', when: 'Standing out', prompt: 'Differentiate my product from competitors clearly.', output: 'Unique positioning', tip: 'Clarity sells'},
+            {id: 9, category: 'Idea → Product', title: '9. Feature-to-Outcome Translator', when: 'Writing sales copy', prompt: 'Translate product features into buyer outcomes.', output: 'Conversion copy', tip: 'Outcomes > features'},
+            {id: 10, category: 'Idea → Product', title: '10. Overthinking Killer', when: 'Overcomplicating', prompt: 'Simplify this product to its essential value.', output: 'Lean product', tip: 'Less converts more'},
+            {id: 11, category: 'Idea → Product', title: '11. Content-to-Product Bundler', when: 'Sitting on lots of content but low revenue', prompt: 'Analyze my existing content and bundle it into a cohesive, sellable product with a clear outcome.', output: 'Product bundle blueprint', tip: 'Bundles sell outcomes, not volume'},
+            {id: 12, category: 'Idea → Product', title: '12. Repurpose-to-Revenue Engine', when: 'Creating content repeatedly without monetization', prompt: 'Identify how one core idea can be repurposed into multiple paid product formats.', output: 'Multi-format product map', tip: 'One idea, many containers'},
+            {id: 13, category: 'Idea → Product', title: '13. Digital vs Service Offer Decider', when: 'Unsure whether to sell time or assets', prompt: 'Evaluate whether this idea should be a digital product, service, or hybrid --- based on scalability and energy cost.', output: 'Offer-type clarity', tip: 'Protect creator energy'},
+            {id: 14, category: 'Idea → Product', title: '14. Reuse Strategy Architect', when: 'Feeling forced to "create more"', prompt: 'Design a reuse strategy so this product feeds future offers instead of expiring.', output: 'Compounding product system', tip: 'Reuse beats reinvention'},
+            {id: 15, category: 'Idea → Product', title: '15. Risk Reduction Offer Builder', when: 'Buyers hesitate to purchase', prompt: 'Reduce perceived buyer risk without lowering price or adding discounts.', output: 'Trust-building elements', tip: 'Certainty converts'},
+            {id: 16, category: 'Idea → Product', title: '16. Refund Prevention Framework', when: 'High refund anxiety', prompt: 'Design the product structure to prevent refunds through clarity and expectation alignment.', output: 'Refund-resistant offer', tip: 'Misalignment causes refunds'},
+            {id: 17, category: 'Idea → Product', title: '17. Scope Control Guardrails', when: 'Scope creep or burnout', prompt: 'Define strict scope boundaries so the product delivers value without creator overload.', output: 'Clear scope rules', tip: 'Constraints protect quality'},
+            {id: 18, category: 'Idea → Product', title: '18. Creator-First Delivery System', when: 'Delivery feels draining', prompt: 'Redesign product delivery to minimize ongoing effort while preserving value.', output: 'Low-maintenance delivery model', tip: 'Sustainability beats intensity'},
+            {id: 19, category: 'Idea → Product', title: '19. Product Longevity Planner', when: 'Worried about product relevance', prompt: 'Structure this product to remain useful even as tools, platforms, or trends change.', output: 'Evergreen positioning', tip: 'Principles outlast tactics'},
+            {id: 20, category: 'Idea → Product', title: '20. Minimum Viable Productizer', when: 'Overbuilding before launch', prompt: 'Strip this idea down to its minimum sellable version without losing outcome integrity.', output: 'MVP definition', tip: 'Ship small, learn fast'},
+            
+            // PRICING & VALUE (21-40)
+            {id: 21, category: 'Pricing & Value', title: '21. Pricing Confidence Builder', when: 'Unsure what to charge', prompt: 'Recommend pricing based on value, audience sophistication, and alternatives.', output: 'Price range', tip: 'Price signals quality'},
+            {id: 22, category: 'Pricing & Value', title: '22. Underpricing Detector', when: 'Pricing feels off', prompt: 'Identify if I\'m underpricing and why.', output: 'Pricing insight', tip: 'Cheap attracts friction'},
+            {id: 23, category: 'Pricing & Value', title: '23. Value Stack Designer', when: 'Offer feels thin', prompt: 'Stack value without adding work.', output: 'Stronger offer', tip: 'Perceived value matters'},
+            {id: 24, category: 'Pricing & Value', title: '24. Price Objection Anticipator', when: 'Price resistance', prompt: 'Predict price objections and neutralize them.', output: 'Objection copy', tip: 'Address before checkout'},
+            {id: 25, category: 'Pricing & Value', title: '25. Anchoring Strategy Builder', when: 'Increasing perceived value', prompt: 'Create price anchors ethically.', output: 'Higher AOV', tip: 'Context changes price'},
+            {id: 26, category: 'Pricing & Value', title: '26. Discount Strategy Validator', when: 'Considering a discount', prompt: 'Evaluate whether offering a discount will increase long-term revenue or damage positioning. Suggest better alternatives if needed.', output: 'Discount decision clarity', tip: 'Discounts fix friction, not weak offers'},
+            {id: 27, category: 'Pricing & Value', title: '27. No-Discount Positioning Builder', when: 'Avoiding price erosion', prompt: 'Build a pricing narrative that justifies no discounts while increasing buyer confidence.', output: 'Authority-based pricing logic', tip: 'Confidence reduces negotiation'},
+            {id: 28, category: 'Pricing & Value', title: '28. Ethical Price Anchoring Engine', when: 'Structuring tiers or bundles', prompt: 'Design ethical price anchors that increase perceived value without manipulation.', output: 'Anchoring structure', tip: 'Context defines value'},
+            {id: 29, category: 'Pricing & Value', title: '29. Price Testing Without Chaos', when: 'Unsure about pricing', prompt: 'Test pricing sensitivity using low-risk experiments instead of constant price changes.', output: 'Pricing range insight', tip: 'Stability builds trust'},
+            {id: 30, category: 'Pricing & Value', title: '30. Price Increase Readiness Audit', when: 'Planning a price raise', prompt: 'Assess readiness for a price increase and outline the cleanest way to communicate it.', output: 'Raise roadmap', tip: 'Value precedes price'},
+            {id: 31, category: 'Pricing & Value', title: '31. Bundle Value Optimizer', when: 'Creating bundles', prompt: 'Design a bundle that increases perceived value without cannibalizing core products.', output: 'Smart bundle structure', tip: 'Complement > overlap'},
+            {id: 32, category: 'Pricing & Value', title: '32. Upsell Relevance Filter', when: 'Adding upsells', prompt: 'Evaluate whether this upsell genuinely improves buyer outcomes or just inflates pricing.', output: 'Clean upsell logic', tip: 'Relevance drives conversion'},
+            {id: 33, category: 'Pricing & Value', title: '33. Payment Psychology Mapper', when: 'Checkout friction exists', prompt: 'Identify psychological friction points in the payment process and recommend fixes.', output: 'Checkout optimization ideas', tip: 'Confusion kills trust'},
+            {id: 34, category: 'Pricing & Value', title: '34. Refund Policy Trust Builder', when: 'Writing refund terms', prompt: 'Design a refund policy that builds trust without incentivizing abuse.', output: 'Balanced refund framework', tip: 'Clear terms reduce refunds'},
+            {id: 35, category: 'Pricing & Value', title: '35. Price-to-Outcome Alignment Check', when: 'Persistent price objections', prompt: 'Evaluate whether the price aligns with the outcome and time saved for the buyer.', output: 'Alignment diagnosis', tip: 'Outcomes justify cost'},
+            {id: 36, category: 'Pricing & Value', title: '36. Premium Framing Translator', when: 'Premium positioning feels awkward', prompt: 'Rewrite positioning to support premium pricing without sounding elitist or inflated.', output: 'Premium-ready copy', tip: 'Precision signals quality'},
+            {id: 37, category: 'Pricing & Value', title: '37. Long-Term Pricing Stability Planner', when: 'Frequent pricing changes', prompt: 'Design a pricing strategy that stays stable as the product and audience mature.', output: 'Stable pricing system', tip: 'Predictability builds loyalty'},
+            {id: 38, category: 'Pricing & Value', title: '38. Price Objection Pattern Analyzer', when: 'Repeated objections', prompt: 'Identify recurring price objections and recommend structural fixes beyond copy changes.', output: 'Root-cause fixes', tip: 'Fix structure, not persuasion'},
+            {id: 39, category: 'Pricing & Value', title: '39. Upsell Timing Optimizer', when: 'Low upsell conversion', prompt: 'Determine the optimal timing for presenting upsells across the funnel.', output: 'Timing insights', tip: 'Timing beats pressure'},
+            {id: 40, category: 'Pricing & Value', title: '40. Value Longevity Audit', when: 'Fear of product aging', prompt: 'Audit this offer to ensure it remains valuable over time without constant updates.', output: 'Longevity roadmap', tip: 'Evergreen value compounds'},
+            
+            // FUNNELS & CONVERSION (41-60)
+            {id: 41, category: 'Funnels & Conversion', title: '41. Simple Funnel Builder', when: 'Overcomplicated systems', prompt: 'Build the simplest funnel from content to sale.', output: 'Lean funnel', tip: 'Simple scales'},
+            {id: 42, category: 'Funnels & Conversion', title: '42. Funnel Bottleneck Finder', when: 'Low conversion', prompt: 'Identify where my funnel breaks.', output: 'Fix priority', tip: 'One fix at a time'},
+            {id: 43, category: 'Funnels & Conversion', title: '43. Lead Magnet to Offer Bridge', when: 'Disconnected content', prompt: 'Bridge my free content to paid offers naturally.', output: 'Smoother transitions', tip: 'Teach toward selling'},
+            {id: 44, category: 'Funnels & Conversion', title: '44. Conversion Rate Improver', when: 'Traffic not converting', prompt: 'Improve conversion without more traffic.', output: 'CRO ideas', tip: 'Traffic hides problems'},
+            {id: 45, category: 'Funnels & Conversion', title: '45. Warm vs Cold Funnel Splitter', when: 'One funnel underperforming', prompt: 'Separate this funnel into warm and cold audience paths. Optimize each for awareness level and buying intent.', output: 'Dual-path funnel logic', tip: 'Don\'t warm cold traffic with pressure'},
+            {id: 46, category: 'Funnels & Conversion', title: '46. Evergreen vs Launch Decision Engine', when: 'Unsure how to sell the product', prompt: 'Determine whether this offer should be evergreen, launch-based, or hybrid --- based on buyer behavior and energy cost.', output: 'Sales model clarity', tip: 'Evergreen favors systems; launches favor momentum'},
+            {id: 47, category: 'Funnels & Conversion', title: '47. Funnel Simplification Audit', when: 'Low conversion rates', prompt: 'Remove unnecessary steps, pages, or decisions from this funnel without lowering perceived value.', output: 'Simplified funnel map', tip: 'Fewer steps = higher trust'},
+            {id: 48, category: 'Funnels & Conversion', title: '48. CTA Clarity Translator', when: 'CTA confusion', prompt: 'Rewrite all calls-to-action so buyers instantly understand what happens after clicking.', output: 'Clear, frictionless CTAs', tip: 'Ambiguity kills clicks'},
+            {id: 49, category: 'Funnels & Conversion', title: '49. Ethical Scarcity Framework', when: 'Considering urgency tactics', prompt: 'Design scarcity that reflects real constraints without false urgency or manipulation.', output: 'Ethical scarcity logic', tip: 'Integrity compounds trust'},
+            {id: 50, category: 'Funnels & Conversion', title: '50. Checkout Friction Scanner', when: 'Drop-offs at checkout', prompt: 'Identify psychological, technical, or copy-related friction points in the checkout process and propose fixes.', output: 'Conversion lift actions', tip: 'Checkout is a trust test'},
+            {id: 51, category: 'Funnels & Conversion', title: '51. Funnel Drop-Off Diagnosis', when: 'Unknown funnel leaks', prompt: 'Analyze where and why users drop off in this funnel and recommend structural improvements.', output: 'Leak map', tip: 'Fix leaks before adding traffic'},
+            {id: 52, category: 'Funnels & Conversion', title: '52. Retention Loop Builder', when: 'One-time buyers only', prompt: 'Design a retention loop that naturally leads buyers to the next relevant offer.', output: 'Post-purchase flow', tip: 'Retention beats acquisition'},
+            {id: 53, category: 'Funnels & Conversion', title: '53. Micro-Commitment Funnel Designer', when: 'High resistance sales', prompt: 'Introduce low-friction micro-commitments that warm buyers before the main offer.', output: 'Trust-building steps', tip: 'Small yes leads to big yes'},
+            {id: 54, category: 'Funnels & Conversion', title: '54. Funnel Energy Efficiency Check', when: 'Creator burnout', prompt: 'Redesign this funnel to reduce manual effort while maintaining performance.', output: 'Energy-efficient funnel', tip: 'Systems protect stamina'},
+            {id: 55, category: 'Funnels & Conversion', title: '55. Conversion Intent Alignment Test', when: 'Traffic without sales', prompt: 'Verify that each funnel step matches the buyer\'s intent at that stage.', output: 'Intent alignment fixes', tip: 'Intent mismatch causes bounce'},
+            {id: 56, category: 'Funnels & Conversion', title: '56. Funnel Redundancy Eliminator', when: 'Overbuilt funnels', prompt: 'Identify and remove redundant steps that don\'t increase clarity or trust.', output: 'Lean funnel version', tip: 'Complexity hides weakness'},
+            {id: 57, category: 'Funnels & Conversion', title: '57. Offer-to-Funnel Fit Check', when: 'Good offer, weak funnel', prompt: 'Evaluate whether the funnel structure supports the offer\'s buying psychology.', output: 'Structural alignment', tip: 'Funnels must serve offers'},
+            {id: 58, category: 'Funnels & Conversion', title: '58. Cold Traffic Expectation Setter', when: 'Selling to new audiences', prompt: 'Adjust funnel messaging to set realistic expectations for first-time buyers.', output: 'Trust-first messaging', tip: 'Overpromising increases refunds'},
+            {id: 59, category: 'Funnels & Conversion', title: '59. Buyer Momentum Preserver', when: 'Long sales cycles', prompt: 'Maintain buyer momentum between funnel steps without increasing pressure.', output: 'Momentum strategy', tip: 'Momentum is fragile'},
+            {id: 60, category: 'Funnels & Conversion', title: '60. Funnel Scalability Test', when: 'Preparing to scale', prompt: 'Stress-test this funnel for scalability without increasing support or creator involvement.', output: 'Scale readiness report', tip: 'Scale breaks weak systems'},
+            
+            // GUMROAD OPTIMIZATION (61-80)
+            {id: 61, category: 'Gumroad Optimization', title: '61. Gumroad Product Page Builder', when: 'Writing product pages', prompt: 'Write a Gumroad product page optimized for clarity and trust.', output: 'Ready-to-paste copy', tip: 'Simple beats clever'},
+            {id: 62, category: 'Gumroad Optimization', title: '62. Gumroad Checkout Optimizer', when: 'Checkout drop-off', prompt: 'Optimize my checkout copy to reduce drop-off.', output: 'Higher completion', tip: 'Remove friction'},
+            {id: 63, category: 'Gumroad Optimization', title: '63. Upsell & Cross-Sell Engine', when: 'Increasing AOV', prompt: 'Design ethical upsells that increase AOV.', output: 'Upsell ideas', tip: 'Relevance > volume'},
+            {id: 64, category: 'Gumroad Optimization', title: '64. Refund Root-Cause Analyzer', when: 'Unexpected refunds', prompt: 'Identify the real causes of refunds beyond price or buyer quality.', output: 'Refund reduction actions', tip: 'Refunds signal misalignment'},
+            {id: 65, category: 'Gumroad Optimization', title: '65. Preview Strategy Designer', when: 'Buyer hesitation', prompt: 'Design previews that increase confidence without giving away the product\'s core value.', output: 'Preview blueprint', tip: 'Show process, not payoff'},
+            {id: 66, category: 'Gumroad Optimization', title: '66. Buyer Expectation Lock', when: 'Confused customers', prompt: 'Rewrite product descriptions to lock buyer expectations before purchase.', output: 'Clear expectation copy', tip: 'Clarity reduces support'},
+            {id: 67, category: 'Gumroad Optimization', title: '67. Product Bundle Compatibility Check', when: 'Creating bundles', prompt: 'Ensure bundled products enhance each other instead of overlapping or confusing buyers.', output: 'Bundle coherence audit', tip: 'Complementarity sells'},
+            {id: 68, category: 'Gumroad Optimization', title: '68. Update Cadence Planner', when: 'Managing updates', prompt: 'Set an update cadence that balances relevance with creator sustainability.', output: 'Update schedule', tip: 'Over-updating burns out creators'},
+            {id: 69, category: 'Gumroad Optimization', title: '69. Social Proof Alternative Generator', when: 'Low testimonials', prompt: 'Create trust signals without relying on testimonials or follower counts.', output: 'Proof substitutes', tip: 'Transparency builds trust'},
+            {id: 70, category: 'Gumroad Optimization', title: '70. Buyer Reassurance Framework', when: 'Purchase anxiety', prompt: 'Add reassurance elements that reduce fear without adding hype.', output: 'Confidence boosters', tip: 'Calm converts'},
+            {id: 71, category: 'Gumroad Optimization', title: '71. Product Page Friction Remover', when: 'Page drop-offs', prompt: 'Identify and remove confusing or distracting elements on the product page.', output: 'Clean page edits', tip: 'Less noise = more trust'},
+            {id: 72, category: 'Gumroad Optimization', title: '72. Delivery Expectation Setter', when: 'Post-purchase confusion', prompt: 'Clarify delivery timing, format, and usage immediately after purchase.', output: 'Smooth onboarding', tip: 'First impressions matter'},
+            {id: 73, category: 'Gumroad Optimization', title: '73. Refund Policy Positioner', when: 'Writing policies', prompt: 'Position the refund policy to protect both buyer trust and creator boundaries.', output: 'Balanced policy copy', tip: 'Firm doesn\'t mean unfriendly'},
+            {id: 74, category: 'Gumroad Optimization', title: '74. Buyer Success Path Mapper', when: 'Low product engagement', prompt: 'Map a clear success path so buyers know exactly how to use the product.', output: 'Usage roadmap', tip: 'Confusion leads to refunds'},
+            {id: 75, category: 'Gumroad Optimization', title: '75. Support Load Minimizer', when: 'High support requests', prompt: 'Redesign the product experience to reduce repetitive support questions.', output: 'Self-serve improvements', tip: 'Anticipate questions early'},
+            {id: 76, category: 'Gumroad Optimization', title: '76. Trust-Before-Sale Builder', when: 'Cold buyers', prompt: 'Increase trust signals before asking for payment.', output: 'Pre-sale trust assets', tip: 'Trust precedes conversion'},
+            {id: 77, category: 'Gumroad Optimization', title: '77. Post-Purchase Satisfaction Check', when: 'Buyer silence', prompt: 'Identify post-purchase friction points that reduce satisfaction or repeat buys.', output: 'Satisfaction fixes', tip: 'Silence ≠ satisfaction'},
+            {id: 78, category: 'Gumroad Optimization', title: '78. Offer Longevity Enhancer', when: 'Product aging', prompt: 'Enhance the offer so it stays relevant without constant updates.', output: 'Longevity improvements', tip: 'Principles scale'},
+            {id: 79, category: 'Gumroad Optimization', title: '79. Buyer Confidence Loop', when: 'One-off buyers', prompt: 'Design a confidence loop that reinforces the buyer\'s decision after purchase.', output: 'Trust reinforcement', tip: 'Confidence increases lifetime value'},
+            {id: 80, category: 'Gumroad Optimization', title: '80. Gumroad Scale Readiness Test', when: 'Preparing to scale traffic', prompt: 'Test whether this Gumroad offer can scale without increasing refunds or support.', output: 'Scale readiness report', tip: 'Fix before scaling'},
+            
+            // NEWSLETTER MONETIZATION (81-100)
+            {id: 81, category: 'Newsletter Monetization', title: '81. Newsletter Monetization Map', when: 'Growing but not earning', prompt: 'Map how my newsletter converts attention into revenue.', output: 'Monetization plan', tip: 'Monetize trust'},
+            {id: 82, category: 'Newsletter Monetization', title: '82. Paid vs Free Strategy', when: 'Deciding newsletter model', prompt: 'Decide whether to keep my newsletter free or paid.', output: 'Strategic clarity', tip: 'Free feeds funnels'},
+            {id: 83, category: 'Newsletter Monetization', title: '83. Soft Pitch Email Generator', when: 'Selling via email', prompt: 'Write emails that sell without sounding salesy.', output: 'Revenue emails', tip: 'Teach → offer'},
+            {id: 84, category: 'Newsletter Monetization', title: '84. Subscriber Segmentation Engine', when: 'Audience feels too broad', prompt: 'Segment my subscribers by problem, intent, awareness level, and buying readiness, and recommend content and offers for each segment.', output: 'Clear subscriber segments', tip: 'Segment by problem, not demographics'},
+            {id: 85, category: 'Newsletter Monetization', title: '85. High-Intent Subscriber Identifier', when: 'Don\'t know who\'s most likely to buy', prompt: 'Identify behavioral signals that indicate high purchase intent in my audience.', output: 'Buyer signal list', tip: 'Clicks > opens'},
+            {id: 86, category: 'Newsletter Monetization', title: '86. Productized Newsletter Builder', when: 'Newsletter has value but no structure', prompt: 'Turn my newsletter into a productized asset with a clear outcome and positioning.', output: 'Newsletter-as-product framework', tip: 'Outcomes justify monetization'},
+            {id: 87, category: 'Newsletter Monetization', title: '87. Evergreen Email Sequence Designer', when: 'Revenue depends on live sends', prompt: 'Design an evergreen email sequence that sells my core offer automatically.', output: 'Automated revenue sequence', tip: 'Evergreen stabilizes income'},
+            {id: 88, category: 'Newsletter Monetization', title: '88. Welcome Sequence Monetization Engine', when: 'New subscribers don\'t convert', prompt: 'Optimize my welcome sequence to build trust and introduce monetization naturally.', output: 'Higher first-sale conversion', tip: 'First 7 days matter most'},
+            {id: 89, category: 'Newsletter Monetization', title: '89. Soft Monetization Content Planner', when: 'Selling feels awkward', prompt: 'Plan content that educates while quietly moving readers toward paid offers.', output: 'Non-pushy monetization content', tip: 'Teach toward solutions'},
+            {id: 90, category: 'Newsletter Monetization', title: '90. Re-Engagement Campaign Builder', when: 'Subscribers go cold', prompt: 'Design a re-engagement campaign to revive inactive subscribers or clean the list.', output: 'Re-engagement strategy', tip: 'Dead subscribers hurt deliverability'},
+            {id: 91, category: 'Newsletter Monetization', title: '91. Churn Reduction Analyzer', when: 'Unsubscribes increase', prompt: 'Analyze why subscribers churn and propose fixes to retain them.', output: 'Retention insights', tip: 'Churn reveals misalignment'},
+            {id: 92, category: 'Newsletter Monetization', title: '92. Trust Compounding System', when: 'Authority feels fragile', prompt: 'Design a content system that compounds trust over time without overposting.', output: 'Trust-building cadence', tip: 'Consistency > intensity'},
+            {id: 93, category: 'Newsletter Monetization', title: '93. Offer-to-Newsletter Alignment Check', when: 'Offers don\'t convert via email', prompt: 'Evaluate whether my newsletter content aligns with my paid offers and suggest adjustments.', output: 'Better alignment', tip: 'Misalignment kills conversions'},
+            {id: 94, category: 'Newsletter Monetization', title: '94. Paid Newsletter Readiness Test', when: 'Considering paid subscriptions', prompt: 'Assess whether my newsletter is ready to be paid and what would justify the price.', output: 'Go / no-go clarity', tip: 'Paid requires specificity'},
+            {id: 95, category: 'Newsletter Monetization', title: '95. Pricing Strategy for Subscriptions', when: 'Unsure how to price', prompt: 'Recommend pricing for a paid newsletter based on value and alternatives.', output: 'Pricing logic', tip: 'Price signals seriousness'},
+            {id: 96, category: 'Newsletter Monetization', title: '96. Sponsorship Readiness Analyzer', when: 'Exploring sponsorships', prompt: 'Evaluate whether my newsletter is ready for sponsors and what metrics matter.', output: 'Sponsorship readiness', tip: 'Engagement beats size'},
+            {id: 97, category: 'Newsletter Monetization', title: '97. Sponsorship Offer Builder', when: 'Pitching brands', prompt: 'Create a clear sponsorship offer highlighting audience value and outcomes.', output: 'Sponsor pitch framework', tip: 'Sell access, not ads'},
+            {id: 98, category: 'Newsletter Monetization', title: '98. Monetization Frequency Optimizer', when: 'Afraid of over-selling', prompt: 'Determine how often I should monetize without eroding trust.', output: 'Monetization cadence', tip: 'Predictability builds comfort'},
+            {id: 99, category: 'Newsletter Monetization', title: '99. Audience Lifetime Value Builder', when: 'Thinking long-term', prompt: 'Design systems to increase lifetime value per subscriber.', output: 'LTV growth plan', tip: 'Retention multiplies revenue'},
+            {id: 100, category: 'Newsletter Monetization', title: '100. Attention-to-Income System Blueprint', when: 'Monetization feels scattered', prompt: 'Build a complete system that converts attention into predictable income over time.', output: 'End-to-end monetization blueprint', tip: 'Systems remove guesswork'}
+        ];
+
+        let state = {
+            expandedId: null,
+            copiedId: null,
+            searchTerm: '',
+            activeFilter: 'all'
+        };
+
+        const categories = ['All Prompts', 'Idea → Product', 'Pricing & Value', 'Funnels & Conversion', 'Gumroad Optimization', 'Newsletter Monetization'];
+
+        function copyToClipboard(text, id) {
+            navigator.clipboard.writeText(text).then(() => {
+                state.copiedId = id;
+                render();
+                setTimeout(() => {
+                    state.copiedId = null;
+                    render();
+                }, 2000);
+            });
+        }
+
+        function toggleExpand(id) {
+            state.expandedId = state.expandedId === id ? null : id;
+            render();
+        }
+
+        function updateSearch(value) {
+            state.searchTerm = value;
+            render();
+        }
+
+        function setFilter(filter) {
+            state.activeFilter = filter;
+            render();
+        }
+
+        function render() {
+            let filtered = allPrompts;
+
+            if (state.activeFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === state.activeFilter);
+            }
+
+            if (state.searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+                    p.category.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+                    p.when.toLowerCase().includes(state.searchTerm.toLowerCase())
+                );
+            }
+
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="sticky-header">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                            <div>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                   <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                                    
+                                </h1>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                <span style="color: #FFFFFF;">Monetization</span> <span style="color: #FFFFFF;">Prompt</span> <span style="color: #FFFFFF;">Playbook</span>   
+                                <p class="text-cyan-300 text-xs sm:text-sm mt-1">100 prompts to turn ideas into products, funnels, and predictable revenue</p>
+                            </div>
+                            <button 
+                                onclick="window.print()" 
+                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-all hover:shadow-lg"
+                            >
+                                🖨️ Print
+                            </button>
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="Search prompts..." 
+                            value="${state.searchTerm}"
+                            oninput="updateSearch(this.value)"
+                            class="w-full px-4 py-2 sm:py-3 bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base transition-all"
+                        />
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <div class="stat-card bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">100</div>
+                            <div class="text-amber-300 text-xs sm:text-sm">Prompts</div>
+                        </div>
+                        <div class="stat-card bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">5</div>
+                            <div class="text-purple-300 text-xs sm:text-sm">Categories</div>
+                        </div>
+                        <div class="stat-card bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">💰</div>
+                            <div class="text-cyan-300 text-xs sm:text-sm">Revenue</div>
+                        </div>
+                        <div class="stat-card bg-pink-500/10 border border-pink-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
+                            <div class="text-pink-300 text-xs sm:text-sm">Copy-Paste</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 sm:mb-8 flex flex-wrap gap-2">
+                        ${categories.map(cat => {
+                            const filterValue = cat === 'All Prompts' ? 'all' : cat;
+                            const isActive = state.activeFilter === filterValue;
+                            return `
+                                <button 
+                                    onclick="setFilter('${filterValue}')"
+                                    class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+                                        isActive 
+                                            ? 'active text-white' 
+                                            : 'bg-slate-800/50 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20'
+                                    }"
+                                >
+                                    ${cat}
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+                        📋 ${state.activeFilter === 'all' ? 'All Prompts' : state.activeFilter}
+                        ${state.searchTerm ? ` - "${state.searchTerm}"` : ''}
+                    </h2>
+                    
+                    ${filtered.length === 0 ? `
+                        <div class="text-center py-12">
+                            <div class="text-6xl mb-4">🔍</div>
+                            <p class="text-xl text-slate-400">No prompts found</p>
+                        </div>
+                    ` : filtered.map(p => `
+                        <div class="prompt-card mb-4 sm:mb-6 bg-slate-800/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                            <div class="flex justify-between items-start gap-3 mb-3 sm:mb-4">
+                                <div class="flex-1 min-w-0">
+                                    <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded mb-2">${p.category}</span>
+                                    <h3 class="text-base sm:text-xl font-bold text-white mb-1 break-words">${p.title}</h3>
+                                    <p class="text-cyan-300 text-xs sm:text-sm">⚡ ${p.when}</p>
+                                </div>
+                                <button 
+                                    onclick="toggleExpand(${p.id})"
+                                    class="no-print play-button flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg transition-all text-cyan-400 text-lg"
+                                >
+                                    ${state.expandedId === p.id ? '▼' : '▶'}
+                                </button>
+                            </div>
+
+                            ${state.expandedId === p.id ? `
+                                <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                                    <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-3 sm:p-4">
+                                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                            <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
+                                            <button 
+                                                onclick='copyToClipboard(\`${p.prompt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, ${p.id})'
+                                                class="no-print px-3 py-1.5 sm:py-1 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg"
+                                            >
+                                                ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                            </button>
+                                        </div>
+                                        <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                                    </div>
+                                    <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
+                                    </div>
+                                    <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                        <p class="text-purple-400 font-semibold text-xs sm:text-sm mb-2">💡 PRO TIP:</p>
+                                        <p class="text-slate-200 text-xs sm:text-sm">${p.tip}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+
+                    <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 backdrop-blur-sm">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 text-center">💎 Core Philosophy</h2>
+                        <p class="text-cyan-300 text-center text-base sm:text-lg mb-2">
+                            Monetization isn't about more ideas.
+                        </p>
+                        <p class="text-amber-300 text-center text-lg sm:text-xl font-semibold">
+                            It's about systems that convert attention into income --- <span class="text-white">repeatedly</span>.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 sm:mt-12 text-center text-slate-400 text-xs sm:text-sm">
+                        <p>Monetization Prompt Playbook</p>
+                        <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                        <p class="mt-2">100 Prompts • 5 Categories • Copy-Paste Ready</p>
+                        <p class="mt-4 text-xs text-slate-500">© 2024 PromptAider. All rights reserved.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        render();
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
