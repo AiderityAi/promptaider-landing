@@ -658,14 +658,124 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                         `).join('')}
                     </div>
 
-                    <div class="mt-8 sm:mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center backdrop-blur-sm">
-                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Want the Full System?</h2>
-                        <p class="text-cyan-300 mb-4 sm:mb-6 text-sm sm:text-base">150 elite procurement prompts + advanced workflows</p>
-                        <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
-                           target="_blank"
-                           class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-base sm:text-lg transition-all hover:scale-105">
-                            💎 Get the Full Premium Elite Kit ($59)
-                        </a>
+                    <!-- INTENT SPLIT SECTION -->
+                    <div class="mt-8 sm:mt-12 backdrop-blur-sm">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 text-center">What Else Do You Want to Use AI Shortcut Prompts for Right Now?</h2>
+                        <p class="text-cyan-300 mb-6 sm:mb-8 text-center text-sm sm:text-base">Choose the path that fits how you work. You can switch anytime.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
+                            <!-- CREATOR CARD -->
+                            <div class="intent-card bg-gradient-to-br from-amber-500/10 to-orange-500/10 border-2 border-amber-500/50 rounded-xl p-6 sm:p-8 text-center cursor-pointer transition-all hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/30" onclick="toggleCreatorPath()">
+                                <div class="text-5xl sm:text-6xl mb-4">🎨</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Creator Shortcut Prompts</h3>
+                                <p class="text-amber-200 mb-6 text-sm sm:text-base">Create faster, stay consistent, never hit creative block again.</p>
+                                <button class="w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                                    I'm a Creator →
+                                </button>
+                            </div>
+
+                            <!-- PROFESSIONAL CARD -->
+                            <div class="intent-card bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-2 border-cyan-400/50 rounded-xl p-6 sm:p-8 text-center cursor-pointer transition-all hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/30" onclick="toggleProfessionalPath()">
+                                <div class="text-5xl sm:text-6xl mb-4">🧠</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Professional Shortcut Prompts</h3>
+                                <p class="text-cyan-200 mb-6 text-sm sm:text-base">Make better decisions, work faster, and reduce cognitive load.</p>
+                                <button class="w-full px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                                    I'm a Professional →
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- CREATOR PATH PRODUCTS -->
+                        <div id="creatorPath" class="hidden mt-6 space-y-4">
+                            <div class="bg-gradient-to-r from-amber-500/10 via-orange-400/10 to-amber-500/10 border border-amber-500/30 rounded-xl p-6 sm:p-8">
+                                <div class="text-xs font-semibold text-amber-400 mb-2 uppercase tracking-wide">Low Friction Entry</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Creator Core Prompts (25)</h3>
+                                <p class="text-amber-200 mb-4 text-sm sm:text-base">Never stare at a blank page again.</p>
+                                <ul class="text-cyan-300 mb-6 space-y-2 text-sm">
+                                    <li>✓ 25 battle-tested prompts for daily content creation</li>
+                                    <li>✓ Cover ideation, writing, editing, and repurposing</li>
+                                    <li>✓ Ready-to-use, no systems needed—just create</li>
+                                </ul>
+                                <div class="text-3xl font-bold text-amber-400 mb-4">$14</div>
+                                <a href="https://promptaider.gumroad.com/l/creator-core-prompts" 
+                                   target="_blank"
+                                   class="inline-block w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-center transition-all hover:scale-105">
+                                    Unlock Creator Core Prompts →
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-amber-500/10 via-orange-400/10 to-amber-500/10 border border-amber-500/30 rounded-xl p-6 sm:p-8">
+                                <div class="text-xs font-semibold text-amber-400 mb-2 uppercase tracking-wide">System Upgrade</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Creator System Prompts (60)</h3>
+                                <p class="text-amber-200 mb-4 text-sm sm:text-base">For creators who want systems — not stress.</p>
+                                <ul class="text-cyan-300 mb-6 space-y-2 text-sm">
+                                    <li>✓ 60 system-level prompts for repeatable workflows</li>
+                                    <li>✓ Build content calendars, batch creation systems</li>
+                                    <li>✓ Create consistently without burning out</li>
+                                </ul>
+                                <div class="text-3xl font-bold text-amber-400 mb-4">$39</div>
+                                <a href="https://promptaider.gumroad.com/l/creator-systems-60" 
+                                   target="_blank"
+                                   class="inline-block w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-center transition-all hover:scale-105">
+                                    Upgrade to Creator Systems →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- PROFESSIONAL PATH PRODUCTS -->
+                        <div id="professionalPath" class="hidden mt-6 space-y-4">
+                            <div class="bg-gradient-to-r from-cyan-500/10 via-blue-400/10 to-cyan-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8">
+                                <div class="text-xs font-semibold text-cyan-400 mb-2 uppercase tracking-wide">Entry Product</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">30 Essential Professional Prompts</h3>
+                                <p class="text-cyan-200 mb-4 text-sm sm:text-base">Maximum impact in minimum time.</p>
+                                <ul class="text-cyan-300 mb-6 space-y-2 text-sm">
+                                    <li>✓ 30 high-impact prompts for workplace efficiency</li>
+                                    <li>✓ Decision-making, problem-solving, strategic thinking</li>
+                                    <li>✓ Proven frameworks, not experimentation</li>
+                                </ul>
+                                <div class="text-3xl font-bold text-cyan-400 mb-4">$24</div>
+                                <a href="https://promptaider.gumroad.com/l/professional-essential-30" 
+                                   target="_blank"
+                                   class="inline-block w-full px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-lg hover:shadow-lg text-center transition-all hover:scale-105">
+                                    Get the 30 Essential Prompts →
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-cyan-500/10 via-blue-400/10 to-cyan-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8">
+                                <div class="text-xs font-semibold text-cyan-400 mb-2 uppercase tracking-wide">Elite Upgrade</div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">150 Elite Essential Prompts</h3>
+                                <p class="text-cyan-200 mb-4 text-sm sm:text-base">Replace hours of thinking with proven frameworks.</p>
+                                <ul class="text-cyan-300 mb-6 space-y-2 text-sm">
+                                    <li>✓ 150 elite-level prompts organized by outcome</li>
+                                    <li>✓ Complete operating system for professional AI work</li>
+                                    <li>✓ The only professional toolkit you'll ever need</li>
+                                </ul>
+                                <div class="text-3xl font-bold text-cyan-400 mb-4">$99</div>
+                                <a href="https://promptaider.gumroad.com/l/professional-elite-150" 
+                                   target="_blank"
+                                   class="inline-block w-full px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-lg hover:shadow-lg text-center transition-all hover:scale-105">
+                                    Upgrade to Elite 150 Playbook →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- UNIVERSAL CROSSOVER: MONETIZATION -->
+                        <div id="monetizationCrossover" class="hidden mt-8 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 border-2 border-purple-400/40 rounded-xl p-6 sm:p-8 text-center">
+                            <div class="inline-block px-4 py-1 bg-purple-500/20 border border-purple-400/50 rounded-full text-purple-300 text-xs font-bold mb-4 uppercase tracking-wide">🚀 Next Level</div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Monetization Prompt Playbook (100)</h2>
+                            <p class="text-purple-200 mb-6 text-sm sm:text-base">Already using AI? Now turn outputs into income.</p>
+                            <ul class="text-cyan-300 mb-6 space-y-2 text-sm text-left max-w-2xl mx-auto">
+                                <li>✓ 100 prompts that turn ideas into products, funnels, and revenue</li>
+                                <li>✓ Build pricing strategies, sales copy, and offers people want</li>
+                                <li>✓ For entrepreneurs, digital product builders, service providers</li>
+                            </ul>
+                            <div class="text-4xl font-bold text-purple-400 mb-6">$149</div>
+                            <a href="https://promptaider.gumroad.com/l/monetization-playbook-100" 
+                               target="_blank"
+                               class="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-lg text-lg transition-all hover:scale-105">
+                                Build Revenue Systems with AI →
+                            </a>
+                        </div>
                     </div>
 
                     <div class="mt-6 sm:mt-8 text-center text-slate-400 text-xs sm:text-sm">
@@ -674,6 +784,47 @@ Scope, intake form (10 Qs), pricing calculator inputs, onboarding emails, and 3 
                     </div>
                 </div>
             `;
+        }
+
+        // Intent path toggle functions
+        function toggleCreatorPath() {
+            const creatorPath = document.getElementById('creatorPath');
+            const professionalPath = document.getElementById('professionalPath');
+            const monetization = document.getElementById('monetizationCrossover');
+            
+            if (creatorPath.classList.contains('hidden')) {
+                creatorPath.classList.remove('hidden');
+                professionalPath.classList.add('hidden');
+                monetization.classList.remove('hidden');
+                
+                // Smooth scroll to products
+                setTimeout(() => {
+                    creatorPath.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                creatorPath.classList.add('hidden');
+                monetization.classList.add('hidden');
+            }
+        }
+
+        function toggleProfessionalPath() {
+            const creatorPath = document.getElementById('creatorPath');
+            const professionalPath = document.getElementById('professionalPath');
+            const monetization = document.getElementById('monetizationCrossover');
+            
+            if (professionalPath.classList.contains('hidden')) {
+                professionalPath.classList.remove('hidden');
+                creatorPath.classList.add('hidden');
+                monetization.classList.remove('hidden');
+                
+                // Smooth scroll to products
+                setTimeout(() => {
+                    professionalPath.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                professionalPath.classList.add('hidden');
+                monetization.classList.add('hidden');
+            }
         }
 
         render();
