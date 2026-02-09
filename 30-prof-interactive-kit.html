@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptAider - 30 Essential Prompts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+
+        @media print {
+            .no-print { 
+                display: none !important; 
+            }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .logo-pulse {
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header {
+                position: relative;
+            }
+        }
+
+        @keyframes categoryGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
+        }
+
+        .category-pill {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-pill:hover {
+            animation: categoryGlow 2s ease-in-out infinite;
+            transform: scale(1.05);
+        }
+
+        .category-pill.active {
+            background: linear-gradient(135deg, #06b6d4, #a855f7);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: statPulse 0.6s ease-in-out;
+        }
+
+        /* Play Button Magic - Enhanced */
+        @keyframes playJump {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(-12px); 
+            }
+        }
+
+        @keyframes playShine {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) 
+                        drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) 
+                        drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+            33% { 
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            66% { 
+                border-color: rgba(168, 85, 247, 0.9);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            }
+            100% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+        }
+            @keyframes rotateGlow {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+         }
+            .play-btn:hover::before {
+      opacity: 0.7;
+    }
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes rainbowSpin {
+            0% {
+                background: conic-gradient(
+                    from 0deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+            100% {
+                background: conic-gradient(
+                    from 360deg,
+                    rgba(245, 158, 11, 0.8),
+                    rgba(6, 182, 212, 0.8),
+                    rgba(168, 85, 247, 0.8),
+                    rgba(236, 72, 153, 0.8),
+                    rgba(245, 158, 11, 0.8)
+                );
+            }
+        }
+
+        .play-button {
+            animation: playJump 2.5s ease-in-out infinite, 
+                       playShine 3s ease-in-out infinite,
+                       pulseGlow 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .play-button:hover::before {
+            opacity: 1;
+            animation: rainbowSpin 2s linear infinite;
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 
+                        0 0 60px rgba(245, 158, 11, 0.4);
+        }
+
+        .play-button:hover {
+            animation: playJump 0.6s ease-in-out infinite, 
+                       playShine 1.2s ease-in-out infinite,
+                       rotateGlow 3s linear infinite;
+                       rainbowBorder 2s linear infinite;
+            transform: scale(1.4) translateY(-5px) rotate(5deg);
+            border: 3px solid;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+        }
+
+        .prompt-card {
+            transition: all 0.4s ease;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f59e0b, #06b6d4);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #06b6d4, #a855f7);
+        }
+
+        .badge-essential {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.7); }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        const categories = ['All', 'Copywriting', 'Content', 'Email', 'Social Media', 'Sales'];
+
+        const prompts = [
+            {
+                id: 1,
+                category: 'Copywriting',
+                title: '1. Brand Voice Lock',
+                prompt: 'Rules: (1) sentences ≤18 words, (2) zero jargon, (3) one micro-story or example, (4) finish with a one-line CTA.\n\nRewrite this [TYPE] about [TOPIC] for [AUDIENCE].\n\nReturn 3 versions: Short / Medium / Long.\nAdd 3 high-conversion headlines.\n\nDEBUG: If any line feels generic, shift into "behavioral copywriter + conversion analyst" mode and revise.',
+                output: 'On-brand copy that sounds human, clean, and scroll-stopping.',
+                useCases: ['Landing pages', 'Email campaigns', 'Social media'],
+                timeToValue: '5 min'
+            },
+            {
+                id: 2,
+                category: 'Copywriting',
+                title: '2. Headline Generator Pro',
+                prompt: 'You are a headline specialist. Create 10 headlines for [TOPIC/OFFER]:\n\nInclude:\n• 3 curiosity-driven\n• 3 benefit-focused\n• 2 urgency-based\n• 2 contrarian angles\n\nEach headline under 12 words.\n\nDEBUG: If headlines feel generic, add specific numbers or surprising insights.',
+                output: 'High-impact headlines that boost click-through rates.',
+                useCases: ['Ads', 'Blog posts', 'Email subjects'],
+                timeToValue: '3 min'
+            },
+            {
+                id: 3,
+                category: 'Copywriting',
+                title: '3. Value Proposition Builder',
+                prompt: 'Create a clear value proposition for [PRODUCT/SERVICE]:\n\nDeliver:\n1) One-sentence core promise\n2) 3 unique benefits\n3) Primary differentiator\n4) Target audience callout\n\nFormat: "We help [AUDIENCE] achieve [OUTCOME] through [METHOD] without [PAIN POINT]."\n\nDEBUG: Test clarity with a 10-year-old rule - can they understand it?',
+                output: 'Crystal-clear positioning that resonates instantly.',
+                useCases: ['Website hero', 'Pitch decks', 'Sales conversations'],
+                timeToValue: '10 min'
+            },
+            {
+                id: 4,
+                category: 'Copywriting',
+                title: '4. CTA Optimizer',
+                prompt: 'Create 8 call-to-action variations for [OFFER]:\n\nMix:\n• Direct commands\n• Value statements\n• Question-based\n• Urgency-driven\n\nEach CTA: 2-5 words max.\nAdd supporting micro-copy (under 10 words) for each.\n\nDEBUG: If CTAs feel pushy, soften with value-first language.',
+                output: 'High-converting CTAs that drive action without friction.',
+                useCases: ['Buttons', 'Email signatures', 'Checkout pages'],
+                timeToValue: '5 min'
+            },
+            {
+                id: 5,
+                category: 'Copywriting',
+                title: '5. Objection Handler',
+                prompt: 'List top 5 objections for [OFFER/PRODUCT]:\n\nFor each objection:\n• Empathy statement\n• Reframe perspective\n• Proof point\n• Soft close\n\nKeep each response under 50 words.\n\nDEBUG: If rebuttals feel defensive, lead with understanding first.',
+                output: 'Persuasive objection responses that turn doubts into decisions.',
+                useCases: ['Sales pages', 'FAQs', 'Sales calls'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 6,
+                category: 'Content',
+                title: '6. Blog Post Architect',
+                prompt: 'Create a blog post outline for [TOPIC]:\n\nDeliver:\n• SEO-optimized title (3 options)\n• Meta description (160 chars)\n• Introduction hook\n• 5-7 H2 subheadings\n• Conclusion with CTA\n• 5 internal link opportunities\n\nTarget: 1500-2000 words.\n\nDEBUG: Ensure logical flow and scannable structure.',
+                output: 'Complete blog framework ready for writing.',
+                useCases: ['Blog posts', 'SEO articles', 'Thought leadership'],
+                timeToValue: '10 min'
+            },
+            {
+                id: 7,
+                category: 'Content',
+                title: '7. Short-Form Hook Generator',
+                prompt: 'Create 10 hooks for [TOPIC] optimized for short-form video:\n\nMix:\n• 3 curiosity gaps ("What if...")\n• 3 contrarian takes ("Everyone thinks X, but...")\n• 2 story starters ("I used to...")\n• 2 question hooks ("Ever wonder why...")\n\nEach hook: 5-10 words max.\n\nDEBUG: Test hooks by saying them out loud with energy.',
+                output: 'Scroll-stopping hooks that boost watch time.',
+                useCases: ['TikTok', 'Reels', 'Shorts'],
+                timeToValue: '5 min'
+            },
+            {
+                id: 8,
+                category: 'Content',
+                title: '8. Content Repurposer',
+                prompt: 'Transform this content [PASTE CONTENT] into:\n\n• 3 Twitter/X posts (280 chars)\n• 2 LinkedIn posts (1300 chars)\n• 1 Email (300 words)\n• 3 Instagram captions\n• 1 Blog outline (7 sections)\n\nMaintain core message, adapt tone per platform.\n\nDEBUG: Ensure platform-specific optimization.',
+                output: 'Multi-platform content suite from one core piece.',
+                useCases: ['Content marketing', 'Social media', 'Email'],
+                timeToValue: '10 min'
+            },
+            {
+                id: 9,
+                category: 'Content',
+                title: '9. Listicle Generator',
+                prompt: 'Create a listicle for "[TOPIC]":\n\nGenerate:\n• Catchy title with number\n• Introduction (2-3 sentences)\n• 7-15 list items with:\n  - Bold headline\n  - 2-3 sentence explanation\n  - Quick tip or example\n• Conclusion with CTA\n\nMake it actionable and skimmable.\n\nDEBUG: Ensure items are specific, not generic.',
+                output: 'Engaging list-based content that ranks and shares well.',
+                useCases: ['Blog posts', 'Lead magnets', 'Newsletters'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 10,
+                category: 'Content',
+                title: '10. Video Script Writer',
+                prompt: 'Write a video script for [TOPIC/PRODUCT] (length: [TIME]):\n\nInclude:\n• Hook (first 3 seconds)\n• Introduction (15 seconds)\n• Main content (3-5 key points)\n• Visual cues [in brackets]\n• CTA (last 10 seconds)\n• On-screen text suggestions\n\nWrite for speaking, not reading.\n\nDEBUG: Read script aloud, time it, adjust pacing.',
+                output: 'Ready-to-record video scripts with visual direction.',
+                useCases: ['YouTube', 'Ads', 'Explainer videos'],
+                timeToValue: '20 min'
+            },
+            {
+                id: 11,
+                category: 'Email',
+                title: '11. Welcome Email Sequence',
+                prompt: 'Design a 5-email welcome sequence for [BUSINESS/PRODUCT]:\n\nEmail 1: Welcome + expectations (Day 0)\nEmail 2: Value + quick win (Day 2)\nEmail 3: Story + deeper value (Day 4)\nEmail 4: Social proof + objections (Day 6)\nEmail 5: Soft offer + CTA (Day 8)\n\nFor each: subject line, preview text, body, CTA.\n\nDEBUG: Ensure value-first approach.',
+                output: 'Complete onboarding sequence that nurtures and converts.',
+                useCases: ['Lead nurturing', 'New subscribers', 'Onboarding'],
+                timeToValue: '30 min'
+            },
+            {
+                id: 12,
+                category: 'Email',
+                title: '12. Subject Line Vault',
+                prompt: 'Create 20 subject lines for [EMAIL TYPE/TOPIC]:\n\nInclude:\n• 5 curiosity-driven\n• 5 benefit-focused\n• 5 urgency-based\n• 5 personalized/friendly\n\nEach under 50 characters.\nAdd emoji options.\n\nDEBUG: A/B test top 3, avoid spam trigger words.',
+                output: 'High-open-rate subject lines for any campaign.',
+                useCases: ['All emails', 'Newsletters', 'Promotions'],
+                timeToValue: '5 min'
+            },
+            {
+                id: 13,
+                category: 'Email',
+                title: '13. Cart Abandonment Flow',
+                prompt: 'Build a 3-email cart abandonment sequence:\n\nEmail 1: Reminder (1 hour) - friendly, helpful\nEmail 2: Value reinforcement (24 hours) - benefits\nEmail 3: Urgency + incentive (48 hours) - offer\n\nEach: subject, body, CTA, design notes.\n\nDEBUG: Focus on helping, not pressuring.',
+                output: 'Recovery sequence that brings back lost sales.',
+                useCases: ['E-commerce', 'Course sales', 'SaaS trials'],
+                timeToValue: '20 min'
+            },
+            {
+                id: 14,
+                category: 'Email',
+                title: '14. Launch Email Sequence',
+                prompt: 'Plan a 7-day product launch email sequence:\n\nDay 1: Teaser\nDay 2: Problem agitation\nDay 3: Solution reveal\nDay 4: Deep dive + bonuses\nDay 5: Social proof\nDay 6: Objection crushing\nDay 7: Final call + scarcity\n\nEach: subject, key angle, CTA.\n\nDEBUG: Build anticipation gradually.',
+                output: 'High-converting launch sequence with proven timing.',
+                useCases: ['Product launches', 'Course launches', 'Webinars'],
+                timeToValue: '30 min'
+            },
+            {
+                id: 15,
+                category: 'Email',
+                title: '15. Newsletter Template Builder',
+                prompt: 'Design a newsletter template for [AUDIENCE/NICHE]:\n\nStructure:\n• Subject line formula\n• Preview text\n• Header/greeting\n• 3-4 content sections\n• CTA placement\n• Footer elements\n• P.S. line strategy\n\nInclude tone guidelines.\n\nDEBUG: Test with 3 different topics for versatility.',
+                output: 'Reusable newsletter framework for consistency.',
+                useCases: ['Email newsletters', 'Weekly updates', 'Digests'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 16,
+                category: 'Social Media',
+                title: '16. Platform Content Adapter',
+                prompt: 'Transform this idea [PASTE IDEA] for:\n\nTwitter/X: Thread (8-10 tweets)\nLinkedIn: Professional post (1300 chars)\nInstagram: Caption + carousel (10 slides)\nTikTok/Reels: 60-sec script\nFacebook: Community post\n\nOptimize for each platform\'s algorithm.\n\nDEBUG: Maintain core message while adapting tone.',
+                output: 'Multi-platform content from one core idea.',
+                useCases: ['Social media', 'Content repurposing', 'Brand consistency'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 17,
+                category: 'Social Media',
+                title: '17. Engagement Comment Templates',
+                prompt: 'Create 20 authentic comment templates for [NICHE]:\n\nInclude:\n• 5 question starters\n• 5 value-add replies\n• 5 conversation extenders\n• 5 networking openers\n\nMake genuine, not salesy.\nAdd personalization variables.\n\nDEBUG: Test comments for natural feel.',
+                output: 'Ready-to-use comments that build genuine connections.',
+                useCases: ['Community building', 'Networking', 'Engagement'],
+                timeToValue: '10 min'
+            },
+            {
+                id: 18,
+                category: 'Social Media',
+                title: '18. Viral Thread Builder',
+                prompt: 'Create a Twitter/X thread about [TOPIC]:\n\nStructure:\n• Hook tweet (high engagement)\n• 8-12 follow-up tweets\n• Each tweet: one clear idea\n• Line breaks for readability\n• End with CTA + pinned comment\n\nAdd emoji strategically.\n\nDEBUG: Each tweet should stand alone but build to conclusion.',
+                output: 'Viral-worthy thread that drives engagement.',
+                useCases: ['Twitter', 'LinkedIn carousels', 'Thread posts'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 19,
+                category: 'Social Media',
+                title: '19. Story Content Generator',
+                prompt: 'Create 7 days of story content for [BUSINESS/NICHE]:\n\nEach day:\n• 3-5 story frames\n• Copy for each frame\n• Visual suggestions\n• Interactive elements (polls, questions)\n• Swipe-up/link placement\n\nBalance promotional and value content.\n\nDEBUG: Keep stories authentic and engaging.',
+                output: '7-day story content calendar ready to post.',
+                useCases: ['Instagram Stories', 'Facebook Stories', 'Snapchat'],
+                timeToValue: '20 min'
+            },
+            {
+                id: 20,
+                category: 'Social Media',
+                title: '20. Hashtag Strategy Builder',
+                prompt: 'Build a hashtag strategy for [NICHE/BUSINESS]:\n\nDeliver:\n• 30 relevant hashtags categorized:\n  - 10 high-volume (500K+)\n  - 10 medium-volume (50K-500K)\n  - 10 niche-specific (<50K)\n• 5 branded hashtags\n• Usage guidelines per platform\n• Rotation strategy\n\nDEBUG: Research competitor hashtags for gaps.',
+                output: 'Complete hashtag system for maximum reach.',
+                useCases: ['Instagram', 'TikTok', 'Twitter'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 21,
+                category: 'Sales',
+                title: '21. Landing Page Converter',
+                prompt: 'Design a high-converting landing page for [PRODUCT/SERVICE]:\n\nStructure:\n• Hero: Headline + subhead + CTA\n• Problem section (3 pain points)\n• Solution showcase (3 benefits)\n• How it works (3-4 steps)\n• Social proof (3 testimonials)\n• Pricing/Offer\n• FAQ (5 questions)\n• Final CTA\n\nInclude copy + design notes.\n\nDEBUG: Every element drives toward CTA.',
+                output: 'Complete landing page blueprint for conversions.',
+                useCases: ['Product launches', 'Lead gen', 'Course sales'],
+                timeToValue: '30 min'
+            },
+            {
+                id: 22,
+                category: 'Sales',
+                title: '22. Objection Crusher Pro',
+                prompt: 'Identify and overcome objections for [OFFER/PRODUCT]:\n\nFor [AUDIENCE], list:\n• Top 10 buying objections\n• For each: empathy, rebuttal, proof, close\n\nAdd:\n• Price objection handling (3 approaches)\n• Timing objection strategies\n• Trust-building elements\n\nDEBUG: Turn objections into opportunities.',
+                output: 'Complete objection-handling framework.',
+                useCases: ['Sales calls', 'Sales pages', 'FAQs'],
+                timeToValue: '20 min'
+            },
+            {
+                id: 23,
+                category: 'Sales',
+                title: '23. Sales Page Framework',
+                prompt: 'Write a sales page for [PRODUCT/SERVICE] priced at [$PRICE]:\n\nStructure:\n• Headline (outcome-focused)\n• Problem amplification\n• Solution introduction\n• Feature-benefit breakdown\n• Testimonials (3-5)\n• Guarantee\n• Pricing + bonuses\n• FAQ (7-10)\n• Urgency/scarcity\n• Multiple CTAs\n\nDEBUG: Focus on transformation, not features.',
+                output: 'Complete long-form sales page that converts.',
+                useCases: ['Product sales', 'Course sales', 'High-ticket offers'],
+                timeToValue: '45 min'
+            },
+            {
+                id: 24,
+                category: 'Sales',
+                title: '24. Pricing Strategy Builder',
+                prompt: 'Create a pricing strategy for [PRODUCT/SERVICE]:\n\nDeliver:\n• 3-tier pricing structure\n• Feature allocation per tier\n• Psychological pricing points\n• Anchor pricing strategy\n• Upsell/cross-sell paths\n• Discount framework\n• Price testing plan\n\nDEBUG: Ensure clear value differentiation between tiers.',
+                output: 'Strategic pricing framework that maximizes revenue.',
+                useCases: ['Product pricing', 'SaaS tiers', 'Service packages'],
+                timeToValue: '25 min'
+            },
+            {
+                id: 25,
+                category: 'Sales',
+                title: '25. Sales Email Sequence',
+                prompt: 'Create a 5-email sales sequence for [OFFER]:\n\nEmail 1: Problem awareness\nEmail 2: Solution education\nEmail 3: Social proof + case study\nEmail 4: Objection handling\nEmail 5: Urgency + close\n\nEach: subject, body, CTA.\nInclude follow-up strategy.\n\nDEBUG: Balance education with selling.',
+                output: 'Complete email sales funnel.',
+                useCases: ['Cold outreach', 'Warm leads', 'Re-engagement'],
+                timeToValue: '30 min'
+            },
+            {
+                id: 26,
+                category: 'Copywriting',
+                title: '26. Power Word Injector',
+                prompt: 'Rewrite this copy [PASTE TEXT] using power words for [EMOTION]:\n\nReplace weak words with impactful alternatives.\nMaintain original meaning and length.\nHighlight changes.\nProvide before/after comparison.\n\nDEBUG: If copy feels over-hyped, dial back 20%.',
+                output: 'Emotionally charged copy that drives engagement.',
+                useCases: ['Any copy', 'Headlines', 'CTAs'],
+                timeToValue: '5 min'
+            },
+            {
+                id: 27,
+                category: 'Content',
+                title: '27. How-To Guide Builder',
+                prompt: 'Write a how-to guide for [PROCESS/SKILL]:\n\nStructure:\n• Introduction (why this matters)\n• What you\'ll need (tools)\n• Step-by-step (5-10 steps)\n  Each: clear action + why\n• Common mistakes (3-5)\n• Next steps\n• FAQ (3-5 questions)\n\nDEBUG: Test instructions yourself.',
+                output: 'Comprehensive guides that establish expertise.',
+                useCases: ['Tutorials', 'Documentation', 'Lead magnets'],
+                timeToValue: '30 min'
+            },
+            {
+                id: 28,
+                category: 'Email',
+                title: '28. Re-engagement Campaign',
+                prompt: 'Create re-engagement for inactive subscribers (90+ days):\n\nEmail 1: "We miss you" - emotional\nEmail 2: "Here\'s what\'s new" - value\nEmail 3: "Stay or go?" - preference center\n\nInclude subject lines and win-back offers.\n\nDEBUG: Make unsubscribing easy.',
+                output: 'Win-back campaign that cleans and re-activates.',
+                useCases: ['List management', 'Retention', 'Engagement'],
+                timeToValue: '20 min'
+            },
+            {
+                id: 29,
+                category: 'Social Media',
+                title: '29. Carousel Post Creator',
+                prompt: 'Design a 10-slide carousel for [TOPIC]:\n\nSlide 1: Hook (big promise)\nSlides 2-9: Value delivery (one idea per slide)\nSlide 10: CTA + follow prompt\n\nFor each slide:\n• Main text (large, bold)\n• Supporting text (smaller)\n• Design notes\n\nDEBUG: Ensure each slide can stand alone.',
+                output: 'High-engagement carousel ready for design.',
+                useCases: ['Instagram', 'LinkedIn', 'Facebook'],
+                timeToValue: '15 min'
+            },
+            {
+                id: 30,
+                category: 'Sales',
+                title: '30. Lead Magnet Builder',
+                prompt: 'Create a lead magnet for [NICHE/AUDIENCE]:\n\nChoose format:\n• Checklist, Template, Mini-course, or Resource\n\nDeliver:\n• Title (benefit-driven)\n• Outline/structure\n• Key takeaways\n• Design specs\n• Opt-in page copy\n• Follow-up email sequence (3 emails)\n\nDEBUG: Ensure immediate value.',
+                output: 'Complete lead magnet ready to build.',
+                useCases: ['List building', 'Lead gen', 'Content upgrades'],
+                timeToValue: '30 min'
+            }
+        ];
+
+        let state = {
+            expandedId: null,
+            copiedId: null,
+            selectedCategory: 'All',
+            searchTerm: ''
+        };
+
+        function copyToClipboard(text, id) {
+            navigator.clipboard.writeText(text).then(() => {
+                state.copiedId = id;
+                render();
+                setTimeout(() => {
+                    state.copiedId = null;
+                    render();
+                }, 2000);
+            });
+        }
+
+        function toggleExpand(id) {
+            state.expandedId = state.expandedId === id ? null : id;
+            render();
+        }
+
+        function selectCategory(category) {
+            state.selectedCategory = category;
+            render();
+        }
+
+        function updateSearch(value) {
+            state.searchTerm = value;
+            render();
+        }
+
+        function getFilteredPrompts() {
+            let filtered = prompts;
+            
+            if (state.selectedCategory !== 'All') {
+                filtered = filtered.filter(p => p.category === state.selectedCategory);
+            }
+            
+            if (state.searchTerm) {
+                const term = state.searchTerm.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(term) ||
+                    p.category.toLowerCase().includes(term) ||
+                    p.prompt.toLowerCase().includes(term)
+                );
+            }
+            
+            return filtered;
+        }
+
+        function render() {
+            const filtered = getFilteredPrompts();
+            const app = document.getElementById('app');
+            
+            app.innerHTML = `
+                <div class="sticky-header">
+                    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                            <div>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                    <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                                    
+                                </h1>
+                                <h1 class="text-2xl sm:text-3xl font-bold logo-pulse">
+                                <span style="color: #FFFFFF;">Essential</span> <span style="color: #FFFFFF;">Prompts</span> <span style="color: #FFFFFF;">Toolkit</span>
+                                <p class="text-cyan-300 text-xs sm:text-sm mt-1">30 Essential Prompts for Maximum Impact in Minimum Time</p>
+                            </div>
+                            <button 
+                                onclick="window.print()" 
+                                class="no-print px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 text-sm font-semibold transition-all hover:shadow-lg"
+                            >
+                                🖨️ Print
+                            </button>
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="Search 30 essential prompts..." 
+                            value="${state.searchTerm}"
+                            oninput="updateSearch(this.value)"
+                            class="w-full px-4 py-2 sm:py-3 bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-sm sm:text-base transition-all"
+                        />
+                    </div>
+                </div>
+
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <div class="stat-card bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">30</div>
+                            <div class="text-amber-300 text-xs sm:text-sm">Essential Prompts</div>
+                        </div>
+                        <div class="stat-card bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">5</div>
+                            <div class="text-purple-300 text-xs sm:text-sm">Categories</div>
+                        </div>
+                        <div class="stat-card bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">${filtered.length}</div>
+                            <div class="text-cyan-300 text-xs sm:text-sm">Showing</div>
+                        </div>
+                        <div class="stat-card bg-green-500/10 border border-green-500/30 rounded-lg p-3 sm:p-4 text-center cursor-pointer">
+                            <div class="text-xl sm:text-2xl font-bold text-white">✓</div>
+                            <div class="text-green-300 text-xs sm:text-sm">Copy-Paste</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 sm:mb-8">
+                        <h3 class="text-white font-semibold mb-3 text-sm sm:text-base">Filter by Category:</h3>
+                        <div class="flex flex-wrap gap-2">
+                            ${categories.map(cat => `
+                                <button 
+                                    onclick="selectCategory('${cat}')"
+                                    class="category-pill ${state.selectedCategory === cat ? 'active' : 'bg-slate-800/50 border border-cyan-500/20'} px-4 py-2 rounded-full text-white text-xs sm:text-sm font-medium"
+                                >
+                                    ${cat} ${cat !== 'All' ? '(' + prompts.filter(p => p.category === cat).length + ')' : ''}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="mb-6 bg-gradient-to-r from-amber-500/20 to-red-500/20 border border-amber-500/40 rounded-xl p-4 text-center">
+                        <div class="inline-block badge-essential text-white px-4 py-2 rounded-full font-bold text-sm mb-2">
+                            ⭐ ESSENTIAL TOOLKIT
+                        </div>
+                        <p class="text-slate-300 text-sm">Handpicked prompts for maximum impact in minimum time</p>
+                    </div>
+
+                    <div class="space-y-4 sm:space-y-6">
+                        ${filtered.map(p => `
+                            <div class="prompt-card bg-slate-800/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-4 sm:p-6">
+                                <div class="flex justify-between items-start gap-3 mb-3">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 flex-wrap mb-2">
+                                            <span class="inline-block px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-semibold rounded">${p.category}</span>
+                                            <span class="inline-block px-2 py-1 bg-amber-500/20 text-amber-300 text-xs font-semibold rounded">⏱️ ${p.timeToValue}</span>
+                                            <span class="text-slate-400 text-xs">#${p.id}</span>
+                                        </div>
+                                        <h3 class="text-base sm:text-lg font-bold text-white mb-2 break-words">${p.title}</h3>
+                                        <div class="flex flex-wrap gap-1 mb-2">
+                                            ${p.useCases.slice(0, 3).map(uc => `
+                                                <span class="text-xs text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded">${uc}</span>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    <button 
+                                        onclick="toggleExpand(${p.id})"
+                                        class="no-print play-button flex-shrink-0 p-2 hover:bg-cyan-500/10 rounded-lg text-cyan-400 text-lg"
+                                    >
+                                        ${state.expandedId === p.id ? '▼' : '▶'}
+                                    </button>
+                                </div>
+
+                                ${state.expandedId === p.id ? `
+                                    <div class="space-y-3 sm:space-y-4 animate-fade-in">
+                                        <div class="bg-amber-500/5 border border-amber-500/30 rounded-lg p-3 sm:p-4">
+                                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                                                <span class="text-amber-400 font-semibold text-xs sm:text-sm">📋 COPY-PASTE THIS:</span>
+                                                <button 
+                                                    onclick='copyToClipboard(\`${p.prompt
+                                                    .replace(/`/g, "\\`")
+                                                    .replace(/\$/g, "\\$")
+                                                    }\`, ${p.id})'
+                                                    class="no-print px-3 py-1.5 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 text-xs sm:text-sm font-semibold transition-all hover:shadow-lg"
+                                                >
+                                                    ${state.copiedId === p.id ? '✓ Copied!' : '📋 Copy'}
+                                                </button>
+                                            </div>
+                                            <pre class="text-white text-xs sm:text-sm bg-slate-900/50 p-3 rounded border border-amber-500/20 whitespace-pre-wrap font-mono overflow-x-auto">${p.prompt}</pre>
+                                        </div>
+                                        <div class="bg-cyan-400/5 border border-cyan-400/30 rounded-lg p-3 sm:p-4">
+                                            <p class="text-cyan-400 font-semibold text-xs sm:text-sm mb-2">🎯 WHAT YOU'LL GET:</p>
+                                            <p class="text-slate-200 text-xs sm:text-sm">${p.output}</p>
+                                        </div>
+                                        <div class="bg-purple-500/5 border border-purple-400/30 rounded-lg p-3 sm:p-4">
+                                            <p class="text-purple-400 font-semibold text-xs sm:text-sm mb-2">💡 PERFECT FOR:</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                ${p.useCases.map(uc => `
+                                                    <span class="text-xs text-purple-200 bg-purple-500/20 px-2 py-1 rounded">${uc}</span>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${filtered.length === 0 ? `
+                        <div class="text-center py-12">
+                            <div class="text-6xl mb-4">🔍</div>
+                            <h3 class="text-xl font-bold text-white mb-2">No prompts found</h3>
+                            <p class="text-slate-400">Try a different search term or category</p>
+                            <button 
+                                onclick="updateSearch(''); selectCategory('All')"
+                                class="mt-4 px-6 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-all"
+                            >
+                                Clear Filters
+                            </button>
+                        </div>
+                    ` : ''}
+
+                    <div class="mt-12 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-amber-500/10 border-2 border-purple-500/30 rounded-2xl p-6 sm:p-8">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 text-center">⚡ Why These 30 Prompts?</h2>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4">
+                                <div class="text-3xl mb-2">🎯</div>
+                                <h3 class="text-white font-semibold mb-2">Maximum Impact</h3>
+                                <p class="text-slate-300 text-sm">Each prompt covers a critical business function. No fluff, only essentials.</p>
+                            </div>
+                            <div class="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4">
+                                <div class="text-3xl mb-2">⏱️</div>
+                                <h3 class="text-white font-semibold mb-2">Quick Results</h3>
+                                <p class="text-slate-300 text-sm">Get professional outputs in 3-45 minutes. Time-to-value is everything.</p>
+                            </div>
+                            <div class="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4">
+                                <div class="text-3xl mb-2">🔄</div>
+                                <h3 class="text-white font-semibold mb-2">Daily Use</h3>
+                                <p class="text-slate-300 text-sm">Prompts you'll actually use every single day, not collect dust.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 bg-gradient-to-r from-amber-500/10 via-cyan-400/10 to-purple-500/10 border border-cyan-400/30 rounded-xl p-6 sm:p-8 text-center backdrop-blur-sm">
+                        <div class="mb-4">
+                            <span class="inline-block px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-bold mb-4">
+                                SPECIAL PRICE: $19 (Regular $79)
+                            </span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Start With the Essentials</h2>
+                        <p class="text-cyan-300 mb-6 text-base sm:text-lg max-w-2xl mx-auto">
+                            Perfect for getting started with AI prompts. These 30 hand-selected prompts cover everything you need for daily business operations.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                            <div class="flex items-center gap-2 text-white">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>30 Essential Prompts</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-white">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>5 Core Categories</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-white">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Instant Results</span>
+                            </div>
+                        </div>
+                        <a href="https://promptaider.gumroad.com/l/30essentialprompts" 
+                           target="_blank"
+                           class="inline-block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:shadow-lg text-lg transition-all hover:scale-105 mb-4">
+                            ⚡ Get Started Now - $19
+                        </a>
+                        <p class="text-slate-400 text-sm"> • Instant download</p>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700">
+                            <p class="text-white font-semibold mb-3">Want the complete collection?</p>
+                            <a href="https://promptaider.gumroad.com/l/150procurementprompts" 
+                               target="_blank"
+                               class="inline-block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all hover:scale-105">
+                                💎 Upgrade to 150 Prompts - $59
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 text-center text-slate-400 text-xs sm:text-sm pb-8">
+                        <p>Essential Prompts Toolkit</p>
+                        <p class="mb-2">Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                        <p>30 Essential Prompts • 5 Categories • Copy-Paste Ready</p>
+                        <p class="mt-4 text-xs text-slate-500">© 2024 PromptAider. All rights reserved.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        render();
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
