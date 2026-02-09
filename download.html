@@ -849,7 +849,7 @@
         <!-- Download Options -->
         <div class="download-options">
             <!-- Interactive Toolkit Option -->
-            <div class="download-card card-interactive" onclick="window.location.href='/promptaider-landing/starter-kit-interactive.html'">
+            <a href="https://aiderityai.github.io/promptaider-landing/starter-kit-interactive.html" target="_blank" class="download-card card-interactive" style="text-decoration: none;" onclick="trackToolkitClick()">
                 <div class="badge">Recommended</div>
                 <div class="card-icon">🚀</div>
                 <div class="card-title">Interactive Toolkit</div>
@@ -862,12 +862,12 @@
                     <li>Unlock bonus content</li>
                     <li>Works on all devices</li>
                 </ul>
-                <a href="/promptaider-landing/starter-kit-interactive.html" class="card-button btn-interactive">
+                <span class="card-button btn-interactive">
                     Access Interactive Toolkit →
-                </a>
-            </div>
+                </span>
+            </a>
 
-            <!-- PDF Download Option -->
+             <!-- PDF Download Option -->
             <div class="download-card card-pdf" onclick="downloadPDF()">
                 <div class="badge">Offline Access</div>
                 <div class="card-icon">📄</div>
@@ -881,12 +881,9 @@
                     <li>No internet needed</li>
                     <li>Easy to share</li>
                 </ul>
-                <a href="https://raw.githubusercontent.com/AiderityAi/promptaider-downloads/main/PROMPTAIDER%20-%20Elite_Level-Up%20Starter%20Kit%20%2B%202%20bonus.pdf" 
-                   class="card-button btn-pdf"
-                   download="PromptAider-Starter-Pack.pdf"
-                   onclick="event.stopPropagation()">
+                <button class="card-button btn-pdf" onclick="event.stopPropagation(); downloadPDF();">
                     Download PDF Version →
-                </a>
+                </button>
             </div>
         </div>
 
@@ -914,7 +911,7 @@
 
         <!-- SECTION 2: INTENT SPLIT -->
         <div class="intent-section">
-            <h2 class="intent-headline">What do you want to use AI prompts for right now?</h2>
+            <h2 class="intent-headline">What Else Do You Want to use AI Shortcut prompts for right now?</h2>
             <p class="intent-subtext">
                 Choose the path that fits how you work. You can switch anytime.
             </p>
@@ -957,8 +954,8 @@
 
             <!-- OFFER 1: Creator Core Prompts (25) -->
             <div class="upgrade-block">
-                <div class="upgrade-label">Low Friction Entry</div>
-                <h3 class="upgrade-title">Creator Core Prompts (25)</h3>
+              <div class="upgrade-label">⚡ Limited Time Upgrade</div>
+                <h3 class="upgrade-title">Creator Core Prompts (25 Shortcuts)</h3>
                 <p class="upgrade-tagline">Never stare at a blank page again.</p>
                 
                 <ul class="upgrade-benefits">
@@ -982,7 +979,7 @@
             <!-- OFFER 2: Creator System Prompts (60) -->
             <div class="upgrade-block">
                 <div class="upgrade-label">System Upgrade</div>
-                <h3 class="upgrade-title">Creator System Prompts (60)</h3>
+                <h3 class="upgrade-title">Creator System Prompts (60 Shortcuts)</h3>
                 <p class="upgrade-tagline">For creators who want systems — not stress.</p>
                 
                 <ul class="upgrade-benefits">
@@ -1011,8 +1008,8 @@
                 <div class="bundle-includes">
                     <h4>Includes:</h4>
                     <ul>
-                        <li>Creator Core Prompts (25) — Daily creation prompts</li>
-                        <li>Creator System Prompts (60) — Scalable workflow systems</li>
+                        <li>Creator Core Prompts (25 Shortcuts) — Daily creation prompts</li>
+                        <li>Creator System Prompts (60 Shortcuts) — Scalable workflow systems</li>
                     </ul>
                 </div>
 
