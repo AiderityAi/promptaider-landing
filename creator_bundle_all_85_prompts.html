@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Shortcut Bundle - 85 Essential Prompts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+
+        @media print {
+            .no-print { 
+                display: none !important; 
+            }
+        }
+
+        /* Animated Logo */
+        @keyframes logoPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .logo-pulse {
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        /* Glassmorphic Header */
+        .sticky-header {
+            position: relative;
+            z-index: 10;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4)) 1;
+        }
+
+        /* Interactive Stat Cards */
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: statPulse 0.6s ease-in-out;
+        }
+
+        /* Play Button Magic */
+        @keyframes playJump {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(-12px); 
+            }
+        }
+
+        @keyframes playShine {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)) 
+                        drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) 
+                        drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { 
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+            25% {
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            50% {
+                border-color: rgba(168, 85, 247, 0.9);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            }
+            75% {
+                border-color: rgba(6, 182, 212, 0.9);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            }
+            100% {
+                border-color: rgba(245, 158, 11, 0.9);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        .play-button {
+            animation: playJump 2s ease-in-out infinite, playShine 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid rgba(6, 182, 212, 0.8);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(245, 158, 11, 0.2));
+            backdrop-filter: blur(10px);
+        }
+
+        .play-button:hover {
+            animation: rainbowBorder 3s linear infinite;
+            transform: scale(1.15);
+        }
+
+        .play-button.playing {
+            border-color: rgba(245, 158, 11, 0.9);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(6, 182, 212, 0.3));
+        }
+
+        .play-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Search Bar Glow */
+        .search-glow:focus-within {
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Copy Button Animation */
+        @keyframes copySuccess {
+            0% {
+                background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            }
+            50% {
+                background: linear-gradient(135deg, #10b981, #059669);
+            }
+            100% {
+                background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            }
+        }
+
+        .copy-success {
+            animation: copySuccess 0.6s ease-in-out;
+        }
+
+        /* Category Pills */
+        .category-pill {
+            transition: all 0.3s;
+        }
+
+        .category-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        }
+
+        .category-pill.active {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Prompt Card Hover */
+        .prompt-card {
+            transition: all 0.3s;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Loading Spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Beautiful Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f59e0b, #06b6d4);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #06b6d4, #a855f7);
+        }
+
+        /* Bundle Badge */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .bundle-badge {
+            background: linear-gradient(90deg, #f59e0b 0%, #06b6d4 50%, #a855f7 100%);
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        // CREATOR CORE PROMPTS (25)
+        const corePrompts = [
+            {
+                id: 1,
+                section: "Core Prompts",
+                category: "Content Ideas",
+                title: "1. Content Ideas — Idea Expansion",
+                when: "When you know your topic but don’t know what to post",
+                prompt: `Act as a human-led content strategist.
+I create content about [topic].
+Generate 20 clear, practical content ideas my audience would actually
+care about.
+Avoid generic advice. Focus on real problems, mistakes, and shortcuts.`,
+                output: "A list of usable content ideas you can post immediately",
+                tip: "Save the output and reuse it monthly as your baseline idea bank."
+            },
+            {
+                id: 2,
+                section: "Core Prompts",
+                category: "Content Ideas",
+                title: "2. Content Ideas — Hook Generator",
+                when: "When your ideas feel flat or forgettable",
+                prompt: `Write 15 scroll-stopping hooks for content about [topic].
+Use direct, conversational language.
+Avoid hype. Focus on clarity and relevance.`,
+                output: "Hooks that pull people in without sounding salesy",
+                tip: "Test hooks first before writing full content."
+            },
+            {
+                id: 3,
+                section: "Core Prompts",
+                category: "Content Ideas",
+                title: "3. Content Ideas — Audience Pain Mining",
+                when: "When you’re unsure what your audience actually struggles",
+                prompt: `List the top 10 problems someone in [my niche] complains about daily.
+Frame them in plain language they would use themselves.`,
+                output: "Realistic pain points that drive engagement",
+                tip: "Turn each pain point into a post, Reel, or email."
+            },
+            {
+                id: 4,
+                section: "Core Prompts",
+                category: "Content Ideas",
+                title: "4. Content Ideas — Format Multiplication",
+                when: "When you have one idea but need more output",
+                prompt: `Take this idea: [paste idea].
+Turn it into:
+1 Reel script
+1 carousel outline
+1 short email
+1 tweet thread`,
+                output: "Multiple assets from one idea",
+                tip: "This reduces content creation time by 50%+."
+            },
+            {
+                id: 5,
+                section: "Core Prompts",
+                category: "Content Ideas",
+                title: "5. Content Ideas — Authority Framing",
+                when: "When you want to sound credible without flexing",
+                prompt: `Rewrite this idea to position me as experienced and practical, not
+theoretical:
+[paste idea]`,
+                output: "Authority-driven content that feels grounded",
+                tip: "Use this before posting on LinkedIn or newsletters."
+            },
+            {
+                id: 6,
+                section: "Core Prompts",
+                category: "Offer Creation",
+                title: "6. Offer Creation — Problem to Offer",
+                when: "When you know the problem but not the product",
+                prompt: `Turn this problem into a simple digital offer idea:
+[describe problem]
+Include who it’s for, what it helps them do, and the outcome.`,
+                output: "A clear offer concept you can validate quickly",
+                tip: "If it sounds confusing, simplify the problem further."
+            },
+            {
+                id: 7,
+                section: "Core Prompts",
+                category: "Offer Creation",
+                title: "7. Offer Creation — Value Stack",
+                when: "When your offer feels “thin”",
+                prompt: `Create a value stack for this offer: [offer idea].
+Include core benefit, supporting features, and end result.`,
+                output: "A structured offer that feels worth paying for",
+                tip: "Value comes from clarity, not quantity."
+            },
+            {
+                id: 8,
+                section: "Core Prompts",
+                category: "Offer Creation",
+                title: "8. Offer Creation — Objection Handling",
+                when: "When people hesitate to buy",
+                prompt: `List 5 objections someone might have about buying [offer].
+Write calm, logical responses to each.`,
+                output: "Built-in sales resistance handling",
+                tip: "Use this in FAQs or email copy."
+            },
+            {
+                id: 9,
+                section: "Core Prompts",
+                category: "Offer Creation",
+                title: "9. Offer Creation — Offer Naming",
+                when: "When your offer name feels generic",
+                prompt: `Generate 10 clear, benefit-driven names for an offer that helps with
+[problem].`,
+                output: "Names that signal outcome, not fluff",
+                tip: "The best name explains itself in one glance."
+            },
+            {
+                id: 10,
+                section: "Core Prompts",
+                category: "Offer Creation",
+                title: "10. Offer Creation — Who It’s For / Not For",
+                when: "When you want better-fit buyers",
+                prompt: `Write a “This is for you if / This is not for you if” section for this
+offer: [offer].`,
+                output: "Clear audience filtering that improves conversions",
+                tip: "Clarity repels the wrong buyers and attracts the right ones."
+            },
+            {
+                id: 11,
+                section: "Core Prompts",
+                category: "Sales Pages",
+                title: "11. Sales Pages — Opening Hook",
+                when: "When writing the top of a sales page",
+                prompt: `Write a short sales page opening that speaks directly to someone
+struggling with [problem].
+Keep it conversational and honest.`,
+                output: "A strong opening that keeps readers scrolling",
+                tip: "Avoid benefits first—start with recognition."
+            },
+            {
+                id: 12,
+                section: "Core Prompts",
+                category: "Sales Pages",
+                title: "12. Sales Pages — Benefit Bullets",
+                when: "When your benefits feel vague",
+                prompt: `Write 7 clear benefit bullets for [offer].
+Focus on outcomes, not features.`,
+                output: "Benefits that feel tangible and specific",
+                tip: "If a bullet sounds generic, rewrite it."
+            },
+            {
+                id: 13,
+                section: "Core Prompts",
+                category: "Sales Pages",
+                title: "13. Sales Pages — CTA Writing",
+                when: "When your CTA feels weak",
+                prompt: `Write 10 CTAs for [offer] that feel helpful, not pushy.`,
+                output: "CTAs that lower buying resistance",
+                tip: "Soft CTAs often outperform aggressive ones."
+            },
+            {
+                id: 14,
+                section: "Core Prompts",
+                category: "Sales Pages",
+                title: "14. Sales Pages — Social Proof Framing",
+                when: "When you don’t have testimonials yet",
+                prompt: `Write a credibility section for [offer] without testimonials.
+Focus on logic, experience, and clarity.`,
+                output: "Trust-building copy without fake proof",
+                tip: "Honesty converts better than exaggeration."
+            },
+            {
+                id: 15,
+                section: "Core Prompts",
+                category: "Sales Pages",
+                title: "15. Sales Pages — FAQ Generator",
+                when: "When buyers ask repeated questions",
+                prompt: `Generate 8 FAQs for [offer] with concise, reassuring answers.`,
+                output: "Reduced buyer hesitation",
+                tip: "FAQs often close the sale."
+            },
+            {
+                id: 16,
+                section: "Core Prompts",
+                category: "Lead Magnets",
+                title: "16. Lead Magnets — Idea Generator",
+                when: "When you need a freebie idea",
+                prompt: `Suggest 10 lead magnet ideas that solve one quick problem for
+[audience].`,
+                output: "Freebie ideas that attract the right people",
+                tip: "A good lead magnet solves one problem well."
+            },
+            {
+                id: 17,
+                section: "Core Prompts",
+                category: "Lead Magnets",
+                title: "17. Lead Magnets — Outline Builder",
+                when: "When building the content itself",
+                prompt: `Create a simple outline for a lead magnet titled “[title].”`,
+                output: "A ready-to-build structure",
+                tip: "Short lead magnets convert better than long ones."
+            },
+            {
+                id: 18,
+                section: "Core Prompts",
+                category: "Lead Magnets",
+                title: "18. Lead Magnets — Conversion Copy",
+                when: "When writing the signup page",
+                prompt: `Write landing page copy for a free lead magnet that helps with
+[problem].`,
+                output: "Signup-focused copy that explains value quickly",
+                tip: "Emphasize the outcome, not the format."
+            },
+            {
+                id: 19,
+                section: "Core Prompts",
+                category: "Email Writing",
+                title: "19. Email Writing — Welcome Email",
+                when: "After someone joins your list",
+                prompt: `Write a friendly welcome email that sets expectations and builds trust.`,
+                output: "A strong first impression email",
+                tip: "Welcome emails get the highest open rates."
+            },
+            {
+                id: 20,
+                section: "Core Prompts",
+                category: "Email Writing",
+                title: "20. Email Writing — Value Email",
+                when: "When nurturing your list",
+                prompt: `Write a short value-driven email teaching one useful insight about
+[topic].`,
+                output: "Engaging emails without over-teaching",
+                tip: "One insight beats five ideas."
+            },
+            {
+                id: 21,
+                section: "Core Prompts",
+                category: "Email Writing",
+                title: "21. Email Writing — Soft Promotion",
+                when: "When mentioning your offer",
+                prompt: `Write an email that naturally introduces [offer] without sounding
+salesy.`,
+                output: "Promotion that feels respectful",
+                tip: "Context sells better than pressure."
+            },
+            {
+                id: 22,
+                section: "Core Prompts",
+                category: "Productivity",
+                title: "22. Time Management — Weekly Planning",
+                when: "When content feels chaotic",
+                prompt: `Create a simple weekly content plan based on my goals and time limits.`,
+                output: "A manageable posting plan",
+                tip: "Consistency beats volume."
+            },
+            {
+                id: 23,
+                section: "Core Prompts",
+                category: "Systems",
+                title: "23. Inconsistent Output — Content Baseline",
+                when: "When results vary too much",
+                prompt: `Create a repeatable content framework I can reuse weekly.`,
+                output: "Predictable output structure",
+                tip: "Baselines reduce decision fatigue."
+            },
+            {
+                id: 24,
+                section: "Core Prompts",
+                category: "Strategy",
+                title: "24. Strategy Overload — Simplifier",
+                when: "When you feel overwhelmed",
+                prompt: `Strip my content strategy down to the 3 most important actions.`,
+                output: "Focus and clarity",
+                tip: "Remove before you add."
+            },
+            {
+                id: 25,
+                section: "Core Prompts",
+                category: "Emergency Prompt",
+                title: "25. Blank Page Breaker",
+                when: "When you’re completely stuck",
+                prompt: `Ask me 5 simple questions that will help me create my next piece of
+content.`,
+                output: "Momentum when you feel blocked",
+                tip: "Answer quickly. Don’t overthink."
+            }
+        ];
+
+        const systemsPrompts = [
+            {
+                id: 26,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "1. Content Operating System",
+                when: "When your content feels random or reactive",
+                prompt: `Act as my content operations manager. Based on my niche, goals, and
+audience, design a simple weekly content system with clear inputs,
+outputs, and reuse rules.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 27,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "2. Idea Intake System",
+                when: "When ideas are scattered across notes and apps",
+                prompt: `Turn my raw ideas into a structured intake system with categories,
+priority rules, and next actions.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 28,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "3. Weekly Content Planner",
+                when: "When planning feels heavy",
+                prompt: `Create a weekly content plan optimized for energy, time, and reuse
+across platforms.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 29,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "4. Content Pillar Engine",
+                when: "When content lacks focus",
+                prompt: `Define 3–5 content pillars tied directly to audience problems and buying
+intent.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 30,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "5. Quality Control Filter",
+                when: "When content feels off-brand",
+                prompt: `Create a quality checklist to evaluate clarity, relevance, authority,
+and usefulness before publishing.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 31,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "6. Multi-Format Repurposing System",
+                when: "When creating from scratch every time",
+                prompt: `Turn one core idea into posts, emails, short-form video, and long-form
+content.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 32,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "7. Evergreen Content Identifier",
+                when: "When content expires too fast",
+                prompt: `Identify which of my ideas can become evergreen and how to frame them.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 33,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "8. Content Recycling Engine",
+                when: "When old content is ignored",
+                prompt: `Audit my past content and suggest high-impact rewrites or reposts.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 34,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "9. Authority Signal Builder",
+                when: "When you don’t feel credible",
+                prompt: `Extract authority signals from my experience and turn them into content
+angles.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 35,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "10. Trend Adaptation System",
+                when: "When trends feel overwhelming",
+                prompt: `Adapt trends to my niche without copying or diluting my voice.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 36,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "11. Content Speed Optimizer",
+                when: "When content takes too long",
+                prompt: `Redesign my content creation process to reduce time without losing
+quality.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 37,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "12. Batch Creation Framework",
+                when: "When daily posting burns you out",
+                prompt: `Build a batching system aligned with energy and focus.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 38,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "13. Content Consistency Guardrail",
+                when: "When output fluctuates",
+                prompt: `Create minimum consistency rules that keep me visible without pressure.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 39,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "14. Platform-Specific Adaptation",
+                when: "When content flops across platforms",
+                prompt: `Adapt one message for LinkedIn, Instagram, X, and email without
+rewriting from scratch.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 40,
+                section: "System Prompts",
+                category: "Content Systems",
+                title: "15. Content Failure Analyzer",
+                when: "When posts underperform",
+                prompt: `Diagnose why this content failed and how to fix it.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 41,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "16. Creator Time Audit",
+                when: "When you feel busy but stuck",
+                prompt: `Analyze where my time is leaking and propose fixes.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 42,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "17. Weekly Execution Plan",
+                when: "When weeks blur together",
+                prompt: `Turn goals into a realistic weekly execution plan.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 43,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "18. Energy-Based Scheduling",
+                when: "When burnout creeps in",
+                prompt: `Align my tasks with high- and low-energy windows.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 44,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "19. Decision Fatigue Reducer",
+                when: "When small decisions drain you",
+                prompt: `Identify recurring decisions and automate or pre-decide them.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 45,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "20. Focus Protection System",
+                when: "When distracted constantly",
+                prompt: `Design focus rules that protect deep work time.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 46,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "21. Creator Burnout Early Warning",
+                when: "When motivation dips",
+                prompt: `Identify early burnout signals and countermeasures.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 47,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "22. Task Elimination System",
+                when: "When workload grows",
+                prompt: `Identify tasks to eliminate, automate, or simplify.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 48,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "23. Output Prioritization Engine",
+                when: "When everything feels important",
+                prompt: `Rank my tasks by leverage and outcome impact.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 49,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "24. Weekly Review System",
+                when: "When progress stalls",
+                prompt: `Build a simple weekly review to improve output.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 50,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "25. Chaos-to-Order Reset",
+                when: "When overwhelmed",
+                prompt: `Reset my workflow from chaos to clarity in steps.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 51,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "26. Automation Opportunity Finder",
+                when: "When repeating tasks",
+                prompt: `Identify what can be automated with simple tools or AI.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 52,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "27. Creator SOP Builder",
+                when: "When scaling output",
+                prompt: `Turn this task into a simple SOP anyone could follow.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 53,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "28. Deadline Discipline System",
+                when: "When projects drag",
+                prompt: `Create realistic deadlines with accountability triggers.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 54,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "29. Execution Bottleneck Finder",
+                when: "When stuck mid-process",
+                prompt: `Identify where my workflow breaks and how to fix it.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 55,
+                section: "System Prompts",
+                category: "Workflow Systems",
+                title: "30. Sustainable Creator Routine",
+                when: "When routines don’t stick",
+                prompt: `Design a routine I can sustain long-term.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 56,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "31. Audience Clarity Engine",
+                when: "When engagement is low",
+                prompt: `Clarify my audience’s real problems, language, and triggers.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 57,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "32. Buyer Intent Signal Finder",
+                when: "When selling feels awkward",
+                prompt: `Identify signals that indicate buying readiness.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 58,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "33. Content-to-Offer Alignment",
+                when: "When content doesn’t convert",
+                prompt: `Align my content with my offers naturally.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 59,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "34. Feedback Loop System",
+                when: "When guessing what works",
+                prompt: `Build a lightweight feedback system from my audience.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 60,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "35. Objection Pattern Mapper",
+                when: "When buyers hesitate",
+                prompt: `Identify recurring objections and address them proactively.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 61,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "36. Trust Acceleration System",
+                when: "When authority feels slow",
+                prompt: `Design trust-building content sequences.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 62,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "37. Engagement Signal Analyzer",
+                when: "When metrics confuse you",
+                prompt: `Identify which engagement signals matter most.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 63,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "38. Audience Segmentation Prompt",
+                when: "When audience feels broad",
+                prompt: `Segment my audience by problem, awareness, and intent.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 64,
+                section: "System Prompts",
+                category: "Audience Systems",
+                title: "39. Long-Term Growth Map",
+                when: "When growth feels random",
+                prompt: `Map sustainable growth over 6–12 months.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 65,
+                section: "System Prompts",
+                category: "Monetization Systems",
+                title: "40. Offer Refinement Engine",
+                when: "When your offer sells inconsistently",
+                prompt: `Analyze my current offer and identify where clarity, differentiation, or
+outcome specificity can be improved to increase conversions without
+changing the core product.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 66,
+                section: "System Prompts",
+                category: "Monetization Systems",
+                title: "41. Offer Stack Builder",
+                when: "When you want higher average order value",
+                prompt: `Design an offer stack that increases value without adding complexity or
+support burden.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 67,
+                section: "System Prompts",
+                category: "Monetization Systems",
+                title: "42. Pricing Alignment Check",
+                when: "When pricing feels off",
+                prompt: `Evaluate whether my pricing matches perceived value, audience
+sophistication, and delivery method.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 68,
+                section: "System Prompts",
+                category: "Conversion Systems",
+                title: "43. Conversion Bottleneck Analyzer",
+                when: "When traffic doesn’t convert",
+                prompt: `Identify the biggest conversion bottleneck in my funnel and suggest
+targeted fixes.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 69,
+                section: "System Prompts",
+                category: "Conversion Systems",
+                title: "44. Sales Page Simplifier",
+                when: "When sales pages feel bloated",
+                prompt: `Simplify my sales page while preserving persuasive power.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 70,
+                section: "System Prompts",
+                category: "Conversion Systems",
+                title: "45. Objection Preemption System",
+                when: "When buyers hesitate",
+                prompt: `Identify and preempt top buyer objections directly in my content and
+sales pages.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 71,
+                section: "System Prompts",
+                category: "Conversion Systems",
+                title: "46. Trust Signal Optimizer",
+                when: "When credibility feels weak",
+                prompt: `Strengthen trust signals across my funnel without adding testimonials I
+don’t have.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 72,
+                section: "System Prompts",
+                category: "Revenue Systems",
+                title: "47. Revenue Workflow Mapper",
+                when: "When income feels unpredictable",
+                prompt: `Map my revenue workflow from attention to payment and identify
+stabilization points.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 73,
+                section: "System Prompts",
+                category: "Revenue Systems",
+                title: "48. Income Stream Rationalizer",
+                when: "When juggling too many ideas",
+                prompt: `Evaluate which income streams to double down on and which to cut.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 74,
+                section: "System Prompts",
+                category: "Revenue Systems",
+                title: "49. Funnel Simplification Engine",
+                when: "When funnels feel fragile",
+                prompt: `Simplify my funnel to reduce breakage and increase reliability.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 75,
+                section: "System Prompts",
+                category: "Revenue Systems",
+                title: "50. Cash Flow Stabilizer",
+                when: "When revenue fluctuates",
+                prompt: `Design mechanisms to smooth revenue and reduce dependency on launches.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 76,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "51. Delegation Readiness Check",
+                when: "When considering help",
+                prompt: `Assess which tasks are ready to delegate and which are not.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 77,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "52. Delegation SOP Generator",
+                when: "Before hiring or outsourcing",
+                prompt: `Turn this task into a clear SOP someone else can execute.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 78,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "53. Hiring Scope Definer",
+                when: "When unsure who to hire",
+                prompt: `Define the exact scope, outcomes, and success metrics for this role.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 79,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "54. Creator Role Evolution Map",
+                when: "When growth feels heavy",
+                prompt: `Map how my role should evolve as my business scales.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 80,
+                section: "System Prompts",
+                category: "Partnership Systems",
+                title: "55. Partnership Readiness Analyzer",
+                when: "Before collaborations",
+                prompt: `Evaluate whether I’m ready for partnerships and what type fits best.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 81,
+                section: "System Prompts",
+                category: "Partnership Systems",
+                title: "56. Partnership Value Proposition Builder",
+                when: "Pitching collaborations",
+                prompt: `Craft a clear value proposition for potential partners.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 82,
+                section: "System Prompts",
+                category: "Partnership Systems",
+                title: "57. Revenue Share Model Designer",
+                when: "Structuring collaborations",
+                prompt: `Design a fair revenue-share model aligned with contribution and risk.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 83,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "58. Scale Risk Assessment",
+                when: "Before scaling fast",
+                prompt: `Identify risks that could break my systems at scale and how to mitigate
+them.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 84,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "59. System Stress Test",
+                when: "When output increases",
+                prompt: `Stress-test my systems for higher volume and complexity.`,
+                output: "",
+                tip: ""
+            },
+            {
+                id: 85,
+                section: "System Prompts",
+                category: "Scaling Systems",
+                title: "60. Long-Term Scale Blueprint",
+                when: "Planning the next 12 months",
+                prompt: `Design a scalable business blueprint that prioritizes leverage,
+stability, and simplicity.`,
+                output: "",
+                tip: ""
+            }
+        ];
+
+        // Combine all prompts
+        const allPrompts = [...corePrompts, ...systemsPrompts];
+
+        let currentFilter = 'All';
+        let searchTerm = '';
+        let copiedId = null;
+        let playingId = null;
+        let currentUtterance = null;
+
+        // Get unique categories
+        const categories = ['All', ...new Set(allPrompts.map(p => p.category))];
+        const sections = ['All', ...new Set(allPrompts.map(p => p.section))];
+
+        function copyToClipboard(text, id) {
+            navigator.clipboard.writeText(text).then(() => {
+                copiedId = id;
+                render();
+                setTimeout(() => {
+                    copiedId = null;
+                    render();
+                }, 2000);
+            });
+        }
+
+        function togglePlay(prompt, id) {
+            // Stop current playback if exists
+            if (currentUtterance) {
+                window.speechSynthesis.cancel();
+            }
+
+            // If clicking the same button, stop playback
+            if (playingId === id) {
+                playingId = null;
+                render();
+                return;
+            }
+
+            // Start new playback
+            const textToRead = `${prompt.title}. When to use: ${prompt.when}. Prompt: ${prompt.prompt}`;
+            currentUtterance = new SpeechSynthesisUtterance(textToRead);
+            
+            currentUtterance.rate = 1.0;
+            currentUtterance.pitch = 1.0;
+            currentUtterance.volume = 1.0;
+
+            currentUtterance.onstart = () => {
+                playingId = id;
+                render();
+            };
+
+            currentUtterance.onend = () => {
+                playingId = null;
+                currentUtterance = null;
+                render();
+            };
+
+            currentUtterance.onerror = () => {
+                playingId = null;
+                currentUtterance = null;
+                render();
+            };
+
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        function filterPrompts() {
+            return allPrompts.filter(prompt => {
+                const matchesCategory = currentFilter === 'All' || prompt.category === currentFilter || prompt.section === currentFilter;
+                const matchesSearch = !searchTerm || 
+                    prompt.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    prompt.when.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    prompt.prompt.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        function render() {
+            const filteredPrompts = filterPrompts();
+            
+            document.getElementById('app').innerHTML = `
+                <!-- Header -->
+                <div class="sticky-header">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+                        <div class="text-center">
+                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black logo-pulse mb-2">
+                                <span style="color: #f59e0b;">Prompt</span><span style="color: #06b6d4;">Aider</span>
+                            </h1>
+                            <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 via-cyan-400/20 to-purple-500/20 border border-amber-400/40 mb-3">
+                                <p class="bundle-badge text-sm sm:text-base font-bold">Creator Shortcut Bundle</p>
+                            </div>
+                            <p class="text-cyan-300 text-base sm:text-lg mb-4">
+                                <span class="font-bold text-amber-400">85 Essential Prompts</span> = 25 Core + 60 Systems
+                            </p>
+                            <p class="text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto">
+                                Everything a creator needs to produce consistently. Never stare at a blank page again.
+                            </p>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-6 max-w-3xl mx-auto">
+                            <div class="stat-card bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-3 sm:p-4 text-center">
+                                <div class="text-2xl sm:text-3xl font-black text-amber-400">25</div>
+                                <div class="text-xs sm:text-sm text-cyan-300">Core Shortcuts</div>
+                            </div>
+                            <div class="stat-card bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-lg p-3 sm:p-4 text-center">
+                                <div class="text-2xl sm:text-3xl font-black text-cyan-400">60</div>
+                                <div class="text-xs sm:text-sm text-cyan-300">System Prompts</div>
+                            </div>
+                            <div class="stat-card bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-lg p-3 sm:p-4 text-center">
+                                <div class="text-2xl sm:text-3xl font-black text-purple-400">85</div>
+                                <div class="text-xs sm:text-sm text-cyan-300">Total Prompts</div>
+                            </div>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="max-w-2xl mx-auto mt-6">
+                            <div class="search-glow relative">
+                                <input 
+                                    type="text" 
+                                    placeholder="🔍 Search prompts by topic, use case, or keyword..."
+                                    value="${searchTerm}"
+                                    oninput="searchTerm = this.value; render();"
+                                    class="w-full px-4 py-3 sm:py-4 bg-slate-800/50 border-2 border-cyan-400/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm sm:text-base"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Section Filters -->
+                        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4">
+                            ${sections.map(section => `
+                                <button 
+                                    onclick="currentFilter = '${section}'; render();"
+                                    class="category-pill px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold no-print ${
+                                        currentFilter === section 
+                                            ? 'active' 
+                                            : 'bg-slate-800/50 border border-cyan-400/30 text-cyan-300'
+                                    }">
+                                    ${section}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Category Filters -->
+                        <div class="flex flex-wrap justify-center gap-2 mt-3">
+                            ${categories.filter(c => c !== 'All').map(category => `
+                                <button 
+                                    onclick="currentFilter = '${category}'; render();"
+                                    class="category-pill px-3 py-1.5 rounded-full text-xs font-medium no-print ${
+                                        currentFilter === category 
+                                            ? 'active' 
+                                            : 'bg-slate-800/30 border border-amber-400/20 text-amber-300/80'
+                                    }">
+                                    ${category}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompts Grid -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    ${filteredPrompts.length === 0 ? `
+                        <div class="text-center py-12">
+                            <div class="text-6xl mb-4">🔍</div>
+                            <p class="text-xl text-slate-400">No prompts found</p>
+                            <button 
+                                onclick="currentFilter = 'All'; searchTerm = ''; render();"
+                                class="mt-4 px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-colors">
+                                Clear Filters
+                            </button>
+                        </div>
+                    ` : `
+                        <div class="grid grid-cols-1 gap-4 sm:gap-6 max-w-4xl mx-auto">
+                            ${filteredPrompts.map(prompt => `
+                                <div class="prompt-card bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-cyan-400/20 rounded-xl p-4 sm:p-6 backdrop-blur-sm animate-fade-in">
+                                    <div class="flex items-start justify-between mb-3">
+                                        <div class="flex-1">
+                                            <div class="inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-semibold mb-2 ${
+                                                prompt.section === 'Core Prompts' 
+                                                    ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40'
+                                                    : 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40'
+                                            }">
+                                                ${prompt.section}
+                                            </div>
+                                            <h3 class="text-lg sm:text-xl font-bold text-white mb-2">${prompt.title}</h3>
+                                            <p class="text-xs sm:text-sm text-amber-300 mb-3">
+                                                <span class="font-semibold">When:</span> ${prompt.when}
+                                            </p>
+                                        </div>
+                                        <button 
+                                            onclick='togglePlay(${JSON.stringify(prompt).replace(/'/g, "\\'")} , ${prompt.id})'
+                                            class="play-button ${playingId === prompt.id ? 'playing' : ''} ml-3 flex-shrink-0 text-cyan-300 hover:text-amber-400 transition-colors"
+                                            title="${playingId === prompt.id ? 'Stop' : 'Play prompt'}">
+                                            ${playingId === prompt.id ? `
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <rect x="6" y="4" width="4" height="16" rx="1"/>
+                                                    <rect x="14" y="4" width="4" height="16" rx="1"/>
+                                                </svg>
+                                            ` : `
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            `}
+                                        </button>
+                                    </div>
+
+                                    <div class="bg-slate-900/60 border border-cyan-400/20 rounded-lg p-3 sm:p-4 mb-4">
+                                        <pre class="text-xs sm:text-sm text-cyan-100 whitespace-pre-wrap font-mono leading-relaxed">${prompt.prompt}</pre>
+                                    </div>
+
+                                    <div class="space-y-2 text-xs sm:text-sm mb-4">
+                                        <p class="text-green-400">
+                                            <span class="font-semibold">✓ Output:</span> ${prompt.output}
+                                        </p>
+                                        <p class="text-purple-300">
+                                            <span class="font-semibold">💡 Pro Tip:</span> ${prompt.tip}
+                                        </p>
+                                    </div>
+
+                                    <button 
+                                        onclick='copyToClipboard(\`${prompt.prompt.replace(/`/g, '\\`')}\`, ${prompt.id})'
+                                        class="w-full px-4 py-2 sm:py-3 rounded-lg font-bold text-sm sm:text-base transition-all no-print ${
+                                            copiedId === prompt.id
+                                                ? 'bg-green-500 text-white copy-success'
+                                                : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700'
+                                        }">
+                                        ${copiedId === prompt.id ? '✓ Copied!' : '📋 Copy Prompt'}
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `}
+
+                    <!-- MONETIZATION UPSELL -->
+                    <div class="mt-12 sm:mt-16 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-purple-500/10 border-3 border-purple-400/40 rounded-2xl p-8 sm:p-12 text-center backdrop-blur-sm">
+                        <div class="inline-block px-4 py-2 bg-purple-500/20 border border-purple-400/50 rounded-full text-purple-300 text-sm font-bold mb-6 uppercase tracking-wide animate-pulse">
+                            🚀 Ready for the Next Level?
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">
+                            <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                                Monetization Prompt Playbook
+                            </span>
+                        </h2>
+                        
+                        <p class="text-lg sm:text-xl text-purple-200 mb-6 max-w-2xl mx-auto">
+                            Turn your AI-powered content into <span class="text-pink-400 font-bold">actual revenue</span>
+                        </p>
+                        
+                        <div class="bg-slate-900/60 border border-purple-400/30 rounded-xl p-6 sm:p-8 mb-8 max-w-3xl mx-auto">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white mb-6">100 Prompts That Build Revenue Systems</h3>
+                            <ul class="text-left space-y-3 text-cyan-300 mb-6">
+                                <li class="flex items-start">
+                                    <span class="text-purple-400 mr-3 text-xl flex-shrink-0">✓</span>
+                                    <span>Turn ideas into products, funnels, and predictable revenue streams</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-400 mr-3 text-xl flex-shrink-0">✓</span>
+                                    <span>Build pricing strategies and sales copy that actually converts</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-400 mr-3 text-xl flex-shrink-0">✓</span>
+                                    <span>Design offers people want to buy (not just products you want to make)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-400 mr-3 text-xl flex-shrink-0">✓</span>
+                                    <span>For entrepreneurs, digital product builders, and service providers</span>
+                                </li>
+                            </ul>
+                            <div class="border-t border-purple-400/20 pt-6">
+                                <p class="text-sm text-purple-200 italic">
+                                    "This isn't about inspiration—it's about implementation and income."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 mb-2">
+                                $149
+                            </div>
+                            <p class="text-purple-300 text-sm">One-time payment • Instant access • Build revenue systems</p>
+                        </div>
+
+                        <a href="https://promptaider.gumroad.com/l/monetization-playbook-100" 
+                           target="_blank"
+                           class="inline-block px-10 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-white text-lg sm:text-xl font-black rounded-xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 transform">
+                            💰 Get the Monetization Playbook →
+                        </a>
+
+                        <div class="mt-8 flex flex-wrap justify-center gap-6 text-sm text-purple-300">
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-400 text-lg">✓</span>
+                                <span>Instant digital download</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-400 text-lg">✓</span>
+                                <span>No recurring fees</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-400 text-lg">✓</span>
+                                <span>100 revenue-focused prompts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 sm:mt-12 text-center text-slate-400 text-xs sm:text-sm">
+                        <p>Created by <span style="color: #f59e0b;" class="font-semibold">Prompt</span><span style="color: #06b6d4;" class="font-semibold">Aider</span></p>
+                        <p class="mt-2">25 Core + 60 Systems = 85 Total Shortcuts</p>
+                        <p class="mt-1 text-xs text-slate-500">Everything a creator needs to produce consistently</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        render();
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
